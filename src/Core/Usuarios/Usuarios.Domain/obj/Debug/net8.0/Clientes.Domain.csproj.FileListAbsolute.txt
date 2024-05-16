@@ -1,0 +1,11 @@
+C:\PROYECTOS\Arquitectura\src\Core\Clientes\Clientes.Domain\bin\Debug\net8.0\Clientes.Domain.deps.json
+C:\PROYECTOS\Arquitectura\src\Core\Clientes\Clientes.Domain\bin\Debug\net8.0\Clientes.Domain.dll
+C:\PROYECTOS\Arquitectura\src\Core\Clientes\Clientes.Domain\bin\Debug\net8.0\Clientes.Domain.pdb
+C:\PROYECTOS\Arquitectura\src\Core\Clientes\Clientes.Domain\obj\Debug\net8.0\Clientes.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\PROYECTOS\Arquitectura\src\Core\Clientes\Clientes.Domain\obj\Debug\net8.0\Clientes.Domain.AssemblyInfoInputs.cache
+C:\PROYECTOS\Arquitectura\src\Core\Clientes\Clientes.Domain\obj\Debug\net8.0\Clientes.Domain.AssemblyInfo.cs
+C:\PROYECTOS\Arquitectura\src\Core\Clientes\Clientes.Domain\obj\Debug\net8.0\Clientes.Domain.csproj.CoreCompileInputs.cache
+C:\PROYECTOS\Arquitectura\src\Core\Clientes\Clientes.Domain\obj\Debug\net8.0\Clientes.Domain.dll
+C:\PROYECTOS\Arquitectura\src\Core\Clientes\Clientes.Domain\obj\Debug\net8.0\refint\Clientes.Domain.dll
+C:\PROYECTOS\Arquitectura\src\Core\Clientes\Clientes.Domain\obj\Debug\net8.0\Clientes.Domain.pdb
+C:\PROYECTOS\Arquitectura\src\Core\Clientes\Clientes.Domain\obj\Debug\net8.0\ref\Clientes.Domain.dll

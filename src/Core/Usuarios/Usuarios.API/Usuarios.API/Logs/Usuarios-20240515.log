@@ -1,0 +1,88 @@
+2024-05-15 18:52:20.775 -05:00 [INF] INICIO | ClienteRepository - AddClienteAsync
+2024-05-15 18:53:09.574 -05:00 [INF] INICIO | Database - ExecuteNonQueryAsync
+2024-05-15 18:54:02.708 -05:00 [WRN] SqlException | Database - ExecuteNonQueryAsync:
+Procedure or function 'SP_USUARIO_CRUD' expects parameter '@Trx', which was not supplied.
+2024-05-15 18:54:02.724 -05:00 [INF] FIN | Database - ExecuteNonQueryAsync
+2024-05-15 18:54:02.742 -05:00 [ERR] Exception | ClienteRepository - AddClienteAsync:
+Ocurrió un error SQL al ejecutar el procedimiento almacenado.
+2024-05-15 18:54:02.760 -05:00 [INF] FIN | ClienteRepository - AddClienteAsync
+2024-05-15 18:55:08.404 -05:00 [INF] INICIO | ClienteRepository - AddClienteAsync
+2024-05-15 18:55:40.227 -05:00 [INF] INICIO | Database - ExecuteNonQueryAsync
+2024-05-15 19:11:19.264 -05:00 [WRN] SqlException | Database - ExecuteNonQueryAsync:
+Procedure or function 'SP_USUARIO_CRUD' expects parameter '@Trx', which was not supplied.
+2024-05-15 19:11:19.296 -05:00 [INF] FIN | Database - ExecuteNonQueryAsync
+2024-05-15 19:11:19.322 -05:00 [ERR] Exception | ClienteRepository - AddClienteAsync:
+Ocurrió un error SQL al ejecutar el procedimiento almacenado.
+2024-05-15 19:11:19.343 -05:00 [INF] FIN | ClienteRepository - AddClienteAsync
+2024-05-15 19:11:32.051 -05:00 [INF] INICIO | ClienteRepository - AddClienteAsync
+2024-05-15 19:11:36.427 -05:00 [INF] INICIO | Database - ExecuteNonQueryAsync
+2024-05-15 19:11:41.760 -05:00 [INF] FIN | Database - ExecuteNonQueryAsync
+2024-05-15 19:11:48.425 -05:00 [INF] FIN | ClienteRepository - AddClienteAsync
+2024-05-15 19:17:13.509 -05:00 [INF] INICIO | ClienteRepository - AddClienteAsync
+2024-05-15 19:17:13.510 -05:00 [INF] INICIO | Database - ExecuteNonQueryAsync
+2024-05-15 19:17:16.638 -05:00 [WRN] SqlException | Database - ExecuteNonQueryAsync:
+Cannot roll back THROW. No transaction or savepoint of that name was found.
+Transaction count after EXECUTE indicates a mismatching number of BEGIN and COMMIT statements. Previous count = 0, current count = 1.
+2024-05-15 19:17:16.655 -05:00 [INF] FIN | Database - ExecuteNonQueryAsync
+2024-05-15 19:17:16.674 -05:00 [ERR] Exception | ClienteRepository - AddClienteAsync:
+Ocurrió un error SQL al ejecutar el procedimiento almacenado.
+2024-05-15 19:17:16.693 -05:00 [INF] FIN | ClienteRepository - AddClienteAsync
+2024-05-15 22:59:55.860 -05:00 [INF] INICIO | ClienteRepository - AddClienteAsync
+2024-05-15 23:00:32.550 -05:00 [INF] INICIO | Database - ExecuteNonQueryAsync
+2024-05-15 23:00:32.940 -05:00 [WRN] SqlException | Database - ExecuteNonQueryAsync:
+Cannot roll back THROW. No transaction or savepoint of that name was found.
+Transaction count after EXECUTE indicates a mismatching number of BEGIN and COMMIT statements. Previous count = 0, current count = 1.
+2024-05-15 23:00:32.954 -05:00 [INF] FIN | Database - ExecuteNonQueryAsync
+2024-05-15 23:00:49.795 -05:00 [ERR] Exception | ClienteRepository - AddClienteAsync:
+Ocurrió un error SQL al ejecutar el procedimiento almacenado.
+2024-05-15 23:00:49.838 -05:00 [INF] FIN | ClienteRepository - AddClienteAsync
+2024-05-15 23:00:59.510 -05:00 [INF] INICIO | ClienteRepository - AddClienteAsync
+2024-05-15 23:01:36.394 -05:00 [INF] INICIO | Database - ExecuteNonQueryAsync
+2024-05-15 23:06:48.922 -05:00 [INF] INICIO | ClienteRepository - AddClienteAsync
+2024-05-15 23:07:11.892 -05:00 [INF] INICIO | Database - ExecuteNonQueryAsync
+2024-05-15 23:07:47.741 -05:00 [WRN] SqlException | Database - ExecuteNonQueryAsync:
+Cannot roll back THROW. No transaction or savepoint of that name was found.
+Transaction count after EXECUTE indicates a mismatching number of BEGIN and COMMIT statements. Previous count = 0, current count = 1.
+2024-05-15 23:07:47.759 -05:00 [INF] FIN | Database - ExecuteNonQueryAsync
+2024-05-15 23:07:47.782 -05:00 [ERR] Exception | ClienteRepository - AddClienteAsync:
+Ocurrió un error SQL al ejecutar el procedimiento almacenado.
+2024-05-15 23:07:47.798 -05:00 [INF] FIN | ClienteRepository - AddClienteAsync
+2024-05-15 23:08:06.413 -05:00 [INF] INICIO | ClienteRepository - AddClienteAsync
+2024-05-15 23:10:36.490 -05:00 [INF] INICIO | Database - ExecuteNonQueryAsync
+2024-05-15 23:16:25.219 -05:00 [INF] INICIO | ClienteRepository - AddClienteAsync
+2024-05-15 23:16:35.847 -05:00 [INF] INICIO | Database - ExecuteNonQueryAsync
+2024-05-15 23:21:24.326 -05:00 [WRN] SqlException | Database - ExecuteNonQueryAsync:
+Cannot roll back THROW. No transaction or savepoint of that name was found.
+Transaction count after EXECUTE indicates a mismatching number of BEGIN and COMMIT statements. Previous count = 0, current count = 1.
+2024-05-15 23:21:24.345 -05:00 [INF] FIN | Database - ExecuteNonQueryAsync
+2024-05-15 23:21:24.364 -05:00 [ERR] Exception | ClienteRepository - AddClienteAsync:
+Ocurrió un error SQL al ejecutar el procedimiento almacenado.
+2024-05-15 23:21:24.437 -05:00 [INF] FIN | ClienteRepository - AddClienteAsync
+2024-05-15 23:21:31.433 -05:00 [INF] INICIO | ClienteRepository - AddClienteAsync
+2024-05-15 23:21:32.538 -05:00 [INF] INICIO | Database - ExecuteNonQueryAsync
+2024-05-15 23:21:33.486 -05:00 [WRN] SqlException | Database - ExecuteNonQueryAsync:
+Cannot roll back THROW. No transaction or savepoint of that name was found.
+Transaction count after EXECUTE indicates a mismatching number of BEGIN and COMMIT statements. Previous count = 0, current count = 1.
+2024-05-15 23:21:33.500 -05:00 [INF] FIN | Database - ExecuteNonQueryAsync
+2024-05-15 23:21:33.515 -05:00 [ERR] Exception | ClienteRepository - AddClienteAsync:
+Ocurrió un error SQL al ejecutar el procedimiento almacenado.
+2024-05-15 23:21:33.530 -05:00 [INF] FIN | ClienteRepository - AddClienteAsync
+2024-05-15 23:23:16.590 -05:00 [INF] INICIO | ClienteRepository - AddClienteAsync
+2024-05-15 23:23:24.305 -05:00 [INF] INICIO | Database - ExecuteNonQueryAsync
+2024-05-15 23:23:24.322 -05:00 [INF] FIN | Database - ExecuteNonQueryAsync
+2024-05-15 23:23:34.661 -05:00 [INF] FIN | ClienteRepository - AddClienteAsync
+2024-05-15 23:45:14.397 -05:00 [INF] INICIO | ClienteRepository - DeleteClienteAsync
+2024-05-15 23:45:38.554 -05:00 [INF] INICIO | Database - ExecuteNonQueryAsync
+2024-05-15 23:45:38.681 -05:00 [INF] FIN | Database - ExecuteNonQueryAsync
+2024-05-15 23:45:38.681 -05:00 [INF] FIN | ClienteRepository - DeleteClienteAsync
+2024-05-15 23:46:08.228 -05:00 [INF] INICIO | ClienteRepository - DeleteClienteAsync
+2024-05-15 23:46:11.114 -05:00 [INF] INICIO | Database - ExecuteNonQueryAsync
+2024-05-15 23:46:11.121 -05:00 [INF] FIN | Database - ExecuteNonQueryAsync
+2024-05-15 23:46:11.121 -05:00 [INF] FIN | ClienteRepository - DeleteClienteAsync
+2024-05-15 23:48:42.218 -05:00 [INF] INICIO | ClienteRepository - DeleteClienteAsync
+2024-05-15 23:48:51.552 -05:00 [INF] INICIO | Database - ExecuteNonQueryAsync
+2024-05-15 23:49:12.545 -05:00 [INF] FIN | Database - ExecuteNonQueryAsync
+2024-05-15 23:50:01.804 -05:00 [INF] FIN | ClienteRepository - DeleteClienteAsync
+2024-05-15 23:50:04.300 -05:00 [INF] INICIO | ClienteRepository - DeleteClienteAsync
+2024-05-15 23:52:00.201 -05:00 [INF] INICIO | ClienteRepository - DeleteClienteAsync
+2024-05-15 23:53:49.611 -05:00 [INF] INICIO | ClienteRepository - DeleteClienteAsync

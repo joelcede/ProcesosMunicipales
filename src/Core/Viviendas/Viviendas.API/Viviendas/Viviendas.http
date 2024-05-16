@@ -1,0 +1,6 @@
+@Viviendas_HostAddress = http://localhost:5196
+
+GET {{Viviendas_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

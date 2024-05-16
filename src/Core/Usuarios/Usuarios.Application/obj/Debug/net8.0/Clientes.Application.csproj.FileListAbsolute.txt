@@ -1,0 +1,17 @@
+C:\PROYECTOS\Arquitectura\src\Core\Clientes\Clientes.Application\bin\Debug\net8.0\Clientes.Application.deps.json
+C:\PROYECTOS\Arquitectura\src\Core\Clientes\Clientes.Application\bin\Debug\net8.0\Clientes.Application.dll
+C:\PROYECTOS\Arquitectura\src\Core\Clientes\Clientes.Application\bin\Debug\net8.0\Clientes.Application.pdb
+C:\PROYECTOS\Arquitectura\src\Core\Clientes\Clientes.Application\bin\Debug\net8.0\Clientes.Domain.dll
+C:\PROYECTOS\Arquitectura\src\Core\Clientes\Clientes.Application\bin\Debug\net8.0\Clientes.Infrastructure.dll
+C:\PROYECTOS\Arquitectura\src\Core\Clientes\Clientes.Application\bin\Debug\net8.0\Clientes.Domain.pdb
+C:\PROYECTOS\Arquitectura\src\Core\Clientes\Clientes.Application\bin\Debug\net8.0\Clientes.Infrastructure.pdb
+C:\PROYECTOS\Arquitectura\src\Core\Clientes\Clientes.Application\obj\Debug\net8.0\Clientes.Application.csproj.AssemblyReference.cache
+C:\PROYECTOS\Arquitectura\src\Core\Clientes\Clientes.Application\obj\Debug\net8.0\Clientes.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\PROYECTOS\Arquitectura\src\Core\Clientes\Clientes.Application\obj\Debug\net8.0\Clientes.Application.AssemblyInfoInputs.cache
+C:\PROYECTOS\Arquitectura\src\Core\Clientes\Clientes.Application\obj\Debug\net8.0\Clientes.Application.AssemblyInfo.cs
+C:\PROYECTOS\Arquitectura\src\Core\Clientes\Clientes.Application\obj\Debug\net8.0\Clientes.Application.csproj.CoreCompileInputs.cache
+C:\PROYECTOS\Arquitectura\src\Core\Clientes\Clientes.Application\obj\Debug\net8.0\Clientes.4507B400.Up2Date
+C:\PROYECTOS\Arquitectura\src\Core\Clientes\Clientes.Application\obj\Debug\net8.0\Clientes.Application.dll
+C:\PROYECTOS\Arquitectura\src\Core\Clientes\Clientes.Application\obj\Debug\net8.0\refint\Clientes.Application.dll
+C:\PROYECTOS\Arquitectura\src\Core\Clientes\Clientes.Application\obj\Debug\net8.0\Clientes.Application.pdb
+C:\PROYECTOS\Arquitectura\src\Core\Clientes\Clientes.Application\obj\Debug\net8.0\ref\Clientes.Application.dll

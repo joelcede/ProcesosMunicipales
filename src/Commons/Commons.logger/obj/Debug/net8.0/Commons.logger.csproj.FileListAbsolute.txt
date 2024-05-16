@@ -1,0 +1,12 @@
+C:\PROYECTOS\Arquitectura\src\Commons\Commons.logger\bin\Debug\net8.0\Commons.logger.deps.json
+C:\PROYECTOS\Arquitectura\src\Commons\Commons.logger\bin\Debug\net8.0\Commons.logger.dll
+C:\PROYECTOS\Arquitectura\src\Commons\Commons.logger\bin\Debug\net8.0\Commons.logger.pdb
+C:\PROYECTOS\Arquitectura\src\Commons\Commons.logger\obj\Debug\net8.0\Commons.logger.csproj.AssemblyReference.cache
+C:\PROYECTOS\Arquitectura\src\Commons\Commons.logger\obj\Debug\net8.0\Commons.logger.GeneratedMSBuildEditorConfig.editorconfig
+C:\PROYECTOS\Arquitectura\src\Commons\Commons.logger\obj\Debug\net8.0\Commons.logger.AssemblyInfoInputs.cache
+C:\PROYECTOS\Arquitectura\src\Commons\Commons.logger\obj\Debug\net8.0\Commons.logger.AssemblyInfo.cs
+C:\PROYECTOS\Arquitectura\src\Commons\Commons.logger\obj\Debug\net8.0\Commons.logger.csproj.CoreCompileInputs.cache
+C:\PROYECTOS\Arquitectura\src\Commons\Commons.logger\obj\Debug\net8.0\Commons.logger.dll
+C:\PROYECTOS\Arquitectura\src\Commons\Commons.logger\obj\Debug\net8.0\refint\Commons.logger.dll
+C:\PROYECTOS\Arquitectura\src\Commons\Commons.logger\obj\Debug\net8.0\Commons.logger.pdb
+C:\PROYECTOS\Arquitectura\src\Commons\Commons.logger\obj\Debug\net8.0\ref\Commons.logger.dll

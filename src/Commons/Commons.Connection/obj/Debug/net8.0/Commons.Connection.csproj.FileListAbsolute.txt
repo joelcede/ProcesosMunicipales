@@ -1,0 +1,15 @@
+C:\PROYECTOS\Arquitectura\src\Commons\Commons.Connection\bin\Debug\net8.0\Commons.Connection.deps.json
+C:\PROYECTOS\Arquitectura\src\Commons\Commons.Connection\bin\Debug\net8.0\Commons.Connection.dll
+C:\PROYECTOS\Arquitectura\src\Commons\Commons.Connection\bin\Debug\net8.0\Commons.Connection.pdb
+C:\PROYECTOS\Arquitectura\src\Commons\Commons.Connection\bin\Debug\net8.0\Commons.logger.dll
+C:\PROYECTOS\Arquitectura\src\Commons\Commons.Connection\bin\Debug\net8.0\Commons.logger.pdb
+C:\PROYECTOS\Arquitectura\src\Commons\Commons.Connection\obj\Debug\net8.0\Commons.Connection.csproj.AssemblyReference.cache
+C:\PROYECTOS\Arquitectura\src\Commons\Commons.Connection\obj\Debug\net8.0\Commons.Connection.GeneratedMSBuildEditorConfig.editorconfig
+C:\PROYECTOS\Arquitectura\src\Commons\Commons.Connection\obj\Debug\net8.0\Commons.Connection.AssemblyInfoInputs.cache
+C:\PROYECTOS\Arquitectura\src\Commons\Commons.Connection\obj\Debug\net8.0\Commons.Connection.AssemblyInfo.cs
+C:\PROYECTOS\Arquitectura\src\Commons\Commons.Connection\obj\Debug\net8.0\Commons.Connection.csproj.CoreCompileInputs.cache
+C:\PROYECTOS\Arquitectura\src\Commons\Commons.Connection\obj\Debug\net8.0\Commons..D0E218E1.Up2Date
+C:\PROYECTOS\Arquitectura\src\Commons\Commons.Connection\obj\Debug\net8.0\Commons.Connection.dll
+C:\PROYECTOS\Arquitectura\src\Commons\Commons.Connection\obj\Debug\net8.0\refint\Commons.Connection.dll
+C:\PROYECTOS\Arquitectura\src\Commons\Commons.Connection\obj\Debug\net8.0\Commons.Connection.pdb
+C:\PROYECTOS\Arquitectura\src\Commons\Commons.Connection\obj\Debug\net8.0\ref\Commons.Connection.dll

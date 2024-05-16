@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "iuhf0GfB7jTpG81lfKM03VWQ5zJC9ug2DrZBBwoE5EsMfd+B6QdLmkz+T2tAYPP9zK1bFSU8y31jMdT0IHFtug==",
+  "success": true,
+  "projectFilePath": "C:\\PROYECTOS\\Arquitectura\\src\\Core\\Usuarios\\Usuarios.Application\\Usuarios.Application.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Jioska\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.1\\microsoft.extensions.dependencyinjection.abstractions.8.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

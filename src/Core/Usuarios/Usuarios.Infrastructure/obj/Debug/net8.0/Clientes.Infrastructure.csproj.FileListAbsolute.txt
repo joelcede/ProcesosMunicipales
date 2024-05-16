@@ -1,0 +1,15 @@
+C:\PROYECTOS\Arquitectura\src\Core\Clientes\Clientes.Infrastructure\bin\Debug\net8.0\Clientes.Infrastructure.deps.json
+C:\PROYECTOS\Arquitectura\src\Core\Clientes\Clientes.Infrastructure\bin\Debug\net8.0\Clientes.Infrastructure.dll
+C:\PROYECTOS\Arquitectura\src\Core\Clientes\Clientes.Infrastructure\bin\Debug\net8.0\Clientes.Infrastructure.pdb
+C:\PROYECTOS\Arquitectura\src\Core\Clientes\Clientes.Infrastructure\bin\Debug\net8.0\Clientes.Domain.dll
+C:\PROYECTOS\Arquitectura\src\Core\Clientes\Clientes.Infrastructure\bin\Debug\net8.0\Clientes.Domain.pdb
+C:\PROYECTOS\Arquitectura\src\Core\Clientes\Clientes.Infrastructure\obj\Debug\net8.0\Clientes.Infrastructure.csproj.AssemblyReference.cache
+C:\PROYECTOS\Arquitectura\src\Core\Clientes\Clientes.Infrastructure\obj\Debug\net8.0\Clientes.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\PROYECTOS\Arquitectura\src\Core\Clientes\Clientes.Infrastructure\obj\Debug\net8.0\Clientes.Infrastructure.AssemblyInfoInputs.cache
+C:\PROYECTOS\Arquitectura\src\Core\Clientes\Clientes.Infrastructure\obj\Debug\net8.0\Clientes.Infrastructure.AssemblyInfo.cs
+C:\PROYECTOS\Arquitectura\src\Core\Clientes\Clientes.Infrastructure\obj\Debug\net8.0\Clientes.Infrastructure.csproj.CoreCompileInputs.cache
+C:\PROYECTOS\Arquitectura\src\Core\Clientes\Clientes.Infrastructure\obj\Debug\net8.0\Clientes.012A2D0D.Up2Date
+C:\PROYECTOS\Arquitectura\src\Core\Clientes\Clientes.Infrastructure\obj\Debug\net8.0\Clientes.Infrastructure.dll
+C:\PROYECTOS\Arquitectura\src\Core\Clientes\Clientes.Infrastructure\obj\Debug\net8.0\refint\Clientes.Infrastructure.dll
+C:\PROYECTOS\Arquitectura\src\Core\Clientes\Clientes.Infrastructure\obj\Debug\net8.0\Clientes.Infrastructure.pdb
+C:\PROYECTOS\Arquitectura\src\Core\Clientes\Clientes.Infrastructure\obj\Debug\net8.0\ref\Clientes.Infrastructure.dll
