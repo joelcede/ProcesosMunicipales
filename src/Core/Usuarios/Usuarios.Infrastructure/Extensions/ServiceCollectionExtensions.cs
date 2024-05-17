@@ -6,20 +6,11 @@ namespace Usuarios.Infrastructure.Extensions
 {
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection AddClienteServices(this IServiceCollection services)
+        public static IServiceCollection AddUsuarioServices(this IServiceCollection services)
         {
-            services.AddScoped<IClienteRepository, ClienteRepository>();
+            services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             return services;
         }
-        public static IServiceCollection AddFamiliarServices(this IServiceCollection services)
-        {
-            services.AddScoped<IFamiliarRepository, FamiliarRepository>();
-            return services;
-        }
-        public static IServiceCollection AddPropietarioSerices(this IServiceCollection services)
-        {
-            services.AddScoped<IPropietarioRepository, PropietarioRepository>();
-            return services;
-        }
+
     }
 }

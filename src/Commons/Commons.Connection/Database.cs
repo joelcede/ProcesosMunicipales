@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using System.Data.SqlClient;
 using System.Data;
+using System.Reflection;
 
 namespace Commons.Connection
 {
@@ -61,7 +62,7 @@ namespace Commons.Connection
             }
         }
 
-        public async Task<T> ExecuteScalarAsync<T>(string storedProcedureName, Dictionary<string, object> parameters)
+        public async Task<T> ExecuteScalarAsync<T>(string storedProcedureName, Dictionary<string, object> parameters) where T : new()
         {
             _logger.LogInicio(_clase);
             if (string.IsNullOrEmpty(storedProcedureName))
@@ -69,26 +70,50 @@ namespace Commons.Connection
 
             try
             {
-                using (SqlConnection conn = new SqlConnection(_configuration.GetConnectionString(conexion)))
+                var cadenaConexion = _configuration.GetConnectionString(conexion);
+                using (SqlConnection conn = new SqlConnection(cadenaConexion))
                 {
+                    await conn.OpenAsync();
+
                     using (SqlCommand cmd = new SqlCommand(storedProcedureName, conn))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
 
-                        foreach (var param in parameters)
+                        if (parameters != null)
                         {
-                            cmd.Parameters.AddWithValue(param.Key, param.Value);
+                            foreach (var param in parameters)
+                            {
+                                cmd.Parameters.AddWithValue(param.Key, param.Value ?? DBNull.Value);
+                            }
                         }
 
-                        await conn.OpenAsync();
-                        var result = await cmd.ExecuteScalarAsync();
-
-                        if (result == null || result == DBNull.Value)
+                        using (var reader = await cmd.ExecuteReaderAsync())
                         {
-                            return default(T);
-                        }
+                            if (await reader.ReadAsync())
+                            {
+                                T obj = new T();
+                                for (int i = 0; i < reader.FieldCount; i++)
+                                {
+                                    // Obtener el nombre de la columna del SqlDataReader
+                                    string columnName = reader.GetName(i);
 
-                        return (T)Convert.ChangeType(result, typeof(T));
+                                    // Buscar la propiedad en la clase T que coincide con el nombre de la columna
+                                    PropertyInfo property = obj.GetType().GetProperty(columnName);
+
+                                    // Si la propiedad existe y no es de solo lectura
+                                    if (property != null && property.CanWrite)
+                                    {
+                                        // Asignar el valor a la propiedad del objeto
+                                        var value = reader.GetValue(i);
+                                        if (value != DBNull.Value)
+                                        {
+                                            property.SetValue(obj, Convert.ChangeType(value, property.PropertyType), null);
+                                        }
+                                    }
+                                }
+                                return obj;
+                            }
+                        }
                     }
                 }
             }
@@ -106,41 +131,104 @@ namespace Commons.Connection
             {
                 _logger.LogFin(_clase);
             }
-            
+            return default(T); // Devuelve el valor predeterminado de T si no se encuentra ningún resultado
         }
 
-        public async Task<List<T>> ExecuteReaderAsync<T>(string storedProcedureName, Dictionary<string, object> parameters, Func<IDataReader, T> readFunc)
-        {
-            _logger.LogInicio(_clase);
-            if (string.IsNullOrEmpty(storedProcedureName))
-                throw new ArgumentException("El nombre del procedimiento almacenado no puede ser nulo o vacío", nameof(storedProcedureName));
+        //public async Task<List<T>> ExecuteReaderAsync<T>(string storedProcedureName, Dictionary<string, object> parameters, Func<IDataReader, T> readFunc)
+        //{
+        //    _logger.LogInicio(_clase);
+        //    if (string.IsNullOrEmpty(storedProcedureName))
+        //        throw new ArgumentException("El nombre del procedimiento almacenado no puede ser nulo o vacío", nameof(storedProcedureName));
 
-            var results = new List<T>();
+        //    var results = new List<T>();
+        //    try
+        //    {
+        //        using (SqlConnection conn = new SqlConnection(_configuration.GetConnectionString(conexion)))
+        //        {
+        //            using (SqlCommand cmd = new SqlCommand(storedProcedureName, conn))
+        //            {
+        //                cmd.CommandType = CommandType.StoredProcedure;
+
+        //                foreach (var param in parameters)
+        //                {
+        //                    cmd.Parameters.AddWithValue(param.Key, param.Value);
+        //                }
+
+        //                await conn.OpenAsync();
+        //                using (var reader = await cmd.ExecuteReaderAsync())
+        //                {
+        //                    while (await reader.ReadAsync())
+        //                    {
+        //                        results.Add(readFunc(reader));
+        //                    }
+        //                }
+        //            }
+        //        }
+        //    }
+        //    catch(SqlException ex)
+        //    {
+        //        _logger.LogErrorSQL(_clase, ex.Message);
+        //        throw new ApplicationException("Ocurrió un error SQL al ejecutar el procedimiento almacenado.", ex);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        _logger.LogError(_clase, ex.Message);
+        //        throw new ApplicationException("Ocurrió un error al ejecutar el procedimiento almacenado.", ex);
+        //    }
+        //    finally
+        //    {
+        //        _logger.LogFin(_clase);
+        //    }
+        //    return results;
+        //}
+        public async Task<List<T>> ExecuteReaderAsync<T>(string storedProcedureName, Dictionary<string, object> parameters) where T : new()
+        {
+            var connectionString = _configuration.GetConnectionString("DefaultConnection");
+            List<T> lista = new List<T>();
+
             try
             {
-                using (SqlConnection conn = new SqlConnection(_configuration.GetConnectionString(conexion)))
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    using (SqlCommand cmd = new SqlCommand(storedProcedureName, conn))
+                    await connection.OpenAsync();
+                    using (SqlCommand command = new SqlCommand(storedProcedureName, connection))
                     {
-                        cmd.CommandType = CommandType.StoredProcedure;
+                        command.CommandType = CommandType.StoredProcedure;
 
-                        foreach (var param in parameters)
+                        // Agregar parámetros
+                        foreach (var parametro in parameters)
                         {
-                            cmd.Parameters.AddWithValue(param.Key, param.Value);
+                            command.Parameters.AddWithValue(parametro.Key, parametro.Value ?? DBNull.Value);
                         }
 
-                        await conn.OpenAsync();
-                        using (var reader = await cmd.ExecuteReaderAsync())
+                        // Ejecutar comando y mapear resultados
+                        using (var reader = await command.ExecuteReaderAsync())
                         {
-                            while (await reader.ReadAsync())
+                            if (await reader.ReadAsync())
                             {
-                                results.Add(readFunc(reader));
+                                T obj = new T();
+                                for (int i = 0; i < reader.FieldCount; i++)
+                                {
+                                    // Obtener el nombre de la columna del SqlDataReader
+                                    string columnName = reader.GetName(i);
+
+                                    // Buscar la propiedad en la clase T que coincide con el nombre de la columna
+                                    PropertyInfo property = obj.GetType().GetProperty(columnName);
+
+                                    // Si la propiedad existe y no es de solo lectura
+                                    if (property != null && property.CanWrite)
+                                    {
+                                        // Asignar el valor a la propiedad del objeto
+                                        property.SetValue(obj, Convert.ChangeType(reader.GetValue(i), property.PropertyType), null);
+                                    }
+                                }
+                                lista.Add(obj);
                             }
                         }
                     }
                 }
             }
-            catch(SqlException ex)
+            catch (SqlException ex)
             {
                 _logger.LogErrorSQL(_clase, ex.Message);
                 throw new ApplicationException("Ocurrió un error SQL al ejecutar el procedimiento almacenado.", ex);
@@ -154,7 +242,8 @@ namespace Commons.Connection
             {
                 _logger.LogFin(_clase);
             }
-            return results;
+
+            return lista;
         }
         #endregion
     }

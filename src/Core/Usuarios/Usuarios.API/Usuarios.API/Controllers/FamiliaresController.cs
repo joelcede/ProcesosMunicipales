@@ -1,7 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Usuarios.Application.Dtos;
 using Usuarios.Application.Repository;
 using Usuarios.Domain.Entities;
+using Usuarios.Domain.Enums;
+using Usuarios.Infrastructure.Repository;
 
 namespace Usuarios.API.Controllers
 {
@@ -9,42 +13,44 @@ namespace Usuarios.API.Controllers
     [Route("[controller]")]
     public class FamiliaresController : ControllerBase
     {
+        private readonly IUsuarioRepository _familiarRepository;
+        private readonly IConfiguration _configuration;
+        private readonly UsuarioType _userType = UsuarioType.Familiar;
 
-        private readonly IFamiliarRepository _familiarRepository;
-
-        public FamiliaresController(IFamiliarRepository familiarRepository)
+        public FamiliaresController(IConfiguration configuration)
         {
-            _familiarRepository = familiarRepository;
+            _configuration = configuration;
+            _familiarRepository = new UsuarioRepository(_configuration);
         }
 
         [HttpGet(Name = "GetFamiliares")]
-        public async Task<IEnumerable<Familiar>> Get()
+        public async Task<IEnumerable<Usuario>> Get()
         {
-            return await _familiarRepository.GetAllFamiliarsAsync();
+            return await _familiarRepository.GetAllUsuariosAsync(_userType);
         }
 
         [HttpGet("{id}", Name = "GetFamiliar")]
-        public async Task<Familiar> Get(int id)
+        public async Task<Usuario> Get(Guid id)
         {
-            return await _familiarRepository.GetFamiliarByIdAsync(id);
+            return await _familiarRepository.GetUsuarioByIdAsync(id, _userType);
         }
 
         [HttpPost(Name = "AddFamiliar")]
-        public async Task AddFamiliar(Familiar Familiar)
+        public async Task AddFamiliar(UsuarioRequestDto usuario)
         {
-            await _familiarRepository.AddFamiliarAsync(Familiar);
+            await _familiarRepository.AddUsuarioAsync(usuario, _userType);
         }
 
         [HttpPut("${id}", Name = "UpdateFamiliar")]
-        public async Task UpdateFamiliar(int id, Familiar Familiar)
+        public async Task UpdateFamiliar(Guid id, Usuario usuario)
         {
-            await _familiarRepository.UpdateFamiliarAsync(Familiar);
+            await _familiarRepository.UpdateUsuarioAsync(id, usuario, _userType);
         }
 
         [HttpDelete("{id}", Name = "DeleteFamiliar")]
-        public async Task DeleteFamiliar(int id)
+        public async Task DeleteFamiliar(Guid id)
         {
-            await _familiarRepository.DeleteFamiliarAsync(id);
+            await _familiarRepository.DeleteUsuarioAsync(id, _userType);
         }
     }
 }
