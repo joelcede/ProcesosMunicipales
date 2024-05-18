@@ -1,0 +1,11 @@
+C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.Domain\bin\Debug\net8.0\Viviendas.Domain.deps.json
+C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.Domain\bin\Debug\net8.0\Viviendas.Domain.dll
+C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.Domain\bin\Debug\net8.0\Viviendas.Domain.pdb
+C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.Domain\obj\Debug\net8.0\Viviendas.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.Domain\obj\Debug\net8.0\Viviendas.Domain.AssemblyInfoInputs.cache
+C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.Domain\obj\Debug\net8.0\Viviendas.Domain.AssemblyInfo.cs
+C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.Domain\obj\Debug\net8.0\Viviendas.Domain.csproj.CoreCompileInputs.cache
+C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.Domain\obj\Debug\net8.0\Viviendas.Domain.dll
+C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.Domain\obj\Debug\net8.0\refint\Viviendas.Domain.dll
+C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.Domain\obj\Debug\net8.0\Viviendas.Domain.pdb
+C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.Domain\obj\Debug\net8.0\ref\Viviendas.Domain.dll

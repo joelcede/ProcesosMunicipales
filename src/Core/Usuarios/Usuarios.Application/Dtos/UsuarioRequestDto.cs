@@ -12,7 +12,6 @@ namespace Usuarios.Application.Dtos
     public class UsuarioRequestDto : IUsuarioDomain
     {
         [Key]
-        [JsonIgnore]
         public Guid Id { get; set; }
 
         [StringLength(50, MinimumLength =3 , ErrorMessage ="Los nombre debe de estar en el rango de 3 a 50 caracteres")]

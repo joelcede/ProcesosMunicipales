@@ -4,6 +4,150 @@
     "C:\\PROYECTOS\\Arquitectura\\src\\Core\\Viviendas\\Viviendas.API\\Viviendas\\Viviendas.API.csproj": {}
   },
   "projects": {
+    "C:\\PROYECTOS\\Arquitectura\\src\\Commons\\Commons.Connection\\Commons.Connection.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\PROYECTOS\\Arquitectura\\src\\Commons\\Commons.Connection\\Commons.Connection.csproj",
+        "projectName": "Commons.Connection",
+        "projectPath": "C:\\PROYECTOS\\Arquitectura\\src\\Commons\\Commons.Connection\\Commons.Connection.csproj",
+        "packagesPath": "C:\\Users\\Jioska\\.nuget\\packages\\",
+        "outputPath": "C:\\PROYECTOS\\Arquitectura\\src\\Commons\\Commons.Connection\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Jioska\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\PROYECTOS\\Arquitectura\\src\\Commons\\Commons.logger\\Commons.logger.csproj": {
+                "projectPath": "C:\\PROYECTOS\\Arquitectura\\src\\Commons\\Commons.logger\\Commons.logger.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.6, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\PROYECTOS\\Arquitectura\\src\\Commons\\Commons.logger\\Commons.logger.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\PROYECTOS\\Arquitectura\\src\\Commons\\Commons.logger\\Commons.logger.csproj",
+        "projectName": "Commons.logger",
+        "projectPath": "C:\\PROYECTOS\\Arquitectura\\src\\Commons\\Commons.logger\\Commons.logger.csproj",
+        "packagesPath": "C:\\Users\\Jioska\\.nuget\\packages\\",
+        "outputPath": "C:\\PROYECTOS\\Arquitectura\\src\\Commons\\Commons.logger\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Jioska\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.Extensions.Configuration.Abstractions": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Serilog.Settings.Configuration": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Serilog.Sinks.File": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "C:\\PROYECTOS\\Arquitectura\\src\\Core\\Viviendas\\Viviendas.API\\Viviendas\\Viviendas.API.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -27,7 +171,14 @@
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\PROYECTOS\\Arquitectura\\src\\Commons\\Commons.logger\\Commons.logger.csproj": {
+                "projectPath": "C:\\PROYECTOS\\Arquitectura\\src\\Commons\\Commons.logger\\Commons.logger.csproj"
+              },
+              "C:\\PROYECTOS\\Arquitectura\\src\\Core\\Viviendas\\Viviendas.Infrastructure\\Viviendas.Infrastructure.csproj": {
+                "projectPath": "C:\\PROYECTOS\\Arquitectura\\src\\Core\\Viviendas\\Viviendas.Infrastructure\\Viviendas.Infrastructure.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -65,6 +216,212 @@
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
             },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\PROYECTOS\\Arquitectura\\src\\Core\\Viviendas\\Viviendas.Application\\Viviendas.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\PROYECTOS\\Arquitectura\\src\\Core\\Viviendas\\Viviendas.Application\\Viviendas.Application.csproj",
+        "projectName": "Viviendas.Application",
+        "projectPath": "C:\\PROYECTOS\\Arquitectura\\src\\Core\\Viviendas\\Viviendas.Application\\Viviendas.Application.csproj",
+        "packagesPath": "C:\\Users\\Jioska\\.nuget\\packages\\",
+        "outputPath": "C:\\PROYECTOS\\Arquitectura\\src\\Core\\Viviendas\\Viviendas.Application\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Jioska\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\PROYECTOS\\Arquitectura\\src\\Core\\Viviendas\\Viviendas.Domain\\Viviendas.Domain.csproj": {
+                "projectPath": "C:\\PROYECTOS\\Arquitectura\\src\\Core\\Viviendas\\Viviendas.Domain\\Viviendas.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\PROYECTOS\\Arquitectura\\src\\Core\\Viviendas\\Viviendas.Domain\\Viviendas.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\PROYECTOS\\Arquitectura\\src\\Core\\Viviendas\\Viviendas.Domain\\Viviendas.Domain.csproj",
+        "projectName": "Viviendas.Domain",
+        "projectPath": "C:\\PROYECTOS\\Arquitectura\\src\\Core\\Viviendas\\Viviendas.Domain\\Viviendas.Domain.csproj",
+        "packagesPath": "C:\\Users\\Jioska\\.nuget\\packages\\",
+        "outputPath": "C:\\PROYECTOS\\Arquitectura\\src\\Core\\Viviendas\\Viviendas.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Jioska\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\PROYECTOS\\Arquitectura\\src\\Core\\Viviendas\\Viviendas.Infrastructure\\Viviendas.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\PROYECTOS\\Arquitectura\\src\\Core\\Viviendas\\Viviendas.Infrastructure\\Viviendas.Infrastructure.csproj",
+        "projectName": "Viviendas.Infrastructure",
+        "projectPath": "C:\\PROYECTOS\\Arquitectura\\src\\Core\\Viviendas\\Viviendas.Infrastructure\\Viviendas.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\Jioska\\.nuget\\packages\\",
+        "outputPath": "C:\\PROYECTOS\\Arquitectura\\src\\Core\\Viviendas\\Viviendas.Infrastructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Jioska\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\PROYECTOS\\Arquitectura\\src\\Commons\\Commons.Connection\\Commons.Connection.csproj": {
+                "projectPath": "C:\\PROYECTOS\\Arquitectura\\src\\Commons\\Commons.Connection\\Commons.Connection.csproj"
+              },
+              "C:\\PROYECTOS\\Arquitectura\\src\\Commons\\Commons.logger\\Commons.logger.csproj": {
+                "projectPath": "C:\\PROYECTOS\\Arquitectura\\src\\Commons\\Commons.logger\\Commons.logger.csproj"
+              },
+              "C:\\PROYECTOS\\Arquitectura\\src\\Core\\Viviendas\\Viviendas.Application\\Viviendas.Application.csproj": {
+                "projectPath": "C:\\PROYECTOS\\Arquitectura\\src\\Core\\Viviendas\\Viviendas.Application\\Viviendas.Application.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.Extensions.DependencyInjection.Abstractions": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }

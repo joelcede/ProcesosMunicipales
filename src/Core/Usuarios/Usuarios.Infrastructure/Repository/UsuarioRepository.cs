@@ -41,8 +41,10 @@ namespace Usuarios.Infrastructure.Repository
             if (userType != UsuarioType.None)
                 parameters.Add("@TipoUsuario", (int)userType);
 
-            if (operacion != CrudType.ListAll && operacion  != CrudType.None)
+            if (operacion != CrudType.ListAll && operacion  != CrudType.None && usuario.Id == Guid.Empty)
                 parameters.Add("@IdUsuario", Guid.NewGuid());
+            else if (usuario.Id != Guid.Empty && operacion != CrudType.ListAll && operacion != CrudType.None)
+                parameters.Add("@IdUsuario", usuario.Id);
 
             if (!string.IsNullOrEmpty(usuario.Nombres))
                 parameters.Add("@Nombres", usuario.Nombres);
