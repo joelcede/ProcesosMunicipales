@@ -8,15 +8,18 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Usuarios.Application.Dtos;
+using Usuarios.Application.Mapper;
 using Usuarios.Application.Repository;
 using Usuarios.Domain.Entities;
 using Usuarios.Domain.Enums;
+using Usuarios.Domain.Interfaces;
 
 namespace Usuarios.Infrastructure.Repository
 {
     public class UsuarioRepository : IUsuarioRepository
     {
         private readonly IConfiguration _connectionString;
+        private readonly UsuarioMapper _viviendaMapper;
         public static string _clase = string.Empty;
         public Logger _logger;
 
@@ -29,6 +32,7 @@ namespace Usuarios.Infrastructure.Repository
             _connectionString = configuration;
             _logger = new Logger(configuration);
             _clase = this.GetType().Name;
+            _viviendaMapper = new UsuarioMapper();
         }
 
         public Dictionary<string, object> keyValuePairs(IUsuarioDomain usuario, CrudType operacion = CrudType.None, UsuarioType userType = UsuarioType.None)
@@ -68,6 +72,9 @@ namespace Usuarios.Infrastructure.Repository
             else if (!string.IsNullOrEmpty(usuario.TelefonoConvencional))
                 throw new ArgumentException("El campo Teléfono Convencional debe contener solo números.");
 
+            if ((int)usuario.esPrincipal != 2 && (operacion == CrudType.Create || operacion == CrudType.Update))
+                parameters.Add("@EsPrincipal", Convert.ToBoolean((int)usuario.esPrincipal) );
+
 
             return parameters;
         }
@@ -76,7 +83,7 @@ namespace Usuarios.Infrastructure.Repository
             return Regex.IsMatch(value, @"^\d+$");
         }
 
-        public async Task AddUsuarioAsync(UsuarioRequestDto usuario, UsuarioType userType)
+        public async Task<Usuario> AddUsuarioAsync(UsuarioRequestDto usuario, UsuarioType userType)
         {
             _logger.LogInicio(_clase);
             if (usuario == null)
@@ -89,7 +96,10 @@ namespace Usuarios.Infrastructure.Repository
             var parameters = keyValuePairs(usuario, CrudType.Create, userType);
             await new Database(_connectionString).ExecuteNonQueryAsync(SP_USUARIO, parameters);
 
+            usuario.Id = (Guid)parameters["@IdUsuario"];
+            var usuarioM = _viviendaMapper.CreateVivienda(usuario);
             _logger.LogFin(_clase);
+            return usuarioM;
 
         }
 

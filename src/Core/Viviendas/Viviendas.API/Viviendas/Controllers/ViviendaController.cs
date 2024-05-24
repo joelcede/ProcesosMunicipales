@@ -41,7 +41,7 @@ namespace Viviendas.API.Controllers
         }
 
         [HttpPost]
-        public async Task<Vivienda> CreateVivienda(ViviendaRequestDto vivienda)
+        public async Task<Vivienda> CreateVivienda([FromBody] ViviendaRequestDto vivienda)
         {
             return await _viviendaRepository.AddViviendaAsync(vivienda);
             

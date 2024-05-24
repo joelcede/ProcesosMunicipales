@@ -12,19 +12,26 @@ namespace Viviendas.API.Controllers
     [ApiController]
     public class ViviendaFamiliarController : ControllerBase
     {
-        private readonly IViviendaUsuarioRepository _viviendaRepository;
+        private readonly IViviendaTIRepository _viviendaRepository;
         private readonly IConfiguration _configuration;
+        private readonly IntermediatTableType tablaiI = IntermediatTableType.ViviendaFamiliar;
+        private readonly IntermediatTableType tablaS = IntermediatTableType.S_ViviendaFamiliar;
 
         public ViviendaFamiliarController(IConfiguration configuration)
         {
             _configuration = configuration;
-            _viviendaRepository = new ViviendaUsuarioRepository(_configuration);
+            _viviendaRepository = new ViviendaITRespository(_configuration);
         }
         [HttpPost]
         public async Task<ViviendaUsuarios> CreateVivienda(ViviendaUsuarioDto vivienda)
         {
-            return await _viviendaRepository.AddViviendaUsuarioAsync(vivienda, UsuarioType.Familiar);
+            return await _viviendaRepository.AddViviendaUsuarioAsync(vivienda, tablaiI);
+        }
 
+        [HttpGet("${id}")]
+        public async Task<IEnumerable<ViviendaFamProp>> GetVivienda(Guid id)
+        {
+            return await _viviendaRepository.GetViviendaUsuarioByIdAsync(id, tablaS);
         }
     }
 }

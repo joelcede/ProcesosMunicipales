@@ -233,6 +233,11 @@
           "Commons.Connection.dll": {}
         }
       },
+      "Commons.Cryptography/1.0.0": {
+        "runtime": {
+          "Commons.Cryptography.dll": {}
+        }
+      },
       "Commons.logger/1.0.0": {
         "dependencies": {
           "Microsoft.Extensions.Configuration.Abstractions": "8.0.0",
@@ -260,6 +265,7 @@
       "Viviendas.Infrastructure/1.0.0": {
         "dependencies": {
           "Commons.Connection": "1.0.0",
+          "Commons.Cryptography": "1.0.0",
           "Commons.logger": "1.0.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.1",
           "Viviendas.Application": "1.0.0"
@@ -466,6 +472,11 @@
       "hashPath": "system.text.json.8.0.0.nupkg.sha512"
     },
     "Commons.Connection/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Commons.Cryptography/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

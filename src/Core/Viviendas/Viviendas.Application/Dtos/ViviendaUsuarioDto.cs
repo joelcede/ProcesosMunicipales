@@ -11,13 +11,13 @@ namespace Viviendas.Application.Dtos
     public class ViviendaUsuarioDto : IViviendaUsuarioDomain
     {
         [Key]
-        [Required]
         public Guid Id { get; set; }
         [Key]
-        [Required(ErrorMessage = "El Id del Usuario Es requerido")]
         public Guid IdUsuario { get; set; }
         [Key]
         [Required(ErrorMessage = "El Id de la vivienda es requerido")]
         public Guid IdVivienda { get; set; }
+        [Key]
+        public Guid IdImagen { get; set; }
     }
 }

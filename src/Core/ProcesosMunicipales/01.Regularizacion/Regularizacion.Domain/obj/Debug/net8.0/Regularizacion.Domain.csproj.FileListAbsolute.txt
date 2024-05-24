@@ -1,0 +1,11 @@
+C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.Domain\bin\Debug\net8.0\Regularizacion.Domain.deps.json
+C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.Domain\bin\Debug\net8.0\Regularizacion.Domain.dll
+C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.Domain\bin\Debug\net8.0\Regularizacion.Domain.pdb
+C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.Domain\obj\Debug\net8.0\Regularizacion.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.Domain\obj\Debug\net8.0\Regularizacion.Domain.AssemblyInfoInputs.cache
+C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.Domain\obj\Debug\net8.0\Regularizacion.Domain.AssemblyInfo.cs
+C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.Domain\obj\Debug\net8.0\Regularizacion.Domain.csproj.CoreCompileInputs.cache
+C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.Domain\obj\Debug\net8.0\Regularizacion.Domain.dll
+C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.Domain\obj\Debug\net8.0\refint\Regularizacion.Domain.dll
+C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.Domain\obj\Debug\net8.0\Regularizacion.Domain.pdb
+C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.Domain\obj\Debug\net8.0\ref\Regularizacion.Domain.dll

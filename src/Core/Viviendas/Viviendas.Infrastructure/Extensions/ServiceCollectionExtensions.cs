@@ -12,14 +12,9 @@ namespace Usuarios.Infrastructure.Extensions
             services.AddScoped<IViviendaRepository, ViviendaRepository>();
             return services;
         }
-        public static IServiceCollection AddViviendaUsuarioServices(this IServiceCollection services)
+        public static IServiceCollection AddViviendaITServices(this IServiceCollection services)
         {
-            services.AddScoped<IViviendaUsuarioRepository, ViviendaUsuarioRepository>();
-            return services;
-        }
-        public static IServiceCollection AddViviendaImagenServices(this IServiceCollection services)
-        {
-            services.AddScoped<IViviendaImagenRepository, ViviendaImagenRepository>();
+            services.AddScoped<IViviendaTIRepository, ViviendaITRespository>();
             return services;
         }
     }

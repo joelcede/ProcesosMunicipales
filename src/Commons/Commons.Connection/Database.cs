@@ -105,9 +105,30 @@ namespace Commons.Connection
                                     {
                                         // Asignar el valor a la propiedad del objeto
                                         var value = reader.GetValue(i);
-                                        if (value != DBNull.Value)
+                                        if (value == DBNull.Value || value == null)
                                         {
-                                            property.SetValue(obj, Convert.ChangeType(value, property.PropertyType), null);
+                                            // Asignar valor predeterminado basado en el tipo de la propiedad
+                                            if (property.PropertyType == typeof(string))
+                                            {
+                                                property.SetValue(obj, string.Empty, null);
+                                            }
+                                            else if (property.PropertyType.IsValueType)
+                                            {
+                                                property.SetValue(obj, Activator.CreateInstance(property.PropertyType), null);
+                                            }
+                                            else
+                                            {
+                                                property.SetValue(obj, null, null);
+                                            }
+                                        }
+                                        else if (value != DBNull.Value && property.PropertyType.IsEnum)
+                                        {
+                                            property.SetValue(obj, Enum.Parse(property.PropertyType, reader.GetValue(i)?.ToString()), null);
+                                            //return Enum.ToObject(property.PropertyType, obj);
+                                        }
+                                        else if(value != DBNull.Value)
+                                        {
+                                            property.SetValue(obj, Convert.ChangeType(reader.GetValue(i), property.PropertyType), null);
                                         }
                                     }
                                 }
@@ -204,7 +225,7 @@ namespace Commons.Connection
                         // Ejecutar comando y mapear resultados
                         using (var reader = await command.ExecuteReaderAsync())
                         {
-                            if (await reader.ReadAsync())
+                            while (await reader.ReadAsync())
                             {
                                 T obj = new T();
                                 for (int i = 0; i < reader.FieldCount; i++)
@@ -218,9 +239,36 @@ namespace Commons.Connection
                                     // Si la propiedad existe y no es de solo lectura
                                     if (property != null && property.CanWrite)
                                     {
+                                        var value = reader.GetValue(i);
+                                        if (value == DBNull.Value || value == null)
+                                        {
+                                            // Asignar valor predeterminado basado en el tipo de la propiedad
+                                            if (property.PropertyType == typeof(string))
+                                            {
+                                                property.SetValue(obj, string.Empty, null);
+                                            }
+                                            else if (property.PropertyType.IsValueType)
+                                            {
+                                                property.SetValue(obj, Activator.CreateInstance(property.PropertyType), null);
+                                            }
+                                            else
+                                            {
+                                                property.SetValue(obj, null, null);
+                                            }
+                                        }
+                                        else if (property.PropertyType.IsEnum)
+                                        {
+                                            property.SetValue(obj, Enum.Parse(property.PropertyType, reader.GetValue(i)?.ToString()), null);
+                                            //return Enum.ToObject(property.PropertyType, obj);
+                                        }
+                                        else
+                                        {
+                                            property.SetValue(obj, Convert.ChangeType(reader.GetValue(i), property.PropertyType), null);
+                                        }
                                         // Asignar el valor a la propiedad del objeto
-                                        property.SetValue(obj, Convert.ChangeType(reader.GetValue(i), property.PropertyType), null);
+                                        
                                     }
+
                                 }
                                 lista.Add(obj);
                             }

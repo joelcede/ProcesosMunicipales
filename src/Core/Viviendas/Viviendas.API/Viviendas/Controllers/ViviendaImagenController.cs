@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Viviendas.Application.Dtos;
 using Viviendas.Application.Repository;
 using Viviendas.Domain.Entities;
+using Viviendas.Domain.Enums;
 using Viviendas.Infrastructure.Repository;
 
 namespace Viviendas.API.Controllers
@@ -11,22 +12,28 @@ namespace Viviendas.API.Controllers
     [ApiController]
     public class ViviendaImagenController : ControllerBase
     {
-        private readonly IViviendaImagenRepository _viviendaImagenRepository;
+        private readonly IViviendaTIRepository _viviendaImagenRepository;
         private readonly IConfiguration _configuration;
+        private readonly IntermediatTableType tabla = IntermediatTableType.ViviendaImagen;
+        private readonly IntermediatTableType tablaS = IntermediatTableType.S_ViviendaImagen;
 
         public ViviendaImagenController(IConfiguration configuration)
         {
             _configuration = configuration;
-            _viviendaImagenRepository = new ViviendaImagenRepository(_configuration);
+            _viviendaImagenRepository = new ViviendaITRespository(_configuration);
         }
 
 
         [HttpPost]
         public async Task<ViviendaImagenes> CreateViviendaImagen(ViviendaImagenDto viviendaImagen)
         {
-            return await _viviendaImagenRepository.AddViviendaImagenAsync(viviendaImagen);
+            return await _viviendaImagenRepository.AddViviendaImagenAsync(viviendaImagen, tabla);
             
         }
-
+        [HttpGet("${id}")]
+        public async Task<ViviendaImagenes> GetVivienda(Guid id)
+        {
+            return await _viviendaImagenRepository.GetViviendaImagenByIdAsync(id, tablaS);
+        }
     }
 }

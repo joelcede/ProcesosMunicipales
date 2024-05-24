@@ -1,13 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "djjr5qGMLP5duhdfVDH0aUBFbejMI9zQS9PRABBknJf1dltZ9ohoZgoF10im/d/FmKftH9M7xhq7I3QE2RTV2Q==",
+  "dgSpecHash": "CWgV0vhTLTJPxtjN4LSNGA7h0MjuremzHwYx4XC2ezequIFJb/lJvEalW1ube6L/HMGaf/HpHimi46PuNJq9mg==",
   "success": true,
   "projectFilePath": "C:\\PROYECTOS\\Arquitectura\\src\\Core\\Usuarios\\Usuarios.Infrastructure\\Usuarios.Infrastructure.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Jioska\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\Jioska\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\8.0.0\\microsoft.extensions.configuration.abstractions.8.0.0.nupkg.sha512",
     "C:\\Users\\Jioska\\.nuget\\packages\\microsoft.extensions.configuration.binder\\8.0.0\\microsoft.extensions.configuration.binder.8.0.0.nupkg.sha512",
     "C:\\Users\\Jioska\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.1\\microsoft.extensions.dependencyinjection.abstractions.8.0.1.nupkg.sha512",
     "C:\\Users\\Jioska\\.nuget\\packages\\microsoft.extensions.dependencymodel\\8.0.0\\microsoft.extensions.dependencymodel.8.0.0.nupkg.sha512",
+    "C:\\Users\\Jioska\\.nuget\\packages\\microsoft.extensions.options\\6.0.0\\microsoft.extensions.options.6.0.0.nupkg.sha512",
     "C:\\Users\\Jioska\\.nuget\\packages\\microsoft.extensions.primitives\\8.0.0\\microsoft.extensions.primitives.8.0.0.nupkg.sha512",
     "C:\\Users\\Jioska\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\Jioska\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",

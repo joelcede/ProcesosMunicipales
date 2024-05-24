@@ -1,0 +1,15 @@
+C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.Application\obj\Debug\net8.0\Regularizacion.Application.csproj.AssemblyReference.cache
+C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.Application\obj\Debug\net8.0\Regularizacion.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.Application\obj\Debug\net8.0\Regularizacion.Application.AssemblyInfoInputs.cache
+C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.Application\obj\Debug\net8.0\Regularizacion.Application.AssemblyInfo.cs
+C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.Application\obj\Debug\net8.0\Regularizacion.Application.csproj.CoreCompileInputs.cache
+C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.Application\bin\Debug\net8.0\Regularizacion.Application.deps.json
+C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.Application\bin\Debug\net8.0\Regularizacion.Application.dll
+C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.Application\bin\Debug\net8.0\Regularizacion.Application.pdb
+C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.Application\bin\Debug\net8.0\Regularizacion.Domain.dll
+C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.Application\bin\Debug\net8.0\Regularizacion.Domain.pdb
+C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.Application\obj\Debug\net8.0\Regulari.7BCFE9F4.Up2Date
+C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.Application\obj\Debug\net8.0\Regularizacion.Application.dll
+C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.Application\obj\Debug\net8.0\refint\Regularizacion.Application.dll
+C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.Application\obj\Debug\net8.0\Regularizacion.Application.pdb
+C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.Application\obj\Debug\net8.0\ref\Regularizacion.Application.dll

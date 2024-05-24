@@ -11,5 +11,6 @@ namespace Viviendas.Domain.Interfaces
         Guid Id { get; }
         Guid IdUsuario { get; }
         Guid IdVivienda { get; }
+        Guid IdImagen { get; }
     }
 }

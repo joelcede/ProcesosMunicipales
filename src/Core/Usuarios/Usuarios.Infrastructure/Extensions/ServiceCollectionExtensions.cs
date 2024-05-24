@@ -11,6 +11,10 @@ namespace Usuarios.Infrastructure.Extensions
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             return services;
         }
-
+        public static IServiceCollection AddCuentaMunicipalServices(this IServiceCollection services)
+        {
+            services.AddScoped<ICuentaMunicipalRepository, CuentaMunicipalRepository>();
+            return services;
+        }
     }
 }

@@ -1,10 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "iuhf0GfB7jTpG81lfKM03VWQ5zJC9ug2DrZBBwoE5EsMfd+B6QdLmkz+T2tAYPP9zK1bFSU8y31jMdT0IHFtug==",
+  "dgSpecHash": "SxbEcFqGjrnFP2M4FCcBzBJ40USKqJIwWsUEMhnCxc0y2whZjHPqiqmRnH9In2gRTJLQBtcZXy3LLwo1Nxr6mQ==",
   "success": true,
   "projectFilePath": "C:\\PROYECTOS\\Arquitectura\\src\\Core\\Usuarios\\Usuarios.Application\\Usuarios.Application.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Jioska\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.1\\microsoft.extensions.dependencyinjection.abstractions.8.0.1.nupkg.sha512"
+    "C:\\Users\\Jioska\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
+    "C:\\Users\\Jioska\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.1\\microsoft.extensions.dependencyinjection.abstractions.8.0.1.nupkg.sha512",
+    "C:\\Users\\Jioska\\.nuget\\packages\\microsoft.extensions.options\\6.0.0\\microsoft.extensions.options.6.0.0.nupkg.sha512",
+    "C:\\Users\\Jioska\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
+    "C:\\Users\\Jioska\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
   ],
   "logs": []
 }

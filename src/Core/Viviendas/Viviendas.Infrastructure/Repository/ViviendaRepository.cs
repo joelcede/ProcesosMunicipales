@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Commons.Connection;
+using Commons.Cryptography;
 using Commons.logger;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -35,6 +36,7 @@ namespace Viviendas.Infrastructure.Repository
             _connectionString = configuration;
             _logger = new Logger(configuration);
             _viviendaMapper = new ViviendaMapper();
+            _clase = this.GetType().Name;
         }
 
         public Dictionary<string, object> keyValuePairs(IViviendaDomain vivienda, CrudType operacion = CrudType.None)
@@ -63,19 +65,21 @@ namespace Viviendas.Infrastructure.Repository
             if (!string.IsNullOrEmpty(vivienda.Coordenadas))
                 parameters.Add("@Coordenadas", vivienda.Coordenadas);
 
-            if (vivienda.Imagen !=  Array.Empty<byte>())
-                parameters.Add("@Imagen", vivienda.Coordenadas);
+            if (vivienda.Imagen != Array.Empty<byte>() && (operacion == CrudType.Create || operacion == CrudType.Update))
+                parameters.Add("@Imagen", vivienda.Imagen);
+            else if (vivienda.Imagen == Array.Empty<byte>() && (operacion == CrudType.GetById || operacion == CrudType.ListAll))
+                parameters.Add("@Imagen", vivienda.Imagen);
 
-            if (vivienda.Ciudad != CiudadType.None)
+            if (vivienda.Ciudad != CiudadType.None && (operacion == CrudType.Create || operacion == CrudType.Update))
                 parameters.Add("@IdCiudad", (int)vivienda.Ciudad);
 
-            if (vivienda.Provincia != ProvinciaType.None)
+            if (vivienda.Provincia != ProvinciaType.None && (operacion == CrudType.Create || operacion == CrudType.Update))
                 parameters.Add("@IdProvincia", (int)vivienda.Provincia);
 
-            if (vivienda.Pais != PaisType.None)
+            if (vivienda.Pais != PaisType.None && (operacion == CrudType.Create || operacion == CrudType.Update))
                 parameters.Add("@IdPais", (int)vivienda.Pais);
 
-          
+
             return parameters;
         }
         private bool IsNumeric(string value)
@@ -94,8 +98,8 @@ namespace Viviendas.Infrastructure.Repository
             }
 
             var parameters = keyValuePairs(vivienda, CrudType.Create);
-            await new Database(_connectionString).ExecuteNonQueryAsync(SP_VIVIENDA, parameters);
-
+            Vivienda response = await new Database(_connectionString).ExecuteScalarAsync<Vivienda>(SP_VIVIENDA, parameters);
+            vivienda.Id = (Guid)parameters["@IdVivienda"];
             var viviendaM = _viviendaMapper.CreateVivienda(vivienda);
             _logger.LogFin(_clase);
             return viviendaM;
@@ -140,6 +144,10 @@ namespace Viviendas.Infrastructure.Repository
             var parameters = keyValuePairs(Vivienda, CrudType.Update);
             await new Database(_connectionString).ExecuteNonQueryAsync(SP_VIVIENDA, parameters);
             _logger.LogFin(_clase);
+        }
+        public static byte[] ConvertBase64ToBytes(string base64String)
+        {
+            return Convert.FromBase64String(base64String);
         }
     }
 }

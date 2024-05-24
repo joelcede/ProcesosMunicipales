@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Regularizacion.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6c0b01e648545d4149d672db53b8f297aafdfa98")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dc4d05ddddbe15249fd488ee619246e830267297")]
 [assembly: System.Reflection.AssemblyProductAttribute("Regularizacion.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Regularizacion.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

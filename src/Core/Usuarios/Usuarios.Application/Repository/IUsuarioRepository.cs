@@ -13,7 +13,7 @@ namespace Usuarios.Application.Repository
     {
         Task<Usuario> GetUsuarioByIdAsync(Guid id, UsuarioType userType);
         Task<IEnumerable<Usuario>> GetAllUsuariosAsync(UsuarioType userType);
-        Task AddUsuarioAsync(UsuarioRequestDto usuario, UsuarioType userType);
+        Task<Usuario> AddUsuarioAsync(UsuarioRequestDto usuario, UsuarioType userType);
         Task UpdateUsuarioAsync(Guid identity, Usuario usuario, UsuarioType userType);
         Task DeleteUsuarioAsync(Guid id, UsuarioType userType);
     }

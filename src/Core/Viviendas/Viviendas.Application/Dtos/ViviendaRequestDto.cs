@@ -26,7 +26,7 @@ namespace Viviendas.Application.Dtos
         public string Coordenadas { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "La Imagen es requerida")]
-        public byte[] Imagen { get; set; } = Array.Empty<byte>();
+        public byte[] Imagen { get; set; }
 
         public CiudadType Ciudad { get; set; } = CiudadType.Guayaquil;
         public ProvinciaType Provincia { get; set; } = ProvinciaType.Guayas;

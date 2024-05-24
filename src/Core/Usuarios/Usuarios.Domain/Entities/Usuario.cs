@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
-using Usuarios.Application.Repository;
+using Usuarios.Domain.Enums;
+using Usuarios.Domain.Interfaces;
 
 namespace Usuarios.Domain.Entities
 {
@@ -16,6 +19,7 @@ namespace Usuarios.Domain.Entities
         public string DNI { get; set; } = string.Empty;
         public string TelefonoCelular { get; set; } = string.Empty;
         public string TelefonoConvencional { get; set; } = string.Empty;
+        public BoolType esPrincipal { get; set; } = BoolType.None;
         public DateTime FechaCreacion { get; set; }
         public DateTime FechaModificacion { get; set; }
     }

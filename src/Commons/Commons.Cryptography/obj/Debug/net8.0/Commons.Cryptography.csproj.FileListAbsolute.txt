@@ -1,0 +1,11 @@
+C:\PROYECTOS\Arquitectura\src\Commons\Commons.Cryptography\bin\Debug\net8.0\Commons.Cryptography.deps.json
+C:\PROYECTOS\Arquitectura\src\Commons\Commons.Cryptography\bin\Debug\net8.0\Commons.Cryptography.dll
+C:\PROYECTOS\Arquitectura\src\Commons\Commons.Cryptography\bin\Debug\net8.0\Commons.Cryptography.pdb
+C:\PROYECTOS\Arquitectura\src\Commons\Commons.Cryptography\obj\Debug\net8.0\Commons.Cryptography.GeneratedMSBuildEditorConfig.editorconfig
+C:\PROYECTOS\Arquitectura\src\Commons\Commons.Cryptography\obj\Debug\net8.0\Commons.Cryptography.AssemblyInfoInputs.cache
+C:\PROYECTOS\Arquitectura\src\Commons\Commons.Cryptography\obj\Debug\net8.0\Commons.Cryptography.AssemblyInfo.cs
+C:\PROYECTOS\Arquitectura\src\Commons\Commons.Cryptography\obj\Debug\net8.0\Commons.Cryptography.csproj.CoreCompileInputs.cache
+C:\PROYECTOS\Arquitectura\src\Commons\Commons.Cryptography\obj\Debug\net8.0\Commons.Cryptography.dll
+C:\PROYECTOS\Arquitectura\src\Commons\Commons.Cryptography\obj\Debug\net8.0\refint\Commons.Cryptography.dll
+C:\PROYECTOS\Arquitectura\src\Commons\Commons.Cryptography\obj\Debug\net8.0\Commons.Cryptography.pdb
+C:\PROYECTOS\Arquitectura\src\Commons\Commons.Cryptography\obj\Debug\net8.0\ref\Commons.Cryptography.dll

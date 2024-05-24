@@ -12,5 +12,6 @@ namespace Viviendas.Domain.Entities
         public Guid Id { get; set; }
         public Guid IdUsuario { get; set; }
         public Guid IdVivienda { get; set; }
+        public Guid IdImagen { get; set; }
     }
 }

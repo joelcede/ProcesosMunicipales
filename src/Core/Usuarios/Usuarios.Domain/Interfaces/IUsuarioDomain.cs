@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Usuarios.Domain.Enums;
 
-namespace Usuarios.Application.Repository
+namespace Usuarios.Domain.Interfaces
 {
     public interface IUsuarioDomain
     {
@@ -14,6 +15,7 @@ namespace Usuarios.Application.Repository
         string DNI { get; }
         string TelefonoCelular { get; }
         string TelefonoConvencional { get; }
+        BoolType esPrincipal { get; }
         DateTime FechaCreacion { get; }
         DateTime FechaModificacion { get; }
     }

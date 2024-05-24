@@ -459,6 +459,16 @@
           "bin/placeholder/Commons.Connection.dll": {}
         }
       },
+      "Commons.Cryptography/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/Commons.Cryptography.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Commons.Cryptography.dll": {}
+        }
+      },
       "Commons.logger/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
@@ -503,6 +513,7 @@
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "Commons.Connection": "1.0.0",
+          "Commons.Cryptography": "1.0.0",
           "Commons.logger": "1.0.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.1",
           "Viviendas.Application": "1.0.0"
@@ -1547,6 +1558,11 @@
       "type": "project",
       "path": "../../../../Commons/Commons.Connection/Commons.Connection.csproj",
       "msbuildProject": "../../../../Commons/Commons.Connection/Commons.Connection.csproj"
+    },
+    "Commons.Cryptography/1.0.0": {
+      "type": "project",
+      "path": "../../../../Commons/Commons.Cryptography/Commons.Cryptography.csproj",
+      "msbuildProject": "../../../../Commons/Commons.Cryptography/Commons.Cryptography.csproj"
     },
     "Commons.logger/1.0.0": {
       "type": "project",

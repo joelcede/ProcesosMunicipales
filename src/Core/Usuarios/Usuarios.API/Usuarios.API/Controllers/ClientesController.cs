@@ -33,9 +33,9 @@ namespace Clientes.API.Controllers
         }
 
         [HttpPost(Name = "AddCliente")]
-        public async Task AddCliente(UsuarioRequestDto cliente)
+        public async Task<Usuario> AddCliente(UsuarioRequestDto cliente)
         {
-            await _clienteRepository.AddUsuarioAsync(cliente, _userType);
+            return await _clienteRepository.AddUsuarioAsync(cliente, _userType);
         }
 
         [HttpPut("${id}", Name = "UpdateCliente")]
