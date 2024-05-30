@@ -19,3 +19,4 @@ C:\PROYECTOS\Arquitectura\src\Core\Usuarios\Usuarios.Infrastructure\obj\Debug\ne
 C:\PROYECTOS\Arquitectura\src\Core\Usuarios\Usuarios.Infrastructure\obj\Debug\net8.0\refint\Usuarios.Infrastructure.dll
 C:\PROYECTOS\Arquitectura\src\Core\Usuarios\Usuarios.Infrastructure\obj\Debug\net8.0\Usuarios.Infrastructure.pdb
 C:\PROYECTOS\Arquitectura\src\Core\Usuarios\Usuarios.Infrastructure\obj\Debug\net8.0\ref\Usuarios.Infrastructure.dll
+C:\PROYECTOS\Arquitectura\src\Core\Usuarios\Usuarios.Infrastructure\obj\Debug\net8.0\Usuarios.Infrastructure.sourcelink.json

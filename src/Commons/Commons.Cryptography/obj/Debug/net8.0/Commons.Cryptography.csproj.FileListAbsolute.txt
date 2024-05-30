@@ -9,3 +9,4 @@ C:\PROYECTOS\Arquitectura\src\Commons\Commons.Cryptography\obj\Debug\net8.0\Comm
 C:\PROYECTOS\Arquitectura\src\Commons\Commons.Cryptography\obj\Debug\net8.0\refint\Commons.Cryptography.dll
 C:\PROYECTOS\Arquitectura\src\Commons\Commons.Cryptography\obj\Debug\net8.0\Commons.Cryptography.pdb
 C:\PROYECTOS\Arquitectura\src\Commons\Commons.Cryptography\obj\Debug\net8.0\ref\Commons.Cryptography.dll
+C:\PROYECTOS\Arquitectura\src\Commons\Commons.Cryptography\obj\Debug\net8.0\Commons.Cryptography.sourcelink.json

@@ -10,3 +10,4 @@ C:\PROYECTOS\Arquitectura\src\Commons\Commons.logger\obj\Debug\net8.0\Commons.lo
 C:\PROYECTOS\Arquitectura\src\Commons\Commons.logger\obj\Debug\net8.0\refint\Commons.logger.dll
 C:\PROYECTOS\Arquitectura\src\Commons\Commons.logger\obj\Debug\net8.0\Commons.logger.pdb
 C:\PROYECTOS\Arquitectura\src\Commons\Commons.logger\obj\Debug\net8.0\ref\Commons.logger.dll
+C:\PROYECTOS\Arquitectura\src\Commons\Commons.logger\obj\Debug\net8.0\Commons.logger.sourcelink.json

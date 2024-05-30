@@ -34,6 +34,8 @@ export class UsuarioComponentComponent implements OnInit {
   //});
   tipo = TypeUsuario.Cliente;
   crud = TypeCrud.Create;
+  crudeditar = TypeCrud.Update;
+
   readonly digitos10: MaskitoOptions = {
     mask: [/\d/, /\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/],
   };
@@ -65,7 +67,7 @@ export class UsuarioComponentComponent implements OnInit {
       .open(`Seguro que quieres eliminar al cliente ${nombre} con el dni: ${dni}`, {
         label: 'Eliminar',
         size: 's',
-        data: { button: [this.remove(id), 'Eliminar'] },
+        data: { button: [this.remove(id), 'Eliminarr'] },
         closeable: true,
       })
       .subscribe();
@@ -122,6 +124,17 @@ export class UsuarioComponentComponent implements OnInit {
       },
       (error) => {
         console.error('Error al eliminar el registro:', error);
+      }
+    );
+  }
+
+  edit(item: string): void {
+    this.usuarioService.getByIdCliente(item).subscribe(
+      (response) => {
+        console.log('Registro a editar:', response);
+      },
+      (error) => {
+        console.error('Error al obtener el registro:', error);
       }
     );
   }

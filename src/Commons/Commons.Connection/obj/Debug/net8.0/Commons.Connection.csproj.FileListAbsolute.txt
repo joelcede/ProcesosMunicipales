@@ -13,3 +13,4 @@ C:\PROYECTOS\Arquitectura\src\Commons\Commons.Connection\obj\Debug\net8.0\Common
 C:\PROYECTOS\Arquitectura\src\Commons\Commons.Connection\obj\Debug\net8.0\refint\Commons.Connection.dll
 C:\PROYECTOS\Arquitectura\src\Commons\Commons.Connection\obj\Debug\net8.0\Commons.Connection.pdb
 C:\PROYECTOS\Arquitectura\src\Commons\Commons.Connection\obj\Debug\net8.0\ref\Commons.Connection.dll
+C:\PROYECTOS\Arquitectura\src\Commons\Commons.Connection\obj\Debug\net8.0\Commons.Connection.sourcelink.json

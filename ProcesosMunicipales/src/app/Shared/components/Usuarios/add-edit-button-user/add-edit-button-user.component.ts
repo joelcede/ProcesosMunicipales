@@ -8,6 +8,8 @@ import { UsuarioService } from '../../../../Core/Usuario/Services/usuario.servic
 import { Usuario } from '../../../../Core/Usuario/models/usuario.interface';
 import { TypeUsuario } from '../../../../Core/Usuario/enum/TypeUsuario';
 import { TypeCrud } from '../../../enum/typeCrud';
+import { TuiAlertService } from '@taiga-ui/core';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-add-edit-button-user',
@@ -20,9 +22,11 @@ export class AddEditButtonUserComponent {
   value = '';
   @Input() tipoUsuario: TypeUsuario = TypeUsuario.None;
   @Input() crud: TypeCrud = TypeCrud.None;
+  //@Input() usuario: any;
   constructor(
     @Inject(TuiDialogFormService) private readonly dialogForm: TuiDialogFormService,
     @Inject(TuiDialogService) private readonly dialogs: TuiDialogService,
+    @Inject(TuiAlertService) private readonly alert: TuiAlertService,
     private usuarioService: UsuarioService,
   ) { }
 
@@ -40,19 +44,34 @@ export class AddEditButtonUserComponent {
         yes: 'Salir',
       },
     });
-
+    //if (this.crud == 4) {
+    //  const usuario = this.usuario;
+    //  this.UsuarioForm.setValue({
+    //    id: usuario.id,
+    //    nombres: usuario.nombres,
+    //    apellidos: usuario.apellidos,
+    //    dni: usuario.dni,
+    //    telefonoCelular: usuario.telefonoCelular,
+    //    telefonoConvencional: usuario.telefonoConvencional,
+    //    esPrincipal: usuario.esPrincipal,
+    //    fechaCreacion: usuario.fechaCreacion,
+    //    fechaModificacion: usuario.fechaModificacion,
+    //  });
+    //}
+    
     this.dialogs.open(content, { closeable, dismissible: closeable }).subscribe({
       next: () => {
+        this.proceso();
         this.dialogForm.markAsPristine();
+
       },
       complete: () => {
         this.value = '';
-        this.proceso();
         this.dialogForm.markAsPristine();
       },
     });
   }
-  readonly UsuarioForm = new FormGroup({
+   UsuarioForm = new FormGroup({
     id: new FormControl('00000000-0000-0000-0000-000000000000'),
     nombres: new FormControl(''),
     apellidos: new FormControl(''),
@@ -78,7 +97,16 @@ export class AddEditButtonUserComponent {
       next: (response: any) => {
         console.log("Nuevo Cliente creado", response);
       },
-      error: (error: any) => {
+      error: (error: HttpErrorResponse) => {
+        if (error.error.errors) {
+          const errorMessages = this.extractErrorMessages(error.error.errors);
+          errorMessages.forEach(errMsg => {
+            this.alert.open(`Error al guardar el Cliente:</strong><br> ${errMsg}`).subscribe();
+          });
+        } else {
+          this.alert.open(`Error al guardar el Cliente: ${error.message}`).subscribe();
+        }
+        //this.alert.open(`Error al guardar el Cliente: ${error.error.errors.forear}`).subscribe();
         console.log("Error al crear un cliente", error);
       }
     });
@@ -189,8 +217,23 @@ export class AddEditButtonUserComponent {
     if (this.crud === crear) {
       this.accionAgregar(this.tipoUsuario);
     } else if (this.crud === editar) {
+      this.UsuarioForm.setValue(this.usuarioF);
       this.accionEditar(this.tipoUsuario);
     }
   }
-
+  private extractErrorMessages(errors: any): string[] {
+    const errorMessages: string[] = [];
+    for (const key in errors) {
+      if (errors.hasOwnProperty(key)) {
+        if (Array.isArray(errors[key])) {
+          errors[key].forEach((errorMsg: string) => {
+            errorMessages.push(errorMsg);
+          });
+        } else {
+          errorMessages.push(errors[key]);
+        }
+      }
+    }
+    return errorMessages;
+  }
 }

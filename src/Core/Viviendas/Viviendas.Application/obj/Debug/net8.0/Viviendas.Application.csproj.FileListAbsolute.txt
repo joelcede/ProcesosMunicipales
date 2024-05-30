@@ -13,3 +13,4 @@ C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.Application\obj\Debug\net
 C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.Application\obj\Debug\net8.0\refint\Viviendas.Application.dll
 C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.Application\obj\Debug\net8.0\Viviendas.Application.pdb
 C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.Application\obj\Debug\net8.0\ref\Viviendas.Application.dll
+C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.Application\obj\Debug\net8.0\Viviendas.Application.sourcelink.json

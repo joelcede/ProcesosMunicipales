@@ -52,3 +52,4 @@ C:\PROYECTOS\Arquitectura\src\Core\Usuarios\Usuarios.API\Usuarios.API\obj\Debug\
 C:\PROYECTOS\Arquitectura\src\Core\Usuarios\Usuarios.API\Usuarios.API\obj\Debug\net8.0\Usuarios.API.pdb
 C:\PROYECTOS\Arquitectura\src\Core\Usuarios\Usuarios.API\Usuarios.API\obj\Debug\net8.0\Usuarios.API.genruntimeconfig.cache
 C:\PROYECTOS\Arquitectura\src\Core\Usuarios\Usuarios.API\Usuarios.API\obj\Debug\net8.0\ref\Usuarios.API.dll
+C:\PROYECTOS\Arquitectura\src\Core\Usuarios\Usuarios.API\Usuarios.API\obj\Debug\net8.0\Usuarios.API.sourcelink.json

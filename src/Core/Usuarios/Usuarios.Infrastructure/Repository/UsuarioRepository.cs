@@ -61,18 +61,18 @@ namespace Usuarios.Infrastructure.Repository
                 throw new ArgumentException("El campo DNI debe contener solo números.");
 
             // Validar que el Teléfono Celular solo contenga números
-            if (!string.IsNullOrEmpty(usuario.TelefonoCelular) && IsNumeric(usuario.TelefonoCelular))
+            if ((operacion == CrudType.Create || operacion == CrudType.Update) && IsNumeric(usuario.TelefonoCelular))
                 parameters.Add("@Celular", usuario.TelefonoCelular);
             else if (!string.IsNullOrEmpty(usuario.TelefonoCelular))
                 throw new ArgumentException("El campo Teléfono Celular debe contener solo números.");
 
             // Validar que el Teléfono Convencional solo contenga números
-            if (!string.IsNullOrEmpty(usuario.TelefonoConvencional) && IsNumeric(usuario.TelefonoConvencional))
+            if ((operacion == CrudType.Create || operacion == CrudType.Update) && IsNumeric(usuario.TelefonoConvencional))
                 parameters.Add("@Telefono", usuario.TelefonoConvencional);
             else if (!string.IsNullOrEmpty(usuario.TelefonoConvencional))
                 throw new ArgumentException("El campo Teléfono Convencional debe contener solo números.");
 
-            if ( (operacion == CrudType.Create || operacion == CrudType.Update))
+            if ( (operacion == CrudType.Create || operacion == CrudType.Update) && userType == UsuarioType.Propietario)
                 parameters.Add("@EsPrincipal", Convert.ToBoolean(usuario.esPrincipal) );
 
 

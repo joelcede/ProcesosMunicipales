@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Viviendas.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+01b8ac4cc66daa335ec9de7b10952965d816ab51")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9e5bb646ed4fd9a515016c2549eba78c23c4952a")]
 [assembly: System.Reflection.AssemblyProductAttribute("Viviendas.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Viviendas.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -13,3 +13,4 @@ C:\PROYECTOS\Arquitectura\src\Core\Usuarios\Usuarios.Application\obj\Debug\net8.
 C:\PROYECTOS\Arquitectura\src\Core\Usuarios\Usuarios.Application\obj\Debug\net8.0\refint\Usuarios.Application.dll
 C:\PROYECTOS\Arquitectura\src\Core\Usuarios\Usuarios.Application\obj\Debug\net8.0\Usuarios.Application.pdb
 C:\PROYECTOS\Arquitectura\src\Core\Usuarios\Usuarios.Application\obj\Debug\net8.0\ref\Usuarios.Application.dll
+C:\PROYECTOS\Arquitectura\src\Core\Usuarios\Usuarios.Application\obj\Debug\net8.0\Usuarios.Application.sourcelink.json

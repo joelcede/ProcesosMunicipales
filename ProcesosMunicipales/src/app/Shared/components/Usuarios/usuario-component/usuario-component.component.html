@@ -102,7 +102,8 @@
         </td>
         <td *tuiCell="'actionsEdith'"
             tuiTd>
-          <button appearance="flat"
+          <app-add-edit-button-user [tipoUsuario]="tipo" [crud]="crudeditar" [usuario]="item"></app-add-edit-button-user>
+          <!--<button appearance="flat"
                   icon="tuiIconEdit"
                   shape="rounded"
                   size="s"
@@ -110,7 +111,7 @@
                   tuiIconButton
                   type="button"
                   class="remove"
-                  (click)="showDialogAlertDelete(item.nombres, item.dni, item.id)"></button>
+                  (click)="showDialogAlertDelete(item.nombres, item.dni, item.id)"></button>-->
         </td>
       </tr>
     </tbody>

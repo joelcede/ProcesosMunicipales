@@ -9,3 +9,4 @@ C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.Domain\obj\Debug\net8.0\V
 C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.Domain\obj\Debug\net8.0\refint\Viviendas.Domain.dll
 C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.Domain\obj\Debug\net8.0\Viviendas.Domain.pdb
 C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.Domain\obj\Debug\net8.0\ref\Viviendas.Domain.dll
+C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.Domain\obj\Debug\net8.0\Viviendas.Domain.sourcelink.json

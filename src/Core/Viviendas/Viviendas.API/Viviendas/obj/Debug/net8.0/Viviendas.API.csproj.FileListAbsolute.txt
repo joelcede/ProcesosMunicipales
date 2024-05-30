@@ -54,3 +54,4 @@ C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.API\Viviendas\obj\Debug\n
 C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.API\Viviendas\obj\Debug\net8.0\Viviendas.API.pdb
 C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.API\Viviendas\obj\Debug\net8.0\Viviendas.API.genruntimeconfig.cache
 C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.API\Viviendas\obj\Debug\net8.0\ref\Viviendas.API.dll
+C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.API\Viviendas\obj\Debug\net8.0\Viviendas.API.sourcelink.json

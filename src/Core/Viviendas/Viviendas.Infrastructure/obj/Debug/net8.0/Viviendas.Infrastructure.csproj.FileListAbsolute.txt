@@ -21,3 +21,4 @@ C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.Infrastructure\obj\Debug\
 C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.Infrastructure\obj\Debug\net8.0\refint\Viviendas.Infrastructure.dll
 C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.Infrastructure\obj\Debug\net8.0\Viviendas.Infrastructure.pdb
 C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.Infrastructure\obj\Debug\net8.0\ref\Viviendas.Infrastructure.dll
+C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.Infrastructure\obj\Debug\net8.0\Viviendas.Infrastructure.sourcelink.json

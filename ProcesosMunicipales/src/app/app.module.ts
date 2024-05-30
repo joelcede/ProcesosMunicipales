@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { UsuarioComponentComponent } from './Shared/components/Usuarios/usuario-component/usuario-component.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { TuiInputModule, TuiInputNumberModule, TuiUnmaskHandlerModule } from '@taiga-ui/kit';
+import { TuiCheckboxBlockModule, TuiInputModule, TuiInputNumberModule, TuiUnmaskHandlerModule } from '@taiga-ui/kit';
 import { MaskitoModule } from '@maskito/angular';
 import { TuiTableFiltersModule, TuiTableModule } from "@taiga-ui/addon-table";
 import { TuiLetModule } from "@taiga-ui/cdk";
@@ -37,7 +37,8 @@ import { AddEditButtonUserComponent } from './Shared/components/Usuarios/add-edi
     TuiTableModule,
     TuiSvgModule,
     TuiLetModule,
-    TuiTableFiltersModule
+    TuiTableFiltersModule,
+    TuiCheckboxBlockModule
 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

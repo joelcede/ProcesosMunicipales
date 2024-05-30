@@ -9,3 +9,4 @@ C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regular
 C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.Domain\obj\Debug\net8.0\refint\Regularizacion.Domain.dll
 C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.Domain\obj\Debug\net8.0\Regularizacion.Domain.pdb
 C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.Domain\obj\Debug\net8.0\ref\Regularizacion.Domain.dll
+C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.Domain\obj\Debug\net8.0\Regularizacion.Domain.sourcelink.json
