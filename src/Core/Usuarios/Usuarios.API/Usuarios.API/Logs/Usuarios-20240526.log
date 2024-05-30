@@ -1,0 +1,32 @@
+2024-05-26 19:52:40.005 -05:00 [INF] INICIO | UsuarioRepository - GetAllUsuariosAsync
+2024-05-26 19:52:40.702 -05:00 [INF] FIN | Database - ExecuteReaderAsync
+2024-05-26 19:52:40.702 -05:00 [INF] FIN | UsuarioRepository - GetAllUsuariosAsync
+2024-05-26 19:57:37.040 -05:00 [INF] INICIO | UsuarioRepository - GetAllUsuariosAsync
+2024-05-26 19:57:37.255 -05:00 [INF] FIN | Database - ExecuteReaderAsync
+2024-05-26 19:57:37.255 -05:00 [INF] FIN | UsuarioRepository - GetAllUsuariosAsync
+2024-05-26 19:57:44.198 -05:00 [INF] INICIO | UsuarioRepository - GetAllUsuariosAsync
+2024-05-26 19:57:44.205 -05:00 [INF] FIN | Database - ExecuteReaderAsync
+2024-05-26 19:57:44.206 -05:00 [INF] FIN | UsuarioRepository - GetAllUsuariosAsync
+2024-05-26 19:58:13.874 -05:00 [INF] INICIO | UsuarioRepository - GetAllUsuariosAsync
+2024-05-26 19:58:13.990 -05:00 [ERR] Exception | Database - ExecuteReaderAsync:
+Requested value 'True' was not found.
+2024-05-26 19:58:14.003 -05:00 [INF] FIN | Database - ExecuteReaderAsync
+2024-05-26 22:57:17.724 -05:00 [INF] INICIO | UsuarioRepository - GetAllUsuariosAsync
+2024-05-26 22:57:18.079 -05:00 [INF] FIN | Database - ExecuteReaderAsync
+2024-05-26 22:57:18.079 -05:00 [INF] FIN | UsuarioRepository - GetAllUsuariosAsync
+2024-05-26 22:57:25.535 -05:00 [INF] INICIO | UsuarioRepository - GetAllUsuariosAsync
+2024-05-26 22:57:25.549 -05:00 [INF] FIN | Database - ExecuteReaderAsync
+2024-05-26 22:57:25.549 -05:00 [INF] FIN | UsuarioRepository - GetAllUsuariosAsync
+2024-05-26 22:57:32.390 -05:00 [INF] INICIO | UsuarioRepository - GetAllUsuariosAsync
+2024-05-26 22:57:32.449 -05:00 [ERR] Exception | Database - ExecuteReaderAsync:
+Requested value 'True' was not found.
+2024-05-26 22:57:32.464 -05:00 [INF] FIN | Database - ExecuteReaderAsync
+2024-05-26 22:59:27.622 -05:00 [INF] INICIO | UsuarioRepository - GetAllUsuariosAsync
+2024-05-26 23:00:28.133 -05:00 [ERR] Exception | Database - ExecuteReaderAsync:
+Requested value 'True' was not found.
+2024-05-26 23:00:28.146 -05:00 [INF] FIN | Database - ExecuteReaderAsync
+2024-05-26 23:00:33.223 -05:00 [INF] INICIO | UsuarioRepository - GetAllUsuariosAsync
+2024-05-26 23:00:43.099 -05:00 [ERR] Exception | Database - ExecuteReaderAsync:
+Requested value 'True' was not found.
+2024-05-26 23:00:43.112 -05:00 [INF] FIN | Database - ExecuteReaderAsync
+2024-05-26 23:00:52.839 -05:00 [INF] INICIO | UsuarioRepository - GetAllUsuariosAsync

@@ -22,8 +22,8 @@ namespace Viviendas.API.Controllers
             _viviendaImagenRepository = new ViviendaITRespository(_configuration);
         }
 
-        [HttpGet("${id}")]
-        public async Task<IEnumerable<ViviendaFamProp>> GetVivienda(Guid id)
+        [HttpGet("GetViviendaUsuarios/{id}", Name = "GetViviendaUsuario")]
+        public async Task<IEnumerable<ViviendaFamProp>> GetViviendaUsuario(Guid id)
         {
             return await _viviendaImagenRepository.GetViviendaPropFamByIdAsync(id, tablaS);
         }

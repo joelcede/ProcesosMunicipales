@@ -20,14 +20,14 @@ namespace Regularizacion.API.Controllers
             _RegularizacionRepository = new RegularizacionRepository(_configuration);
         }
 
-        [HttpGet]
+        [HttpGet("GetAllRegularizaciones", Name = "GetRegularizaciones")]
         public async Task<IActionResult> GetRegularizaciones()
         {
             var Regularizacions = await _RegularizacionRepository.GetRegularizacionesAsync();
             return Ok(Regularizacions);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("GetRegularizacion/{id}", Name = "GetRegularizacion")]
         public async Task<IActionResult> GetRegularizacion(Guid id)
         {
             var Regularizacion = await _RegularizacionRepository.GetRegularizacionByIdAsync(id);
@@ -38,21 +38,21 @@ namespace Regularizacion.API.Controllers
             return Ok(Regularizacion);
         }
 
-        [HttpPost]
+        [HttpPost("AddRegularizacion", Name = "CreateRegularizacion")]
         public async Task<RegularizacionDomain> CreateRegularizacion([FromBody] RegularizacionDto regularizacion)
         {
             return await _RegularizacionRepository.AddRegularizacionAsync(regularizacion);
 
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("UpdateRegularizacion/{id}", Name = "UpdateRegularizacion")]
         public async Task<IActionResult> UpdateRegularizacion(Guid id, RegularizacionDto regularizacion)
         {
             await _RegularizacionRepository.UpdateRegularizacionAsync(regularizacion, id);
             return Ok();
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("DeleteRegularizacion/{id}", Name = "DeleteRegularizacion")]
         public async Task<IActionResult> DeleteRegularizacion(Guid id)
         {
             await _RegularizacionRepository.DeleteRegularizacionAsync(id);

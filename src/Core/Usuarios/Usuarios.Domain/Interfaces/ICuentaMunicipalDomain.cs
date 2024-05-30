@@ -13,6 +13,8 @@ namespace Usuarios.Domain.Interfaces
         string CorreoElectronico { get; }
         string Password { get; }
         bool EsPropietario { get; }
+        string cuentaMunicipal { get; }
+        string contrasenaMunicipal { get; }
         DateTime FechaCreacion { get; }
         DateTime FechaModificacion { get; }
     }

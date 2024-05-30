@@ -258,7 +258,17 @@ namespace Commons.Connection
                                         }
                                         else if (property.PropertyType.IsEnum)
                                         {
-                                            property.SetValue(obj, Enum.Parse(property.PropertyType, reader.GetValue(i)?.ToString()), null);
+                                            //property.SetValue(obj, Enum.Parse(property.PropertyType, reader.GetValue(i)?.ToString()), null);
+                                            var enumValue = reader.GetValue(i)?.ToString();
+                                            if (Enum.TryParse(property.PropertyType, enumValue, out var parsedValue))
+                                            {
+                                                property.SetValue(obj, parsedValue, null);
+                                            }
+                                            else
+                                            {
+                                                // Manejo del error: el valor no es válido para la enumeración
+                                                throw new ArgumentException($"El valor '{enumValue}' no es válido para la enumeración '{property.PropertyType.Name}'.");
+                                            }
                                             //return Enum.ToObject(property.PropertyType, obj);
                                         }
                                         else

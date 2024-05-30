@@ -58,6 +58,12 @@ namespace Usuarios.Infrastructure.Repository
             if (cm.EsPropietario && (operacion == CrudType.Create || operacion == CrudType.Update))
                 parameters.Add("@EsPropietario", cm.EsPropietario);
 
+            if (!string.IsNullOrEmpty(cm.cuentaMunicipal) && (operacion == CrudType.Create || operacion == CrudType.Update))
+                parameters.Add("@CuentaMunicipal", cm.cuentaMunicipal);
+
+            if (!string.IsNullOrEmpty(cm.contrasenaMunicipal) && (operacion == CrudType.Create || operacion == CrudType.Update))
+                parameters.Add("@ContrasenaMunicipal", cm.contrasenaMunicipal);
+
             return parameters;
         }
 

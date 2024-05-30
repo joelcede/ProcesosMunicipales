@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 using Usuarios.Application.Dtos;
 using Usuarios.Application.Repository;
 using Usuarios.Domain.Entities;
@@ -9,6 +10,7 @@ namespace Clientes.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [EnableCors]
     public class ClientesController : ControllerBase
     {
         private readonly IUsuarioRepository _clienteRepository;
@@ -20,31 +22,31 @@ namespace Clientes.API.Controllers
             _clienteRepository = new UsuarioRepository(_configuration);
         }
 
-        [HttpGet(Name = "GetClientes")]
+        [HttpGet("GetClientes", Name = "GetClientes")]
         public async Task<IEnumerable<Usuario>> Get()
         {
             return await _clienteRepository.GetAllUsuariosAsync(_userType);
         }
 
-        [HttpGet("{id}", Name = "GetCliente")]
+        [HttpGet("GetCliente/{id}", Name = "GetCliente")]
         public async Task<Usuario> Get(Guid id)
         {
             return await _clienteRepository.GetUsuarioByIdAsync(id, _userType);
         }
 
-        [HttpPost(Name = "AddCliente")]
-        public async Task<Usuario> AddCliente(UsuarioRequestDto cliente)
+        [HttpPost("AddCliente", Name = "AddCliente")]
+        public async Task<Usuario> AddCliente([FromBody] UsuarioRequestDto cliente)
         {
             return await _clienteRepository.AddUsuarioAsync(cliente, _userType);
         }
 
-        [HttpPut("${id}", Name = "UpdateCliente")]
+        [HttpPut("UpdateCliente/{id}", Name = "UpdateCliente")]
         public async Task UpdateCliente(Guid id, Usuario cliente)
         {
             await _clienteRepository.UpdateUsuarioAsync(id, cliente, _userType);
         }
 
-        [HttpDelete("{id}", Name = "DeleteCliente")]
+        [HttpDelete("DeleteCliente/{id}", Name = "DeleteCliente")]
         public async Task DeleteCliente(Guid id)
         {
             await _clienteRepository.DeleteUsuarioAsync(id, _userType);

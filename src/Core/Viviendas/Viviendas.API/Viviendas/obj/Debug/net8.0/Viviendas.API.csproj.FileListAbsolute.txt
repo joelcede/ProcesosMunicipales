@@ -5,6 +5,7 @@ C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.API\Viviendas\bin\Debug\n
 C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.API\Viviendas\bin\Debug\net8.0\Viviendas.API.runtimeconfig.json
 C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.API\Viviendas\bin\Debug\net8.0\Viviendas.API.dll
 C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.API\Viviendas\bin\Debug\net8.0\Viviendas.API.pdb
+C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.API\Viviendas\bin\Debug\net8.0\AutoMapper.dll
 C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.API\Viviendas\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.API\Viviendas\bin\Debug\net8.0\Microsoft.Extensions.DependencyModel.dll
 C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.API\Viviendas\bin\Debug\net8.0\Microsoft.OpenApi.dll
@@ -21,6 +22,7 @@ C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.API\Viviendas\bin\Debug\n
 C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.API\Viviendas\bin\Debug\net8.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.API\Viviendas\bin\Debug\net8.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.API\Viviendas\bin\Debug\net8.0\Commons.Connection.dll
+C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.API\Viviendas\bin\Debug\net8.0\Commons.Cryptography.dll
 C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.API\Viviendas\bin\Debug\net8.0\Commons.logger.dll
 C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.API\Viviendas\bin\Debug\net8.0\Viviendas.Application.dll
 C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.API\Viviendas\bin\Debug\net8.0\Viviendas.Domain.dll
@@ -28,6 +30,7 @@ C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.API\Viviendas\bin\Debug\n
 C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.API\Viviendas\bin\Debug\net8.0\Commons.logger.pdb
 C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.API\Viviendas\bin\Debug\net8.0\Viviendas.Infrastructure.pdb
 C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.API\Viviendas\bin\Debug\net8.0\Commons.Connection.pdb
+C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.API\Viviendas\bin\Debug\net8.0\Commons.Cryptography.pdb
 C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.API\Viviendas\bin\Debug\net8.0\Viviendas.Application.pdb
 C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.API\Viviendas\bin\Debug\net8.0\Viviendas.Domain.pdb
 C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.API\Viviendas\obj\Debug\net8.0\Viviendas.API.csproj.AssemblyReference.cache
@@ -51,6 +54,3 @@ C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.API\Viviendas\obj\Debug\n
 C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.API\Viviendas\obj\Debug\net8.0\Viviendas.API.pdb
 C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.API\Viviendas\obj\Debug\net8.0\Viviendas.API.genruntimeconfig.cache
 C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.API\Viviendas\obj\Debug\net8.0\ref\Viviendas.API.dll
-C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.API\Viviendas\bin\Debug\net8.0\AutoMapper.dll
-C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.API\Viviendas\bin\Debug\net8.0\Commons.Cryptography.dll
-C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.API\Viviendas\bin\Debug\net8.0\Commons.Cryptography.pdb

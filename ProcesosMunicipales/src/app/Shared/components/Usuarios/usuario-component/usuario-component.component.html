@@ -1,0 +1,117 @@
+<!--<tui-svg [src]="src"></tui-svg>-->
+<!--<tui-svg src="iconName"></tui-svg>-->
+<tui-svg src="https://angular-colored-svg.stackblitz.io/assets/ng-girls.svg#ng-girls"></tui-svg>
+
+<ng-container tuiTableFilters>
+  <form [formGroup]="formfilter">
+    <tui-input formControlName="names"
+                tuiTableFilter="nombres"
+               tuiTableFilter2="apellidos"
+                [tuiGenericFilter]="filterNombres">
+      Nombres
+    </tui-input>
+    <tui-input formControlName="dni"
+               tuiTableFilter="dni"
+               [tuiGenericFilter]="filterDni"
+               [maskito]="digitos10">
+      DNI
+      <span class="tui-required"></span>
+      <input inputmode="numeric" tuiTextfield />
+    </tui-input>
+  </form>
+  <app-add-edit-button-user [tipoUsuario]="tipo" [crud]="crud"></app-add-edit-button-user>
+  <table tuiTable
+         [columns]="columns">
+    <thead>
+      <tr tuiThGroup>
+        <th *tuiHead="'nombres'"
+            tuiTh>
+          nombres
+        </th>
+        <th *tuiHead="'apellidos'"
+            tuiTh>
+          apellidos
+        </th>
+        <th *tuiHead="'dni'"
+            tuiTh>
+          dni
+        </th>
+        <th *tuiHead="'telefonoCelular'"
+            tuiTh
+            [sorter]="null">
+          Celular
+        </th>
+        <th *tuiHead="'telefonoConvencional'"
+            tuiTh
+            [sorter]="null">
+          telefono
+        </th>
+        <th *tuiHead="'esPrincipal'"
+            tuiTh
+            [sorter]="null">
+          Prop. Principal
+        </th>
+        <th *tuiHead="'actionsDelete'"
+            tuiTh
+            [sorter]="null">Eliminar</th>
+        <th *tuiHead="'actionsEdith'"
+            tuiTh
+            [sorter]="null">Editar</th>
+      </tr>
+    </thead>
+    <tbody *tuiLet="users | tuiTableSort as sortedUsers"
+           tuiTbody
+           [data]="sortedUsers">
+      <tr *ngFor="let item of sortedUsers | tuiTableFilters | async"
+          tuiTr>
+        <td *tuiCell="'nombres'"
+            tuiTd>
+          {{ item.nombres }}
+        </td>
+        <td *tuiCell="'apellidos'"
+            tuiTd>
+          {{ item.apellidos }}
+        </td>
+        <td *tuiCell="'dni'"
+            tuiTd>
+          {{ item.dni }}
+        </td>
+        <td *tuiCell="'Celular'"
+            tuiTd>
+          {{ item.telefonoCelular }}
+        </td>
+        <td *tuiCell="'telefono'"
+            tuiTd>
+          {{ item.telefonoConvencional }}
+        </td>
+        <td *tuiCell="'esPrincipal'"
+            tuiTd>
+          {{ item.esPrincipal }}
+        </td>
+        <td *tuiCell="'actionsDelete'"
+            tuiTd>
+          <button appearance="flat"
+                  icon="tuiIconTrash"
+                  shape="rounded"
+                  size="s"
+                  title="Remove"
+                  tuiIconButton
+                  type="button"
+                  class="remove"
+                  (click)="showDialogAlertDelete(item.nombres, item.dni, item.id)"></button>
+        </td>
+        <td *tuiCell="'actionsEdith'"
+            tuiTd>
+          <button appearance="flat"
+                  icon="tuiIconEdit"
+                  shape="rounded"
+                  size="s"
+                  title="Remove"
+                  tuiIconButton
+                  type="button"
+                  class="remove"
+                  (click)="showDialogAlertDelete(item.nombres, item.dni, item.id)"></button>
+        </td>
+      </tr>
+    </tbody>
+  </table>

@@ -2,10 +2,12 @@ C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.Infrastructure\bin\Debug\
 C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.Infrastructure\bin\Debug\net8.0\Viviendas.Infrastructure.dll
 C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.Infrastructure\bin\Debug\net8.0\Viviendas.Infrastructure.pdb
 C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.Infrastructure\bin\Debug\net8.0\Commons.Connection.dll
+C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.Infrastructure\bin\Debug\net8.0\Commons.Cryptography.dll
 C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.Infrastructure\bin\Debug\net8.0\Commons.logger.dll
 C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.Infrastructure\bin\Debug\net8.0\Viviendas.Application.dll
 C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.Infrastructure\bin\Debug\net8.0\Viviendas.Domain.dll
 C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.Infrastructure\bin\Debug\net8.0\Commons.Connection.pdb
+C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.Infrastructure\bin\Debug\net8.0\Commons.Cryptography.pdb
 C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.Infrastructure\bin\Debug\net8.0\Commons.logger.pdb
 C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.Infrastructure\bin\Debug\net8.0\Viviendas.Application.pdb
 C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.Infrastructure\bin\Debug\net8.0\Viviendas.Domain.pdb
@@ -19,5 +21,3 @@ C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.Infrastructure\obj\Debug\
 C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.Infrastructure\obj\Debug\net8.0\refint\Viviendas.Infrastructure.dll
 C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.Infrastructure\obj\Debug\net8.0\Viviendas.Infrastructure.pdb
 C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.Infrastructure\obj\Debug\net8.0\ref\Viviendas.Infrastructure.dll
-C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.Infrastructure\bin\Debug\net8.0\Commons.Cryptography.dll
-C:\PROYECTOS\Arquitectura\src\Core\Viviendas\Viviendas.Infrastructure\bin\Debug\net8.0\Commons.Cryptography.pdb

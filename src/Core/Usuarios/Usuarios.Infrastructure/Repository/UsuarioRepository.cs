@@ -72,8 +72,8 @@ namespace Usuarios.Infrastructure.Repository
             else if (!string.IsNullOrEmpty(usuario.TelefonoConvencional))
                 throw new ArgumentException("El campo Teléfono Convencional debe contener solo números.");
 
-            if ((int)usuario.esPrincipal != 2 && (operacion == CrudType.Create || operacion == CrudType.Update))
-                parameters.Add("@EsPrincipal", Convert.ToBoolean((int)usuario.esPrincipal) );
+            if ( (operacion == CrudType.Create || operacion == CrudType.Update))
+                parameters.Add("@EsPrincipal", Convert.ToBoolean(usuario.esPrincipal) );
 
 
             return parameters;

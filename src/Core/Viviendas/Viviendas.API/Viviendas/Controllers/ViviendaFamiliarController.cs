@@ -22,14 +22,14 @@ namespace Viviendas.API.Controllers
             _configuration = configuration;
             _viviendaRepository = new ViviendaITRespository(_configuration);
         }
-        [HttpPost]
-        public async Task<ViviendaUsuarios> CreateVivienda(ViviendaUsuarioDto vivienda)
+        [HttpPost("AddViviendaFamiliar", Name = "CreateViviendaFamiliar")]
+        public async Task<ViviendaUsuarios> CreateViviendaFamiliar(ViviendaUsuarioDto vivienda)
         {
             return await _viviendaRepository.AddViviendaUsuarioAsync(vivienda, tablaiI);
         }
 
-        [HttpGet("${id}")]
-        public async Task<IEnumerable<ViviendaFamProp>> GetVivienda(Guid id)
+        [HttpGet("GetViviendaFamiliar/{id}", Name = "GetViviendaFamiliar")]
+        public async Task<IEnumerable<ViviendaFamProp>> GetViviendaFamiliar(Guid id)
         {
             return await _viviendaRepository.GetViviendaUsuarioByIdAsync(id, tablaS);
         }

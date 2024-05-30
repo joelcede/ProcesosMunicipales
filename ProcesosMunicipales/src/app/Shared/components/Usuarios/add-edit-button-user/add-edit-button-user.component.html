@@ -1,0 +1,61 @@
+<button size="m"
+        tuiButton
+        (click)="onClick(content)">
+  Open
+</button>
+
+<ng-template #content
+             let-context>
+  <form [formGroup]="UsuarioForm">
+    <p>
+      <tui-input formControlName="nombres" tuiTextfieldSize="s" [tuiTextfieldCleaner]="true">
+        Nombres
+        <span class="tui-required"></span>
+        <input tuiTextfield type="text" />
+      </tui-input>
+    </p>
+    <p>
+      <tui-input formControlName="apellidos" tuiTextfieldSize="s" [tuiTextfieldCleaner]="true">
+        Apellidos
+        <span class="tui-required"></span>
+        <input tuiTextfield type="text" />
+      </tui-input>
+    </p>
+    <p>
+      <tui-input formControlName="dni" [maskito]="digitos10">
+        DNI
+        <span class="tui-required"></span>
+        <input inputmode="numeric" tuiTextfield />
+      </tui-input>
+
+    </p>
+    <p>
+      <tui-input formControlName="telefonoCelular" [maskito]="digitos10">
+        Celular
+        <span class="tui-required"></span>
+        <input inputmode="numeric" tuiTextfield />
+
+      </tui-input>
+    </p>
+
+    <p>
+      <tui-input formControlName="telefonoConvencional" [maskito]="digitos15">
+        Telefono Convencional
+        <span class="tui-required"></span>
+        <input inputmode="numeric" tuiTextfield />
+
+      </tui-input>
+    </p>
+    <!--<button appearance="primary"
+            tuiButton
+            type="button"
+            class="tui-space_right-3 tui-space_bottom-3">
+      Guardar
+    </button>-->
+    <button tuiButton
+            (click)="context.complete()">
+      Guardar
+    </button>
+  </form>
+
+</ng-template>

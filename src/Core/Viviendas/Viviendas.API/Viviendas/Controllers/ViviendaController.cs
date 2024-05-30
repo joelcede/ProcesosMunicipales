@@ -22,14 +22,14 @@ namespace Viviendas.API.Controllers
             _viviendaRepository = new ViviendaRepository(_configuration);
         }
 
-        [HttpGet]
+        [HttpGet("GetAllViviendas", Name = "GetViviendas")]
         public async Task<IActionResult> GetViviendas()
         {
             var viviendas = await _viviendaRepository.GetAllViviendasAsync();
             return Ok(viviendas);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("GetVivienda/${id}", Name = "GetVivienda")]
         public async Task<IActionResult> GetVivienda(Guid id)
         {
             var vivienda = await _viviendaRepository.GetViviendaByIdAsync(id);
@@ -40,21 +40,21 @@ namespace Viviendas.API.Controllers
             return Ok(vivienda);
         }
 
-        [HttpPost]
+        [HttpPost("AddVivienda", Name = "CreateVivienda")]
         public async Task<Vivienda> CreateVivienda([FromBody] ViviendaRequestDto vivienda)
         {
             return await _viviendaRepository.AddViviendaAsync(vivienda);
             
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("UpdateVivienda/{id}", Name = "UpdateVivienda")]
         public async Task<IActionResult> UpdateVivienda(Guid id, Vivienda vivienda)
         {
             await _viviendaRepository.UpdateViviendaAsync(id, vivienda);
             return Ok();
-        }
+        } 
 
-        [HttpDelete("{id}")]
+        [HttpDelete("DeleteVivienda/{id}", Name = "DeleteVivienda")]
         public async Task<IActionResult> DeleteVivienda(Guid id)
         {
             await _viviendaRepository.DeleteViviendaAsync(id);

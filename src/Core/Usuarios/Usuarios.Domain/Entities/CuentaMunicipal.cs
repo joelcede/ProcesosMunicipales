@@ -13,6 +13,8 @@ namespace Usuarios.Domain.Entities
         public Guid IdUsuario { get; set; }
         public string CorreoElectronico { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;
+        public string cuentaMunicipal { get; set; } = string.Empty;
+        public string contrasenaMunicipal { get; set; } = string.Empty;
         public bool EsPropietario { get; set; }
         public DateTime FechaCreacion { get; set; }
         public DateTime FechaModificacion { get; set; }

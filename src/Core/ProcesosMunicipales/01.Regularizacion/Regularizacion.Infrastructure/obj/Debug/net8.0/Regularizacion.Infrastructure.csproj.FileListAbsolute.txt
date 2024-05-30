@@ -1,8 +1,3 @@
-C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.Infrastructure\obj\Debug\net8.0\Regularizacion.Infrastructure.csproj.AssemblyReference.cache
-C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.Infrastructure\obj\Debug\net8.0\Regularizacion.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
-C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.Infrastructure\obj\Debug\net8.0\Regularizacion.Infrastructure.AssemblyInfoInputs.cache
-C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.Infrastructure\obj\Debug\net8.0\Regularizacion.Infrastructure.AssemblyInfo.cs
-C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.Infrastructure\obj\Debug\net8.0\Regularizacion.Infrastructure.csproj.CoreCompileInputs.cache
 C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.Infrastructure\bin\Debug\net8.0\Regularizacion.Infrastructure.deps.json
 C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.Infrastructure\bin\Debug\net8.0\Regularizacion.Infrastructure.dll
 C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.Infrastructure\bin\Debug\net8.0\Regularizacion.Infrastructure.pdb
@@ -14,6 +9,11 @@ C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regular
 C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.Infrastructure\bin\Debug\net8.0\Commons.logger.pdb
 C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.Infrastructure\bin\Debug\net8.0\Regularizacion.Application.pdb
 C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.Infrastructure\bin\Debug\net8.0\Regularizacion.Domain.pdb
+C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.Infrastructure\obj\Debug\net8.0\Regularizacion.Infrastructure.csproj.AssemblyReference.cache
+C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.Infrastructure\obj\Debug\net8.0\Regularizacion.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.Infrastructure\obj\Debug\net8.0\Regularizacion.Infrastructure.AssemblyInfoInputs.cache
+C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.Infrastructure\obj\Debug\net8.0\Regularizacion.Infrastructure.AssemblyInfo.cs
+C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.Infrastructure\obj\Debug\net8.0\Regularizacion.Infrastructure.csproj.CoreCompileInputs.cache
 C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.Infrastructure\obj\Debug\net8.0\Regulari.63B623F4.Up2Date
 C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.Infrastructure\obj\Debug\net8.0\Regularizacion.Infrastructure.dll
 C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.Infrastructure\obj\Debug\net8.0\refint\Regularizacion.Infrastructure.dll

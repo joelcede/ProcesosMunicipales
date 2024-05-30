@@ -19,7 +19,7 @@ namespace Usuarios.Domain.Entities
         public string DNI { get; set; } = string.Empty;
         public string TelefonoCelular { get; set; } = string.Empty;
         public string TelefonoConvencional { get; set; } = string.Empty;
-        public BoolType esPrincipal { get; set; } = BoolType.None;
+        public bool esPrincipal { get; set; }
         public DateTime FechaCreacion { get; set; }
         public DateTime FechaModificacion { get; set; }
     }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Usuarios.Application.Dtos;
@@ -11,6 +12,7 @@ namespace Usuarios.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [EnableCors]
     public class FamiliaresController : ControllerBase
     {
         private readonly IUsuarioRepository _familiarRepository;
@@ -61,18 +63,18 @@ namespace Usuarios.API.Controllers
             cuentaMunicipal.EsPropietario = false;
             await _cuentaMunicipalRepository.AddCuentaMunicipalAsync(cuentaMunicipal);
         }
-        [HttpGet("GetCMFamiliar/${id}", Name = "GetCuentaMunicipalFamiliar")]
+        [HttpGet("GetCMFamiliar/{id}", Name = "GetCuentaMunicipalFamiliar")]
         public async Task<CuentaMunicipal> GetCuentaMunicipalFamiliar(Guid id)
         {
             return await _cuentaMunicipalRepository.GetCuentaByIdUsuarioAsync(id);
         }
 
-        [HttpPut("UpdateCMFamiliar/${id}", Name ="ActualizarCuenta")]
+        [HttpPut("UpdateCMFamiliar/{id}", Name ="ActualizarCuenta")]
         public async Task UpdateCuentaMunicipalFamiliar(Guid id, CuentaMunicipal cuentaMunicipal)
         {
             await _cuentaMunicipalRepository.UpdateCuentaMunicipalAsync(id, cuentaMunicipal);
         }
-        [HttpDelete("DeleteCMFamiliar/${id}", Name = "DeleteCuentaMunicipalFamiliar")]
+        [HttpDelete("DeleteCMFamiliar/{id}", Name = "DeleteCuentaMunicipalFamiliar")]
         public async Task DeleteCuentaMunicipalFamiliar(Guid id)
         {
             await _cuentaMunicipalRepository.DeleteCuentaMunicipalAsync(id);

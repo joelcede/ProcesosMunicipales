@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Usuarios.Application.Dtos;
 using Usuarios.Application.Repository;
@@ -10,6 +11,7 @@ namespace Usuarios.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [EnableCors]
     public class PropietariosController : ControllerBase
     {
         private readonly IUsuarioRepository _propietarioRepository;
@@ -41,13 +43,13 @@ namespace Usuarios.API.Controllers
             await _propietarioRepository.AddUsuarioAsync(usuario, _userType);
         }
 
-        [HttpPut("UpdatePropietario/${id}", Name = "UpdatePropietario")]
+        [HttpPut("UpdatePropietario/{id}", Name = "UpdatePropietario")]
         public async Task UpdatePropietario(Guid id, Usuario usuario)
         {
             await _propietarioRepository.UpdateUsuarioAsync(id, usuario, _userType);
         }
 
-        [HttpDelete("DeletePropietario/${id}", Name = "DeletePropietario")]
+        [HttpDelete("DeletePropietario/{id}", Name = "DeletePropietario")]
         public async Task DeletePropietario(Guid id)
         {
             await _propietarioRepository.DeleteUsuarioAsync(id, _userType);
@@ -58,18 +60,18 @@ namespace Usuarios.API.Controllers
             cuentaMunicipal.EsPropietario = true;
             await _cuentaMunicipalRepository.AddCuentaMunicipalAsync(cuentaMunicipal);
         }
-        [HttpGet("GetCMPropietario/${id}")]
+        [HttpGet("GetCMPropietario/{id}")]
         public async Task<CuentaMunicipal> GetCuentaMunicipalPropietario(Guid id)
         {
             return await _cuentaMunicipalRepository.GetCuentaByIdUsuarioAsync(id);
         }
 
-        [HttpPut("UpdateCMPropietario/${id}", Name = "UpdateCuentaMunicipalPropietario")]
+        [HttpPut("UpdateCMPropietario/{id}", Name = "UpdateCuentaMunicipalPropietario")]
         public async Task UpdateCuentaMunicipalPropietario(Guid id, CuentaMunicipal cuentaMunicipal)
         {
             await _cuentaMunicipalRepository.UpdateCuentaMunicipalAsync(id, cuentaMunicipal);
         }
-        [HttpDelete("DeleteCMPropietario/${id}", Name = "DeleteCuentaMunicipalPropietario")]
+        [HttpDelete("DeleteCMPropietario/{id}", Name = "DeleteCuentaMunicipalPropietario")]
         public async Task DeleteCuentaMunicipalPropietario(Guid id)
         {
             await _cuentaMunicipalRepository.DeleteCuentaMunicipalAsync(id);

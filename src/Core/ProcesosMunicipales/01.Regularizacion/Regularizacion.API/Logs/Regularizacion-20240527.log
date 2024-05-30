@@ -1,0 +1,3 @@
+2024-05-27 19:09:09.521 -05:00 [INF] INICIO | RegularizacionRepository - GetRegularizacionesAsync
+2024-05-27 19:09:10.063 -05:00 [INF] FIN | Database - ExecuteReaderAsync
+2024-05-27 19:09:10.063 -05:00 [INF] FIN | RegularizacionRepository - GetRegularizacionesAsync

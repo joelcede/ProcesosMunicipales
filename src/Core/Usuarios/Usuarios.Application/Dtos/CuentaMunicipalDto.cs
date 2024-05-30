@@ -26,6 +26,11 @@ namespace Usuarios.Application.Dtos
         public string Password { get; set; } = string.Empty;
         [Required]
         public bool EsPropietario { get; set; }
+        [RegularExpression("^[0-9]*$", ErrorMessage = "El Cuenta Municipal(DNI) solo debe contener números.")]
+        public string cuentaMunicipal { get; set; } = string.Empty;
+        [PasswordPropertyText]
+        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$", ErrorMessage = "La contraseña debe tener al menos una letra mayúscula, una letra minúscula, un dígito, un carácter especial y al menos 8 caracteres de longitud.")]
+        public string contrasenaMunicipal { get; set; } = string.Empty;
         public DateTime FechaCreacion { get; set; }
         public DateTime FechaModificacion { get; set;}
     }

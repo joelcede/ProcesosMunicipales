@@ -1,0 +1,3 @@
+2024-05-27 17:38:52.377 -05:00 [INF] INICIO | ViviendaRepository - GetAllViviendasAsync
+2024-05-27 17:39:04.957 -05:00 [INF] FIN | Database - ExecuteReaderAsync
+2024-05-27 17:39:04.958 -05:00 [INF] FIN | ViviendaRepository - GetAllViviendasAsync

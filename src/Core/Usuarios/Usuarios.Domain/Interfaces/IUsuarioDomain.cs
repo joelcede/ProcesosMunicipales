@@ -15,7 +15,7 @@ namespace Usuarios.Domain.Interfaces
         string DNI { get; }
         string TelefonoCelular { get; }
         string TelefonoConvencional { get; }
-        BoolType esPrincipal { get; }
+        bool esPrincipal { get; }
         DateTime FechaCreacion { get; }
         DateTime FechaModificacion { get; }
     }

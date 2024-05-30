@@ -24,14 +24,14 @@ namespace Viviendas.API.Controllers
         }
 
 
-        [HttpPost]
+        [HttpPost("AddViviendaImagen", Name = "CreateViviendaImagen")]
         public async Task<ViviendaImagenes> CreateViviendaImagen(ViviendaImagenDto viviendaImagen)
         {
             return await _viviendaImagenRepository.AddViviendaImagenAsync(viviendaImagen, tabla);
             
         }
-        [HttpGet("${id}")]
-        public async Task<ViviendaImagenes> GetVivienda(Guid id)
+        [HttpGet("GetViviendaImagen/{id}", Name = "GetViviendaImagen")]
+        public async Task<ViviendaImagenes> GetViviendaImagen(Guid id)
         {
             return await _viviendaImagenRepository.GetViviendaImagenByIdAsync(id, tablaS);
         }
