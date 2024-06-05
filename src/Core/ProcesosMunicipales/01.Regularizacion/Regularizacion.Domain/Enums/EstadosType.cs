@@ -12,9 +12,10 @@ namespace Regularizacion.Domain.Enums
         PorHacer = 1,
         EnEspera = 2,
         SubSanacion = 3,
-        Aprobada    = 4,
-        TerminadaPendiente = 5,
-        Terminada = 6,
-        Negada = 7,
+        Negada = 4,
+        EnEsperaVuelaASubir = 5,
+        Aprobada = 6,
+        TerminadaPendiente = 7,
+        Terminada = 8,
     }
 }

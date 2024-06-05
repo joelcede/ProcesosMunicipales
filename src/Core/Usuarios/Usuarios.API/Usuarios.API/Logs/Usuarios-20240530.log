@@ -264,3 +264,9 @@ Transaction count after EXECUTE indicates a mismatching number of BEGIN and COMM
 2024-05-30 18:17:21.653 -05:00 [INF] INICIO | UsuarioRepository - GetAllUsuariosAsync
 2024-05-30 18:17:21.654 -05:00 [INF] FIN | Database - ExecuteReaderAsync
 2024-05-30 18:17:21.655 -05:00 [INF] FIN | UsuarioRepository - GetAllUsuariosAsync
+2024-05-30 18:23:40.593 -05:00 [INF] INICIO | UsuarioRepository - GetAllUsuariosAsync
+2024-05-30 18:23:41.175 -05:00 [INF] FIN | Database - ExecuteReaderAsync
+2024-05-30 18:23:41.175 -05:00 [INF] FIN | UsuarioRepository - GetAllUsuariosAsync
+2024-05-30 18:23:44.271 -05:00 [INF] INICIO | UsuarioRepository - GetAllUsuariosAsync
+2024-05-30 18:23:44.274 -05:00 [INF] FIN | Database - ExecuteReaderAsync
+2024-05-30 18:23:44.274 -05:00 [INF] FIN | UsuarioRepository - GetAllUsuariosAsync

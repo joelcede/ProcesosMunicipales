@@ -1,0 +1,13 @@
+C:\PROYECTOS\Arquitectura\src\Commons\Commons.EmailService\bin\Debug\net8.0\Commons.EmailService.deps.json
+C:\PROYECTOS\Arquitectura\src\Commons\Commons.EmailService\bin\Debug\net8.0\Commons.EmailService.dll
+C:\PROYECTOS\Arquitectura\src\Commons\Commons.EmailService\bin\Debug\net8.0\Commons.EmailService.pdb
+C:\PROYECTOS\Arquitectura\src\Commons\Commons.EmailService\obj\Debug\net8.0\Commons.EmailService.csproj.AssemblyReference.cache
+C:\PROYECTOS\Arquitectura\src\Commons\Commons.EmailService\obj\Debug\net8.0\Commons.EmailService.GeneratedMSBuildEditorConfig.editorconfig
+C:\PROYECTOS\Arquitectura\src\Commons\Commons.EmailService\obj\Debug\net8.0\Commons.EmailService.AssemblyInfoInputs.cache
+C:\PROYECTOS\Arquitectura\src\Commons\Commons.EmailService\obj\Debug\net8.0\Commons.EmailService.AssemblyInfo.cs
+C:\PROYECTOS\Arquitectura\src\Commons\Commons.EmailService\obj\Debug\net8.0\Commons.EmailService.csproj.CoreCompileInputs.cache
+C:\PROYECTOS\Arquitectura\src\Commons\Commons.EmailService\obj\Debug\net8.0\Commons.EmailService.sourcelink.json
+C:\PROYECTOS\Arquitectura\src\Commons\Commons.EmailService\obj\Debug\net8.0\Commons.EmailService.dll
+C:\PROYECTOS\Arquitectura\src\Commons\Commons.EmailService\obj\Debug\net8.0\refint\Commons.EmailService.dll
+C:\PROYECTOS\Arquitectura\src\Commons\Commons.EmailService\obj\Debug\net8.0\Commons.EmailService.pdb
+C:\PROYECTOS\Arquitectura\src\Commons\Commons.EmailService\obj\Debug\net8.0\ref\Commons.EmailService.dll

@@ -1,0 +1,5 @@
+is_global = true
+build_property.RootNamespace = Service.Email.Infrastructure
+build_property.ProjectDir = C:\PROYECTOS\Arquitectura\src\Services\Email\Logic\Service.Email.Infrastructure\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 

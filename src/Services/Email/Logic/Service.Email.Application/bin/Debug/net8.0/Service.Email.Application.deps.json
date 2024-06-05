@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "Service.Email.Application/1.0.0": {
+        "dependencies": {
+          "Service.Email.Domain": "1.0.0"
+        },
+        "runtime": {
+          "Service.Email.Application.dll": {}
+        }
+      },
+      "Service.Email.Domain/1.0.0": {
+        "runtime": {
+          "Service.Email.Domain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Service.Email.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Service.Email.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

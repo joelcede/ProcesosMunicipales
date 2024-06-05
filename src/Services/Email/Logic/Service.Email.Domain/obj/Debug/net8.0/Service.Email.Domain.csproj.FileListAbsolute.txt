@@ -1,0 +1,12 @@
+C:\PROYECTOS\Arquitectura\src\Services\Email\Logic\Service.Email.Domain\bin\Debug\net8.0\Service.Email.Domain.deps.json
+C:\PROYECTOS\Arquitectura\src\Services\Email\Logic\Service.Email.Domain\bin\Debug\net8.0\Service.Email.Domain.dll
+C:\PROYECTOS\Arquitectura\src\Services\Email\Logic\Service.Email.Domain\bin\Debug\net8.0\Service.Email.Domain.pdb
+C:\PROYECTOS\Arquitectura\src\Services\Email\Logic\Service.Email.Domain\obj\Debug\net8.0\Service.Email.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\PROYECTOS\Arquitectura\src\Services\Email\Logic\Service.Email.Domain\obj\Debug\net8.0\Service.Email.Domain.AssemblyInfoInputs.cache
+C:\PROYECTOS\Arquitectura\src\Services\Email\Logic\Service.Email.Domain\obj\Debug\net8.0\Service.Email.Domain.AssemblyInfo.cs
+C:\PROYECTOS\Arquitectura\src\Services\Email\Logic\Service.Email.Domain\obj\Debug\net8.0\Service.Email.Domain.csproj.CoreCompileInputs.cache
+C:\PROYECTOS\Arquitectura\src\Services\Email\Logic\Service.Email.Domain\obj\Debug\net8.0\Service.Email.Domain.sourcelink.json
+C:\PROYECTOS\Arquitectura\src\Services\Email\Logic\Service.Email.Domain\obj\Debug\net8.0\Service.Email.Domain.dll
+C:\PROYECTOS\Arquitectura\src\Services\Email\Logic\Service.Email.Domain\obj\Debug\net8.0\refint\Service.Email.Domain.dll
+C:\PROYECTOS\Arquitectura\src\Services\Email\Logic\Service.Email.Domain\obj\Debug\net8.0\Service.Email.Domain.pdb
+C:\PROYECTOS\Arquitectura\src\Services\Email\Logic\Service.Email.Domain\obj\Debug\net8.0\ref\Service.Email.Domain.dll

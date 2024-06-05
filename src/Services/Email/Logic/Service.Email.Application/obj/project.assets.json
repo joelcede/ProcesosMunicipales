@@ -1,0 +1,96 @@
+{
+  "version": 3,
+  "targets": {
+    "net8.0": {
+      "Service.Email.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/Service.Email.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Service.Email.Domain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Service.Email.Domain/1.0.0": {
+      "type": "project",
+      "path": "../Service.Email.Domain/Service.Email.Domain.csproj",
+      "msbuildProject": "../Service.Email.Domain/Service.Email.Domain.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net8.0": [
+      "Service.Email.Domain >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\Jioska\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\PROYECTOS\\Arquitectura\\src\\Services\\Email\\Logic\\Service.Email.Application\\Service.Email.Application.csproj",
+      "projectName": "Service.Email.Application",
+      "projectPath": "C:\\PROYECTOS\\Arquitectura\\src\\Services\\Email\\Logic\\Service.Email.Application\\Service.Email.Application.csproj",
+      "packagesPath": "C:\\Users\\Jioska\\.nuget\\packages\\",
+      "outputPath": "C:\\PROYECTOS\\Arquitectura\\src\\Services\\Email\\Logic\\Service.Email.Application\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\Jioska\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net8.0"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "projectReferences": {
+            "C:\\PROYECTOS\\Arquitectura\\src\\Services\\Email\\Logic\\Service.Email.Domain\\Service.Email.Domain.csproj": {
+              "projectPath": "C:\\PROYECTOS\\Arquitectura\\src\\Services\\Email\\Logic\\Service.Email.Domain\\Service.Email.Domain.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      }
+    },
+    "frameworks": {
+      "net8.0": {
+        "targetAlias": "net8.0",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

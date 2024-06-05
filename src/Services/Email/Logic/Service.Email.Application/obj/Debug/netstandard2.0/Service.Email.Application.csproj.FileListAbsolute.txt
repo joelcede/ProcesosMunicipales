@@ -1,0 +1,6 @@
+C:\PROYECTOS\Arquitectura\src\Services\Email\Logic\Service.Email.Application\obj\Debug\netstandard2.0\Service.Email.Application.csproj.AssemblyReference.cache
+C:\PROYECTOS\Arquitectura\src\Services\Email\Logic\Service.Email.Application\obj\Debug\netstandard2.0\Service.Email.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\PROYECTOS\Arquitectura\src\Services\Email\Logic\Service.Email.Application\obj\Debug\netstandard2.0\Service.Email.Application.AssemblyInfoInputs.cache
+C:\PROYECTOS\Arquitectura\src\Services\Email\Logic\Service.Email.Application\obj\Debug\netstandard2.0\Service.Email.Application.AssemblyInfo.cs
+C:\PROYECTOS\Arquitectura\src\Services\Email\Logic\Service.Email.Application\obj\Debug\netstandard2.0\Service.Email.Application.csproj.CoreCompileInputs.cache
+C:\PROYECTOS\Arquitectura\src\Services\Email\Logic\Service.Email.Application\obj\Debug\netstandard2.0\Service.Email.Application.sourcelink.json

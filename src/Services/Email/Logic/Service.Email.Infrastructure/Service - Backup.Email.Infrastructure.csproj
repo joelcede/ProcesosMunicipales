@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Commons\Commons.Connection\Commons.Connection.csproj" />
+    <ProjectReference Include="..\..\..\..\Commons\Commons.logger\Commons.logger.csproj" />
+    <ProjectReference Include="..\Service.Email.Application\Service.Email.Application.csproj" />
+  </ItemGroup>
+
+</Project>
