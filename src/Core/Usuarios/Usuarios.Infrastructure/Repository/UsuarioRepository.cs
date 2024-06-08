@@ -94,12 +94,12 @@ namespace Usuarios.Infrastructure.Repository
             }
                 
             var parameters = keyValuePairs(usuario, CrudType.Create, userType);
-            await new Database(_connectionString).ExecuteNonQueryAsync(SP_USUARIO, parameters);
+            var response = await new Database(_connectionString).ExecuteScalarAsync<Usuario>(SP_USUARIO, parameters);
 
-            usuario.Id = (Guid)parameters["@IdUsuario"];
-            var usuarioM = _viviendaMapper.CreateVivienda(usuario);
+            //usuario.Id = (Guid)parameters["@IdUsuario"];
+            //var usuarioM = _viviendaMapper.CreateVivienda(usuario);
             _logger.LogFin(_clase);
-            return usuarioM;
+            return response;
 
         }
 

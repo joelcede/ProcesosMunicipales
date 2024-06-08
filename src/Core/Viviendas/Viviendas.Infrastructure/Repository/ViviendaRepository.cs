@@ -70,14 +70,7 @@ namespace Viviendas.Infrastructure.Repository
             else if (vivienda.Imagen == Array.Empty<byte>() && (operacion == CrudType.GetById || operacion == CrudType.ListAll))
                 parameters.Add("@Imagen", vivienda.Imagen);
 
-            if (vivienda.Ciudad != CiudadType.None && (operacion == CrudType.Create || operacion == CrudType.Update))
-                parameters.Add("@IdCiudad", (int)vivienda.Ciudad);
-
-            if (vivienda.Provincia != ProvinciaType.None && (operacion == CrudType.Create || operacion == CrudType.Update))
-                parameters.Add("@IdProvincia", (int)vivienda.Provincia);
-
-            if (vivienda.Pais != PaisType.None && (operacion == CrudType.Create || operacion == CrudType.Update))
-                parameters.Add("@IdPais", (int)vivienda.Pais);
+      
 
 
             return parameters;

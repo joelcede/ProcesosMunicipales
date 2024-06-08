@@ -40,9 +40,9 @@ namespace Usuarios.API.Controllers
         }
 
         [HttpPost("AddFamiliar", Name = "AddFamiliar")]
-        public async Task AddFamiliar(UsuarioRequestDto usuario)
+        public async Task<Usuario> AddFamiliar(UsuarioRequestDto usuario)
         {
-            await _familiarRepository.AddUsuarioAsync(usuario, _userType);
+            return await _familiarRepository.AddUsuarioAsync(usuario, _userType);
         }
 
         [HttpPut("UpdateFamiliar/${id}", Name = "UpdateFamiliar")]

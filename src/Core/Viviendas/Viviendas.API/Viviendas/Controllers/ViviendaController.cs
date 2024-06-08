@@ -29,14 +29,11 @@ namespace Viviendas.API.Controllers
             return Ok(viviendas);
         }
 
-        [HttpGet("GetVivienda/${id}", Name = "GetVivienda")]
+        [HttpGet("GetVivienda/{id}", Name = "GetVivienda")]
         public async Task<IActionResult> GetVivienda(Guid id)
         {
             var vivienda = await _viviendaRepository.GetViviendaByIdAsync(id);
-            if (vivienda == null)
-            {
-                return NotFound();
-            }
+    
             return Ok(vivienda);
         }
 

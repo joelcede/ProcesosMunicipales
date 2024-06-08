@@ -16,11 +16,6 @@ namespace Viviendas.Domain.Entities
         public string Telefono { get; set; } = string.Empty;
         public string Coordenadas { get; set; } = string.Empty;
         public byte[] Imagen { get; set; } = Array.Empty<byte>();
-
-        public CiudadType Ciudad { get; set; } = CiudadType.Guayaquil;
-        public ProvinciaType Provincia { get; set; } = ProvinciaType.Guayas;
-        public PaisType Pais { get; set; } = PaisType.Ecuador;
-
         public DateTime FechaCreacion { get; set; }
         public DateTime FechaActualizacion { get; set; }
     }

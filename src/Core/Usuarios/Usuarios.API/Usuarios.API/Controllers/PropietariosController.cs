@@ -38,9 +38,9 @@ namespace Usuarios.API.Controllers
         }
 
         [HttpPost("AddPropietario", Name = "AddPropietario")]
-        public async Task AddPropietario(UsuarioRequestDto usuario)
+        public async Task<Usuario> AddPropietario(UsuarioRequestDto usuario)
         {
-            await _propietarioRepository.AddUsuarioAsync(usuario, _userType);
+            return await _propietarioRepository.AddUsuarioAsync(usuario, _userType);
         }
 
         [HttpPut("UpdatePropietario/{id}", Name = "UpdatePropietario")]

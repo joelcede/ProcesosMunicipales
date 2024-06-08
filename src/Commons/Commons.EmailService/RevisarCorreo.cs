@@ -2,6 +2,7 @@
 using MailKit.Net.Imap;
 using MailKit.Search;
 using MailKit.Security;
+using Org.BouncyCastle.Crypto;
 using System.Net.Mail;
 
 namespace Commons.EmailService
@@ -24,19 +25,29 @@ namespace Commons.EmailService
                     // Autentica con tus credenciales
                     await client.AuthenticateAsync(email, password);
 
+                    var inbox = client.Inbox;
                     // Selecciona la carpeta de bandeja de entrada
-                    await client.Inbox.OpenAsync(FolderAccess.ReadOnly);
+                    await inbox.OpenAsync(FolderAccess.ReadOnly);
 
                     // Busca el correo con el asunto especificado
-                    var query = SearchQuery.SubjectContains(subjectToSearch);
-                    var uids = await client.Inbox.SearchAsync(query);
+                    var uids = await inbox.SearchAsync(SearchQuery.All);
 
-                    foreach (var uid in uids)
+                    if(uids.Count > 0)
                     {
-                        var message = await client.Inbox.GetMessageAsync(uid);
-                        if (message != null && message.Subject != null && message.Subject.Contains(subjectToSearch))
-                            correos.Add(email);
+                        int index = Math.Max(inbox.Count - 100, 0);
+                        var items = inbox.Fetch(index, -1, MessageSummaryItems.UniqueId);
+
+                        foreach (var item in items)
+                        {
+                            var message = await inbox.GetMessageAsync(item.UniqueId);
+                            if (message.Subject.Contains(subjectToSearch, StringComparison.OrdinalIgnoreCase))
+                            {
+                                correos.Add(email);
+                            }
+                                
+                        }
                     }
+
                     await client.DisconnectAsync(true);
                 }
             }

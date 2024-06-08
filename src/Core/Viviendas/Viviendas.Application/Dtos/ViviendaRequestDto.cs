@@ -22,16 +22,12 @@ namespace Viviendas.Application.Dtos
         [Required(ErrorMessage = "El Codigo Catastral es requerido")]
         public string CodigoCatastral { get; set; } = string.Empty;
 
+        [RegularExpression("^[0-9]*$", ErrorMessage = "El Telefono Convencional solo debe contener números.")]
         public string Telefono { get; set; } = string.Empty;
         public string Coordenadas { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "La Imagen es requerida")]
         public byte[] Imagen { get; set; }
-
-        public CiudadType Ciudad { get; set; } = CiudadType.Guayaquil;
-        public ProvinciaType Provincia { get; set; } = ProvinciaType.Guayas;
-        public PaisType Pais { get; set; } = PaisType.Ecuador;
-
         public DateTime FechaCreacion { get; set; }
         public DateTime FechaActualizacion { get; set; }
     }

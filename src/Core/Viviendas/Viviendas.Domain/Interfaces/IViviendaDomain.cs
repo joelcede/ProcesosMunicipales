@@ -15,9 +15,6 @@ namespace Viviendas.Domain.Interfaces
         string Telefono { get; }
         string Coordenadas { get; }
         byte[] Imagen { get; }
-        CiudadType Ciudad { get; }
-        ProvinciaType Provincia { get; }
-        PaisType Pais { get; }
         DateTime FechaCreacion { get; }
         DateTime FechaActualizacion { get; }
     }

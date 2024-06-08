@@ -22,16 +22,15 @@ namespace Regularizacion.Application.Dtos
         [Required]
         public decimal Anticipo { get; set; }
         [JsonIgnore]
-        public decimal ValorPendiente { get => ValorPendiente; private set => CalcularValorPendiente(); }
+        public decimal ValorPendiente { get; }
         [JsonIgnore]
         public bool Pagado { get; set; } = false;
         public EstadosType Estado { get; set; } = EstadosType.PorHacer;
         public DateTime FechaRegistro { get; set; }
         public DateTime FechaInsercion { get; set; }
         public DateTime FechaActualizacion { get; set; }
-        private void CalcularValorPendiente()
-        {
-            ValorPendiente = ValorRegularizacion - Anticipo;
-        }
+        public string Correo { get; set; } = string.Empty;
+        public string Contrasena { get; set; } = string.Empty;
+
     }
 }

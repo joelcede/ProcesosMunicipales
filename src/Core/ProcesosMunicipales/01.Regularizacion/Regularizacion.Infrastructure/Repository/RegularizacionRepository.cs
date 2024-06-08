@@ -55,6 +55,10 @@ namespace Regularizacion.Infrastructure.Repository
                 parameters.Add("@Pagado", regularizacion.Pagado);
                 parameters.Add("@Estado", regularizacion.Estado);
                 parameters.Add("@FechaRegistro", regularizacion.FechaRegistro);
+                //parameters.Add("@FechaInsercion", regularizacion.FechaInsercion);
+                //parameters.Add("@FechaActualizacion", regularizacion.FechaActualizacion);
+                parameters.Add("@Correo", regularizacion.Correo);
+                parameters.Add("@Contrasena", regularizacion.Contrasena);
             }
             return parameters;
         }

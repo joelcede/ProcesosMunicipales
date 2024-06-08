@@ -31,12 +31,12 @@ namespace Usuarios.Application.Dtos
 
         [Required(ErrorMessage = "El teléfono celular es requerido")]
         [StringLength(10, MinimumLength =10, ErrorMessage ="El telefono celular debe de tener 10 digitos")]
-        [RegularExpression("^[0-9]*$", ErrorMessage = "El DNI solo debe contener números.")]
+        [RegularExpression("^[0-9]*$", ErrorMessage = "El Telefono Celular solo debe contener números.")]
         public string TelefonoCelular { get; set; }
         public bool esPrincipal { get; set; }
 
         [StringLength(15, MinimumLength = 0, ErrorMessage = "El telefono convencional debe estar en un rango de 10 a 15 digitos")]
-        [RegularExpression("^[0-9]*$", ErrorMessage = "El DNI solo debe contener números.")]
+        [RegularExpression("^[0-9]*$", ErrorMessage = "El Telefono Convencional solo debe contener números.")]
         public string TelefonoConvencional { get; set; }
         public DateTime FechaCreacion { get; set; }
         public DateTime FechaModificacion { get; set; }
