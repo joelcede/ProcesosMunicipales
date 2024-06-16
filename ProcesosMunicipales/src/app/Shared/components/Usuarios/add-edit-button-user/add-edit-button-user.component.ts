@@ -1,14 +1,11 @@
 import { ChangeDetectionStrategy, Component, Inject, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { TuiDialogService } from '@taiga-ui/core';
-import { TuiDialogFormService } from '@taiga-ui/kit';
 import { PolymorpheusContent } from '@tinkoff/ng-polymorpheus';
 import { MaskitoOptions } from '@maskito/core';
 import { UsuarioService } from '../../../../Core/Usuario/Services/usuario.service';
 import { Usuario } from '../../../../Core/Usuario/models/usuario.interface';
 import { TypeUsuario } from '../../../../Core/Usuario/enum/TypeUsuario';
 import { TypeCrud } from '../../../enum/typeCrud';
-import { TuiAlertService } from '@taiga-ui/core';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
@@ -16,7 +13,7 @@ import { HttpErrorResponse } from '@angular/common/http';
   templateUrl: './add-edit-button-user.component.html',
   styleUrls: ['./add-edit-button-user.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [TuiDialogFormService],
+  providers: [],
 })
 export class AddEditButtonUserComponent {
   value = '';
@@ -24,26 +21,26 @@ export class AddEditButtonUserComponent {
   @Input() crud: TypeCrud = TypeCrud.None;
   //@Input() usuario: any;
   constructor(
-    @Inject(TuiDialogFormService) private readonly dialogForm: TuiDialogFormService,
-    @Inject(TuiDialogService) private readonly dialogs: TuiDialogService,
-    @Inject(TuiAlertService) private readonly alert: TuiAlertService,
+    //@Inject(TuiDialogFormService) private readonly dialogForm: TuiDialogFormService,
+    //@Inject(TuiDialogService) private readonly dialogs: TuiDialogService,
+    //@Inject(TuiAlertService) private readonly alert: TuiAlertService,
     private usuarioService: UsuarioService,
   ) { }
 
   onModelChange(value: string): void {
     this.value = value;
-    this.dialogForm.markAsDirty();
+    //this.dialogForm.markAsDirty();
   }
 
-  onClick(content: PolymorpheusContent): void {
-    const closeable = this.dialogForm.withPrompt({
-      label: 'Estas seguro que deseas salir?',
-      data: {
-        content: 'No se guardaran tus datos.',
-        no: 'Cancelar',
-        yes: 'Salir',
-      },
-    });
+  //onClick(content: PolymorpheusContent): void {
+  //  const closeable = this.dialogForm.withPrompt({
+  //    label: 'Estas seguro que deseas salir?',
+  //    data: {
+  //      content: 'No se guardaran tus datos.',
+  //      no: 'Cancelar',
+  //      yes: 'Salir',
+  //    },
+  //  });
     //if (this.crud == 4) {
     //  const usuario = this.usuario;
     //  this.UsuarioForm.setValue({
@@ -59,18 +56,18 @@ export class AddEditButtonUserComponent {
     //  });
     //}
     
-    this.dialogs.open(content, { closeable, dismissible: closeable }).subscribe({
-      next: () => {
-        this.proceso();
-        this.dialogForm.markAsPristine();
+  //  this.dialogs.open(content, { closeable, dismissible: closeable }).subscribe({
+  //    next: () => {
+  //      this.proceso();
+  //      this.dialogForm.markAsPristine();
 
-      },
-      complete: () => {
-        this.value = '';
-        this.dialogForm.markAsPristine();
-      },
-    });
-  }
+  //    },
+  //    complete: () => {
+  //      this.value = '';
+  //      this.dialogForm.markAsPristine();
+  //    },
+  //  });
+  //}
    UsuarioForm = new FormGroup({
     id: new FormControl('00000000-0000-0000-0000-000000000000'),
     nombres: new FormControl(''),
@@ -101,10 +98,10 @@ export class AddEditButtonUserComponent {
         if (error.error.errors) {
           const errorMessages = this.extractErrorMessages(error.error.errors);
           errorMessages.forEach(errMsg => {
-            this.alert.open(`Error al guardar el Cliente:</strong><br> ${errMsg}`).subscribe();
+            //this.alert.open(`Error al guardar el Cliente:</strong><br> ${errMsg}`).subscribe();
           });
         } else {
-          this.alert.open(`Error al guardar el Cliente: ${error.message}`).subscribe();
+          //this.alert.open(`Error al guardar el Cliente: ${error.message}`).subscribe();
         }
         //this.alert.open(`Error al guardar el Cliente: ${error.error.errors.forear}`).subscribe();
         console.log("Error al crear un cliente", error);

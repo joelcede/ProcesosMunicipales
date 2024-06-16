@@ -1,52 +1,12 @@
-/*@import '@taiga-ui/core/styles/taiga-ui-local.less';
-*/
-td,
-th {
-  white-space: nowrap;
-  border-color: transparent;
-  border-right-color: var(--tui-base-04);
+table {
+  width: 100%;
 }
 
-  td:last-child,
-  th:last-child {
-    border-right-color: transparent;
-  }
-
-tbody {
-  border-color: transparent;
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
 }
 
-tr:nth-child(even) td {
-  background: var(--tui-base-02);
-}
-
-.alive,
-.deceased {
-  display: flex;
-  align-items: center;
-  text-transform: capitalize;
-}
-
-  .alive::before,
-  .deceased::before {
-    content: '';
-    width: 0.5rem;
-    height: 0.5rem;
-    border-radius: 100%;
-    margin-right: 0.5rem;
-    background: var(--tui-base-04);
-  }
-
-  .alive::before {
-    background: var(--tui-success-fill);
-  }
-
-.remove {
-  transition: opacity 0.3s;  /*Puedes ajustar el tiempo de la transición según tus necesidades */
-  opacity: 0;
-}
-
-tr:hover .remove,
-tr:focus-within .remove {
-  opacity: 1;
+td, th {
+  width: 25%;
 }

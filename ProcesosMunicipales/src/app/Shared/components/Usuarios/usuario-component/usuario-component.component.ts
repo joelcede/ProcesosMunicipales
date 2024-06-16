@@ -1,25 +1,39 @@
-import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MaskitoOptions } from '@maskito/core';
 import { UsuarioService } from '../../../../Core/Usuario/Services/usuario.service';
 import { Usuario } from '../../../../Core/Usuario/models/usuario.interface';
-import { TuiDialogService } from '@taiga-ui/core';
 import { TypeUsuario } from '../../../../Core/Usuario/enum/TypeUsuario';
 import { TypeCrud } from '../../../enum/typeCrud';
 
-interface User {
-  readonly email: string;
-  readonly name: string;
-  readonly status: 'alive' | 'deceased';
-  readonly tags: readonly string[];
-}
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatSort, MatSortModule } from '@angular/material/sort';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+
+
 @Component({
   selector: 'app-usuario-component',
   templateUrl: './usuario-component.component.html',
   styleUrls: ['./usuario-component.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  //standalone: true,
+  //imports: [MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule],
+
 })
 export class UsuarioComponentComponent implements OnInit {
+  //displayedColumns: string[] = ['nombres', 'apellidos', 'dni', 'telefonoCelular', 'telefonoConvencional', 'esPrincipal', 'actionsDelete', 'actionsEdith'];
+  //dataSource!: MatTableDataSource<Usuario>;
+
+  //@ViewChild(MatPaginator) paginator!: MatPaginator;
+  //@ViewChild(MatSort) sort!: MatSort;
+
+  users: Usuario[] = [];
+
+  constructor(private usuarioService: UsuarioService) {
+    //this.dataSource = new MatTableDataSource(this.users);
+  }
+
   //readonly UsuarioForm = new FormGroup({
   //  Nombres: new FormControl(''),
   //  Apellidos: new FormControl(''),
@@ -62,23 +76,22 @@ export class UsuarioComponentComponent implements OnInit {
 
   readonly filterDni = (item: string, value: string): boolean => item.includes(value);
 
-  showDialogAlertDelete(nombre: string, dni: string, id: string): void {
-    this.dialogs
-      .open(`Seguro que quieres eliminar al cliente ${nombre} con el dni: ${dni}`, {
-        label: 'Eliminar',
-        size: 's',
-        data: { button: [this.remove(id), 'Eliminarr'] },
-        closeable: true,
-      })
-      .subscribe();
-  }
+  //showDialogAlertDelete(nombre: string, dni: string, id: string): void {
+  //  this.dialogs
+  //    .open(`Seguro que quieres eliminar al cliente ${nombre} con el dni: ${dni}`, {
+  //      label: 'Eliminar',
+  //      size: 's',
+  //      data: { button: [this.remove(id), 'Eliminarr'] },
+  //      closeable: true,
+  //    })
+  //    .subscribe();
+  //}
 
-  users: Usuario[] = [];
-  constructor(@Inject(TuiDialogService) private readonly dialogs: TuiDialogService,
-    private usuarioService: UsuarioService) { }
+  
+
 
   ngOnInit(): void {
-    this.getDataClientes();
+    //this.getDataClientes();
   }
 
   getDataClientes(): void {
@@ -114,7 +127,7 @@ export class UsuarioComponentComponent implements OnInit {
   }
 
 
-  readonly columns = ['nombres', 'apellidos', 'dni', 'telefonoCelular', 'telefonoConvencional', 'esPrincipal', 'actionsDelete', 'actionsEdith'];
+  //readonly columns = ['nombres', 'apellidos', 'dni', 'telefonoCelular', 'telefonoConvencional', 'esPrincipal', 'actionsDelete', 'actionsEdith'];
 
 
   remove(item: string): void {
