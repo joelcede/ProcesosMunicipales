@@ -372,6 +372,16 @@
           "bin/placeholder/Commons.Connection.dll": {}
         }
       },
+      "Commons.Cryptography/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/Commons.Cryptography.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Commons.Cryptography.dll": {}
+        }
+      },
       "Commons.logger/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
@@ -1117,6 +1127,11 @@
       "path": "../../../Commons/Commons.Connection/Commons.Connection.csproj",
       "msbuildProject": "../../../Commons/Commons.Connection/Commons.Connection.csproj"
     },
+    "Commons.Cryptography/1.0.0": {
+      "type": "project",
+      "path": "../../../Commons/Commons.Cryptography/Commons.Cryptography.csproj",
+      "msbuildProject": "../../../Commons/Commons.Cryptography/Commons.Cryptography.csproj"
+    },
     "Commons.logger/1.0.0": {
       "type": "project",
       "path": "../../../Commons/Commons.logger/Commons.logger.csproj",
@@ -1136,6 +1151,7 @@
   "projectFileDependencyGroups": {
     "net8.0": [
       "Commons.Connection >= 1.0.0",
+      "Commons.Cryptography >= 1.0.0",
       "Microsoft.Extensions.Configuration.Abstractions >= 8.0.0",
       "Usuarios.Application >= 1.0.0",
       "Usuarios.Domain >= 1.0.0"
@@ -1170,6 +1186,9 @@
           "projectReferences": {
             "C:\\PROYECTOS\\Arquitectura\\src\\Commons\\Commons.Connection\\Commons.Connection.csproj": {
               "projectPath": "C:\\PROYECTOS\\Arquitectura\\src\\Commons\\Commons.Connection\\Commons.Connection.csproj"
+            },
+            "C:\\PROYECTOS\\Arquitectura\\src\\Commons\\Commons.Cryptography\\Commons.Cryptography.csproj": {
+              "projectPath": "C:\\PROYECTOS\\Arquitectura\\src\\Commons\\Commons.Cryptography\\Commons.Cryptography.csproj"
             },
             "C:\\PROYECTOS\\Arquitectura\\src\\Core\\Usuarios\\Usuarios.Application\\Usuarios.Application.csproj": {
               "projectPath": "C:\\PROYECTOS\\Arquitectura\\src\\Core\\Usuarios\\Usuarios.Application\\Usuarios.Application.csproj"

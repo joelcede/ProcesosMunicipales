@@ -10,20 +10,18 @@ using Usuarios.Infrastructure.Repository;
 namespace Usuarios.API.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [EnableCors]
     public class PropietariosController : ControllerBase
     {
         private readonly IUsuarioRepository _propietarioRepository;
         private readonly IConfiguration _configuration;
         private readonly UsuarioType _userType = UsuarioType.Propietario;
-        private readonly ICuentaMunicipalRepository _cuentaMunicipalRepository;
 
         public PropietariosController(IConfiguration configuration)
         {
             _configuration = configuration;
             _propietarioRepository = new UsuarioRepository(_configuration);
-            _cuentaMunicipalRepository = new CuentaMunicipalRepository(_configuration);
         }
         [HttpGet("GetAllPropietarios",Name = "GetPropietarios")]
         public async Task<IEnumerable<Usuario>> Get()
@@ -54,27 +52,27 @@ namespace Usuarios.API.Controllers
         {
             await _propietarioRepository.DeleteUsuarioAsync(id, _userType);
         }
-        [HttpPost("AddCMPropietario", Name = "AddCuentaMunicipalPropietario")]
-        public async Task AddCuentaMunicipalPropietario(CuentaMunicipalDto cuentaMunicipal)
-        {
-            cuentaMunicipal.EsPropietario = true;
-            await _cuentaMunicipalRepository.AddCuentaMunicipalAsync(cuentaMunicipal);
-        }
-        [HttpGet("GetCMPropietario/{id}")]
-        public async Task<CuentaMunicipal> GetCuentaMunicipalPropietario(Guid id)
-        {
-            return await _cuentaMunicipalRepository.GetCuentaByIdUsuarioAsync(id);
-        }
+        //[HttpPost("AddCMPropietario", Name = "AddCuentaMunicipalPropietario")]
+        //public async Task AddCuentaMunicipalPropietario(CuentaMunicipalDto cuentaMunicipal)
+        //{
+        //    cuentaMunicipal.EsPropietario = true;
+        //    await _cuentaMunicipalRepository.AddCuentaMunicipalAsync(cuentaMunicipal);
+        //}
+        //[HttpGet("GetCMPropietario/{id}")]
+        //public async Task<CuentaMunicipal> GetCuentaMunicipalPropietario(Guid id)
+        //{
+        //    return await _cuentaMunicipalRepository.GetCuentaByIdUsuarioAsync(id);
+        //}
 
-        [HttpPut("UpdateCMPropietario/{id}", Name = "UpdateCuentaMunicipalPropietario")]
-        public async Task UpdateCuentaMunicipalPropietario(Guid id, CuentaMunicipal cuentaMunicipal)
-        {
-            await _cuentaMunicipalRepository.UpdateCuentaMunicipalAsync(id, cuentaMunicipal);
-        }
-        [HttpDelete("DeleteCMPropietario/{id}", Name = "DeleteCuentaMunicipalPropietario")]
-        public async Task DeleteCuentaMunicipalPropietario(Guid id)
-        {
-            await _cuentaMunicipalRepository.DeleteCuentaMunicipalAsync(id);
-        }
+        //[HttpPut("UpdateCMPropietario/{id}", Name = "UpdateCuentaMunicipalPropietario")]
+        //public async Task UpdateCuentaMunicipalPropietario(Guid id, CuentaMunicipal cuentaMunicipal)
+        //{
+        //    await _cuentaMunicipalRepository.UpdateCuentaMunicipalAsync(id, cuentaMunicipal);
+        //}
+        //[HttpDelete("DeleteCMPropietario/{id}", Name = "DeleteCuentaMunicipalPropietario")]
+        //public async Task DeleteCuentaMunicipalPropietario(Guid id)
+        //{
+        //    await _cuentaMunicipalRepository.DeleteCuentaMunicipalAsync(id);
+        //}
     }
 }

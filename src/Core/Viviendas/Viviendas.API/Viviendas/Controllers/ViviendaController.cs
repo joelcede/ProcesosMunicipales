@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Viviendas.Application.Dtos;
@@ -11,6 +12,7 @@ namespace Viviendas.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors]
     public class ViviendaController : ControllerBase
     {
         private readonly IViviendaRepository _viviendaRepository;

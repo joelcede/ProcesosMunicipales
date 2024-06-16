@@ -1,0 +1,4 @@
+2024-06-13 20:29:22.131 -05:00 [INF] INICIO | RegularizacionRepository - AddRegularizacionAsync
+2024-06-13 20:29:25.430 -05:00 [INF] INICIO | Database - ExecuteScalarAsync
+2024-06-13 20:29:25.647 -05:00 [INF] FIN | Database - ExecuteScalarAsync
+2024-06-13 20:29:33.012 -05:00 [INF] FIN | RegularizacionRepository - AddRegularizacionAsync

@@ -11,7 +11,7 @@ using Usuarios.Infrastructure.Repository;
 namespace Usuarios.API.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [EnableCors]
     public class FamiliaresController : ControllerBase
     {
@@ -57,27 +57,27 @@ namespace Usuarios.API.Controllers
             await _familiarRepository.DeleteUsuarioAsync(id, _userType);
         }
 
-        [HttpPost("AddCMFamiliar", Name = "AddCuentaMunicipalFamiliar")]
-        public async Task AddCuentaMunicipalFamiliar(CuentaMunicipalDto cuentaMunicipal)
-        {
-            cuentaMunicipal.EsPropietario = false;
-            await _cuentaMunicipalRepository.AddCuentaMunicipalAsync(cuentaMunicipal);
-        }
-        [HttpGet("GetCMFamiliar/{id}", Name = "GetCuentaMunicipalFamiliar")]
-        public async Task<CuentaMunicipal> GetCuentaMunicipalFamiliar(Guid id)
-        {
-            return await _cuentaMunicipalRepository.GetCuentaByIdUsuarioAsync(id);
-        }
+        //[HttpPost("AddCMFamiliar", Name = "AddCuentaMunicipalFamiliar")]
+        //public async Task AddCuentaMunicipalFamiliar(CuentaMunicipalDto cuentaMunicipal)
+        //{
+        //    cuentaMunicipal.EsPropietario = false;
+        //    await _cuentaMunicipalRepository.AddCuentaMunicipalAsync(cuentaMunicipal);
+        //}
+        //[HttpGet("GetCMFamiliar/{id}", Name = "GetCuentaMunicipalFamiliar")]
+        //public async Task<CuentaMunicipalController> GetCuentaMunicipalFamiliar(Guid id)
+        //{
+        //    return await _cuentaMunicipalRepository.GetCuentaByIdUsuarioAsync(id);
+        //}
 
-        [HttpPut("UpdateCMFamiliar/{id}", Name ="ActualizarCuenta")]
-        public async Task UpdateCuentaMunicipalFamiliar(Guid id, CuentaMunicipal cuentaMunicipal)
-        {
-            await _cuentaMunicipalRepository.UpdateCuentaMunicipalAsync(id, cuentaMunicipal);
-        }
-        [HttpDelete("DeleteCMFamiliar/{id}", Name = "DeleteCuentaMunicipalFamiliar")]
-        public async Task DeleteCuentaMunicipalFamiliar(Guid id)
-        {
-            await _cuentaMunicipalRepository.DeleteCuentaMunicipalAsync(id);
-        }
+        //[HttpPut("UpdateCMFamiliar/{id}", Name ="ActualizarCuenta")]
+        //public async Task UpdateCuentaMunicipalFamiliar(Guid id, CuentaMunicipalController cuentaMunicipal)
+        //{
+        //    await _cuentaMunicipalRepository.UpdateCuentaMunicipalAsync(id, cuentaMunicipal);
+        //}
+        //[HttpDelete("DeleteCMFamiliar/{id}", Name = "DeleteCuentaMunicipalFamiliar")]
+        //public async Task DeleteCuentaMunicipalFamiliar(Guid id)
+        //{
+        //    await _cuentaMunicipalRepository.DeleteCuentaMunicipalAsync(id);
+        //}
     }
 }

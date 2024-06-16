@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Commons\Commons.Connection\Commons.Connection.csproj" />
+    <ProjectReference Include="..\..\..\Commons\Commons.Cryptography\Commons.Cryptography.csproj" />
     <ProjectReference Include="..\Usuarios.Application\Usuarios.Application.csproj" />
     <ProjectReference Include="..\Usuarios.Domain\Usuarios.Domain.csproj" />
   </ItemGroup>

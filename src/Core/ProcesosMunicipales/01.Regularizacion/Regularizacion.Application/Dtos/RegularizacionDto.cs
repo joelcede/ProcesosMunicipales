@@ -21,8 +21,7 @@ namespace Regularizacion.Application.Dtos
         public decimal ValorRegularizacion { get; set; }
         [Required]
         public decimal Anticipo { get; set; }
-        [JsonIgnore]
-        public decimal ValorPendiente { get; }
+        public decimal ValorPendiente { get; set; }
         [JsonIgnore]
         public bool Pagado { get; set; } = false;
         public EstadosType Estado { get; set; } = EstadosType.PorHacer;

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Viviendas.Application.Dtos;
 using Viviendas.Application.Repository;
@@ -10,6 +11,7 @@ namespace Viviendas.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors]
     public class ViviendaITController : ControllerBase
     {
         private readonly IViviendaTIRepository _viviendaImagenRepository;

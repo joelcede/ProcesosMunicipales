@@ -1,0 +1,79 @@
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+td {
+  padding-right: 8px;
+}
+
+/*.example-card {
+  max-width: 75%;
+  display: flex;
+  justify-content: center;  
+  align-items: center;  
+  height: 100vh;  
+}*/
+.container {
+  display: flex;
+  justify-content: center; /* Alinea horizontalmente al centro */
+  align-items: center; /* Alinea verticalmente al centro */
+  height: 100vh; /* Ocupa el 100% de la altura del viewport */
+}
+
+.example-card {
+  width: 75%;
+  height: 100vh; /* Ocupa el 50% de la altura del viewport */
+  box-sizing: border-box; /* Incluye el padding y el border en el tamaño total del card */
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+.example-additional-selection {
+  opacity: 0.75;
+  font-size: 0.75em;
+}
+.example-container mat-form-field + mat-form-field {
+  margin-left: 8px;
+}
+
+.example-right-align {
+  text-align: right;
+}
+
+input.example-right-align::-webkit-outer-spin-button,
+input.example-right-align::-webkit-inner-spin-button {
+  display: none;
+}
+
+input.example-right-align {
+  -moz-appearance: textfield;
+}
+mat-form-field {
+  margin-right: 12px;
+}
+.example-container mat-form-field + mat-form-field {
+  margin-left: 8px;
+}
+
+.example-right-align {
+  text-align: right;
+}
+
+input.example-right-align::-webkit-outer-spin-button,
+input.example-right-align::-webkit-inner-spin-button {
+  display: none;
+}
+
+input.example-right-align {
+  -moz-appearance: textfield;
+}
+button {
+  margin-right: 8px;
+}

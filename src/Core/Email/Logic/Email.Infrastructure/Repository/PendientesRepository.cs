@@ -1,4 +1,5 @@
 ﻿using Commons.Connection;
+using Commons.Cryptography;
 using Commons.EmailService;
 using Commons.logger;
 using Microsoft.Extensions.Configuration;
@@ -89,6 +90,7 @@ namespace Service.Email.Infrastructure.Repository
 
             return parameters;
         }
+        
         public async Task CambiarEstadoRegularizacion()
         {
             _logger.LogInicio(_clase);
@@ -97,6 +99,8 @@ namespace Service.Email.Infrastructure.Repository
             await cambiarEstadoNegado();
             await CambiarEstadoVueltaASubir();
             await CambiarEstadoAprobado();
+            await CambiarEstadoAprobadoDeudor();
+            await CambiarEstadoTerminada();
             _logger.LogFin(_clase);
         }
 
@@ -111,7 +115,7 @@ namespace Service.Email.Infrastructure.Repository
             foreach (var reg in correosPorHacer)
             {
                 RevisarCorreo revisarCorreo = new RevisarCorreo();
-                var correoObtenido = await revisarCorreo.obtenerCorreosEnProceso(reg.Correo, reg.Contrasena, SolicitudIngresada);
+                var correoObtenido = await revisarCorreo.obtenerCorreosEnProceso(reg.Correo, EncryptionHelper.DecryptString(reg.Contrasena), SolicitudIngresada);
 
                 if (correoObtenido.Count() > 0)
                 {
@@ -133,7 +137,7 @@ namespace Service.Email.Infrastructure.Repository
             foreach (var reg in correosPorHacer)
             {
                 RevisarCorreo revisarCorreo = new RevisarCorreo();
-                var correoObtenido = await revisarCorreo.obtenerCorreosEnProceso(reg.Correo, reg.Contrasena, SolicitudIngresada);
+                var correoObtenido = await revisarCorreo.obtenerCorreosEnProceso(reg.Correo, EncryptionHelper.DecryptString(reg.Contrasena), SolicitudIngresada);
 
                 if (correoObtenido.Count() > 0)
                 {
@@ -160,7 +164,7 @@ namespace Service.Email.Infrastructure.Repository
             foreach (var reg in correosPorHacer)
             {
                 RevisarCorreo revisarCorreo = new RevisarCorreo();
-                var correoObtenido = await revisarCorreo.obtenerCorreosEnProceso(reg.Correo, reg.Contrasena, SolicitudIngresada);
+                var correoObtenido = await revisarCorreo.obtenerCorreosEnProceso(reg.Correo, EncryptionHelper.DecryptString(reg.Contrasena), SolicitudIngresada);
 
                 if (correoObtenido.Count() > 0)
                 {
@@ -186,10 +190,10 @@ namespace Service.Email.Infrastructure.Repository
             foreach (var reg in correosPorHacer)
             {
                 RevisarCorreo revisarCorreo = new RevisarCorreo();
-                var correoIngreso = await revisarCorreo.obtenerCorreosEnProceso(reg.Correo, reg.Contrasena, SolicitudIngresada);
-                var correonegado = await revisarCorreo.obtenerCorreosEnProceso(reg.Correo, reg.Contrasena, SolicitudNegada);
+                var correoIngreso = await revisarCorreo.obtenerCorreosEnProceso(reg.Correo, EncryptionHelper.DecryptString(reg.Contrasena), SolicitudIngresada);
+                var correoNegado = await revisarCorreo.obtenerCorreosEnProceso(reg.Correo, EncryptionHelper.DecryptString(reg.Contrasena), SolicitudNegada);
 
-                if (correoIngreso.Count() >= 2 && correonegado.Count() > 0)
+                if (correoIngreso.Count() >= 2 && correoNegado.Count() > 0)
                 {
                     var parametrosU = updateEstado(2, reg.Id, (int)EstadoType.Negada);
                     await new Database(_connectionString).ExecuteNonQueryAsync(SP_SERVICE_CORREO, parametrosU);
@@ -213,7 +217,7 @@ namespace Service.Email.Infrastructure.Repository
             foreach (var correo in correosPorAprobar)
             {
                 RevisarCorreo revisarCorreo = new RevisarCorreo();
-                var correoAprobado = await revisarCorreo.obtenerCorreosEnProceso(correo.Correo, correo.Contrasena, SolicitudAprobada);
+                var correoAprobado = await revisarCorreo.obtenerCorreosEnProceso(correo.Correo, EncryptionHelper.DecryptString(correo.Contrasena), SolicitudAprobada);
 
                 if (correoAprobado.Count() > 0)
                 {
@@ -225,5 +229,36 @@ namespace Service.Email.Infrastructure.Repository
             _logger.LogFin(_clase);
         }   
 
+        public async Task CambiarEstadoAprobadoDeudor()
+        {
+            _logger.LogInicio(_clase);
+
+            var parametrosG = getCredenciales(1, (int)EstadoType.Aprobada);
+            var regularizaciones = await new Database(_connectionString).ExecuteReaderAsync<Credencial>(SP_SERVICE_CORREO, parametrosG);
+            
+            foreach (var reg in regularizaciones)
+            {
+                var parametrosU = updateEstado(4, reg.Id, (int)EstadoType.TerminadaPendiente);
+                await new Database(_connectionString).ExecuteNonQueryAsync(SP_SERVICE_CORREO, parametrosU);
+            }
+
+            _logger.LogFin(_clase);
+        }
+
+        public async Task CambiarEstadoTerminada()
+        {
+            _logger.LogInicio(_clase);
+
+            var parametrosG = getCredenciales2(1, (int)EstadoType.Aprobada, (int)EstadoType.TerminadaPendiente);
+            var regularizacionesPP = await new Database(_connectionString).ExecuteReaderAsync<Credencial>(SP_SERVICE_CORREO, parametrosG);
+
+            foreach (var reg in regularizacionesPP)
+            {
+                var parametrosU = updateEstado(5, reg.Id, (int)EstadoType.Terminada);
+                await new Database(_connectionString).ExecuteNonQueryAsync(SP_SERVICE_CORREO, parametrosU);
+            }
+
+            _logger.LogFin(_clase);
+        }
     }
 }

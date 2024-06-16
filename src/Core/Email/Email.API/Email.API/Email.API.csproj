@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Logic\Service.Email.Infrastructure\Service.Email.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Logic\Email.Infrastructure\Email.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

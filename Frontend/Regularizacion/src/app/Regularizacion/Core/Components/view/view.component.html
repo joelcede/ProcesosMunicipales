@@ -1,0 +1,59 @@
+<div class="grid-container">
+  <div class="grid-item" *ngFor="let reg of displayedRegularizaciones">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <!--<mat-card-title>{{reg.nombreTramite}} {{reg.estadoRegularizacion}}</mat-card-title>-->
+        <mat-card-subtitle><b>{{reg.estadoRegularizacion}}</b></mat-card-subtitle>
+        <mat-card-subtitle>Valor: {{reg.valorRegularizacion | currency}}</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content class="card-content">
+        <div class="image-container">
+          <img mat-card-image src="{{reg.imagenPrincipal}}" alt="Waves">
+        </div>
+        <div class="text-container">
+          <span>{{reg.nombrePropietario}}</span><br />
+          <span>cel: {{reg.celular}}</span>
+        </div>
+        <span><!--Joel steven cedeno asuncion--></span>
+      </mat-card-content>
+      <!--<mat-card-actions>
+        <button mat-raised-button color="primary">VER/EDITAR</button>
+        <button mat-raised-button color="warn">ELIMINAR</button>
+      </mat-card-actions>-->
+      <mat-card-footer>
+        <div class="text-container2">
+          <span>Cod. Cat.: {{reg.codigoCatastral}}</span>
+        </div>
+        <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Funciones Adicionales
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <button mat-raised-button color="primary">
+              <!--<mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="edit">Editar/Ver</mat-icon>-->
+              EDITAR
+            </button>
+            <button mat-raised-button color="warn">
+              <!--<mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="deleted">Eliminar</mat-icon>-->
+              ELIMINAR
+            </button>
+            <button mat-raised-button>
+              <!--<mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="picture_as_pdf" />-->
+              GENERAR CONTRATO
+            </button>
+            <button mat-raised-button>
+              <!--<mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="picture_as_pdf" />-->
+              ---GENERAR FICHA---
+            </button>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </mat-card-footer>
+    </mat-card>
+  </div>
+</div>
+<button mat-raised-button color="primary" (click)="loadMoreItems()" *ngIf="displayedRegularizaciones.length != regularizaciones.length">
+  Cargar más
+</button>

@@ -20,3 +20,5 @@ C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regular
 C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.Infrastructure\obj\Debug\net8.0\Regularizacion.Infrastructure.pdb
 C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.Infrastructure\obj\Debug\net8.0\ref\Regularizacion.Infrastructure.dll
 C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.Infrastructure\obj\Debug\net8.0\Regularizacion.Infrastructure.sourcelink.json
+C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.Infrastructure\bin\Debug\net8.0\Commons.Cryptography.dll
+C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.Infrastructure\bin\Debug\net8.0\Commons.Cryptography.pdb

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Viviendas.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+270465bd3149fd4e35550293c7a97401d016b3e2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+be21aa31d5eef75239cb0784e537b06a1d790c4d")]
 [assembly: System.Reflection.AssemblyProductAttribute("Viviendas.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Viviendas.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

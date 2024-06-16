@@ -10,5 +10,7 @@ namespace Service.Email.Application.Repository
         Task cambiarEstadoNegado();
         Task CambiarEstadoVueltaASubir();
         Task CambiarEstadoAprobado();
+        Task CambiarEstadoAprobadoDeudor();
+        Task CambiarEstadoTerminada();
     }
 }

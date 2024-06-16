@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.VisualStudio.JavaScript.Sdk/0.5.271090-alpha">
+  <PropertyGroup>
+    <StartupCommand>npm start</StartupCommand>
+    <JavaScriptTestFramework>Jasmine</JavaScriptTestFramework>
+    <!-- Allows the build (or compile) script located on package.json to run on Build -->
+    <ShouldRunBuildScript>false</ShouldRunBuildScript>
+    <!-- Folder where production build objects will be placed -->
+    <BuildOutputFolder>$(MSBuildProjectDirectory)\dist\Regularizacion\</BuildOutputFolder>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="src\app\Regularizacion\Core\Models\" />
+    <Folder Include="src\app\Regularizacion\Core\Services\" />
+    <Folder Include="src\app\Regularizacion\Services\" />
+    <Folder Include="src\app\Directives\" />
+    <Folder Include="src\app\Regularizacion\shared\Usuario\Enums\" />
+    <Folder Include="src\app\Regularizacion\shared\Usuario\Services\" />
+    <Folder Include="src\app\Regularizacion\shared\Vivienda\Components\" />
+    <Folder Include="src\app\Regularizacion\shared\Vivienda\Enums\" />
+    <Folder Include="src\app\Regularizacion\shared\Vivienda\Services\" />
+  </ItemGroup>
+</Project>

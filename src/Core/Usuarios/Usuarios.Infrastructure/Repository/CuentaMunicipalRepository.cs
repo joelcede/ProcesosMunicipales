@@ -1,4 +1,5 @@
 ﻿using Commons.Connection;
+using Commons.Cryptography;
 using Commons.logger;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -49,20 +50,16 @@ namespace Usuarios.Infrastructure.Repository
             if(operacion != CrudType.None)
                 parameters.Add("@IdUsuario", cm.IdUsuario);
 
-            if (!string.IsNullOrEmpty(cm.CorreoElectronico) && (operacion == CrudType.Create || operacion == CrudType.Update))
-                parameters.Add("@CorreoElectronico", cm.CorreoElectronico);
-             
-            if (!string.IsNullOrEmpty(cm.Password) && (operacion == CrudType.Create || operacion == CrudType.Update))
-                parameters.Add("@Password", cm.Password);
-
-            if (cm.EsPropietario && (operacion == CrudType.Create || operacion == CrudType.Update))
-                parameters.Add("@EsPropietario", cm.EsPropietario);
-
             if (!string.IsNullOrEmpty(cm.cuentaMunicipal) && (operacion == CrudType.Create || operacion == CrudType.Update))
                 parameters.Add("@CuentaMunicipal", cm.cuentaMunicipal);
 
             if (!string.IsNullOrEmpty(cm.contrasenaMunicipal) && (operacion == CrudType.Create || operacion == CrudType.Update))
-                parameters.Add("@ContrasenaMunicipal", cm.contrasenaMunicipal);
+                parameters.Add("@ContrasenaMunicipal", EncryptionHelper.EncryptString(cm.contrasenaMunicipal));
+
+            if (cm.EsPropietario && (operacion == CrudType.Create || operacion == CrudType.Update))
+                parameters.Add("@EsPropietario", cm.EsPropietario);
+
+
 
             return parameters;
         }

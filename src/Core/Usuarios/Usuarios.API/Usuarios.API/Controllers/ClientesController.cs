@@ -9,7 +9,7 @@ using Usuarios.Infrastructure.Repository;
 namespace Clientes.API.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [EnableCors]
     public class ClientesController : ControllerBase
     {

@@ -12,7 +12,7 @@ namespace Regularizacion.Domain.Entities
         public Guid IdRegularizacion { get; set; }
         public Guid IdVivienda { get; set; }
         public string NombreTramite { get; set; }
-        public EstadosType EstadoRegularizacion { get; set; }
+        public string EstadoRegularizacion { get; set; }
         public decimal ValorRegularizacion { get; set; }
         public byte[] ImagenPrincipal { get; set; }
         public string NombrePropietario { get; set; }

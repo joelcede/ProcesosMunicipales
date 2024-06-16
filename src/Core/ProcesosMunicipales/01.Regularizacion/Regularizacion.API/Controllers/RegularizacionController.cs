@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Regularizacion.Application.Dtos;
 using Regularizacion.Application.Repository;
@@ -9,6 +10,7 @@ namespace Regularizacion.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors]
     public class RegularizacionController : ControllerBase
     {
         private readonly IRegularizacionRepository _RegularizacionRepository;

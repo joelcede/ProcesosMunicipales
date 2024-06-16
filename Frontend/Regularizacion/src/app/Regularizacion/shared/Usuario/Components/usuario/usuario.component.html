@@ -1,0 +1,84 @@
+<mat-form-field *ngIf="noEsCliente">
+  <mat-label>Utilizar un Cliente</mat-label>
+  <mat-select [(value)]="selected" (selectionChange)="onClienteChange($event)" class="example-additional-selection">
+    <mat-option *ngFor="let cliente of top10ClientesList" [value]="cliente.id" class="example-additional-selection">
+      {{cliente.nombres}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<form [formGroup]="UsuarioForm">
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>Nombres</mat-label>
+          <input matInput formControlName="nombres">
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>Apellidos</mat-label>
+          <input matInput formControlName="apellidos">
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>DNI</mat-label>
+          <input matInput type="text" class="example-right-align" formControlName="dni" (input)="onDniInput($event)" >
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+  <table>
+    <tr>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>Celular</mat-label>
+          <input matInput type="text" class="example-right-align" formControlName="telefonoCelular" (input)="onCelularInput($event)">
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>Telefono</mat-label>
+          <input matInput type="text" class="example-right-align" formControlName="telefonoConvencional" (input)="onConvencionalInput($event)">
+        </mat-form-field>
+      </td>
+      <td>
+        <div *ngIf="esPropietario">
+          <!--[(ngModel)]="isChecked"-->
+          <mat-slide-toggle [(ngModel)]="isChecked" formControlName="esPrincipal">Es el Propietario Principal?</mat-slide-toggle>
+
+        </div>
+        
+        <div *ngIf="tipoUsuario == 2 || tipoUsuario == 3" [formGroup]="cm_ToggleForm">
+          <mat-slide-toggle [(ngModel)]="isAgregarCM" formControlName="abrirCM">Desea agregarle una cuenta municipal?</mat-slide-toggle>
+        </div>
+      </td>
+    </tr>
+    <tr *ngIf="(tipoUsuario == 2 || tipoUsuario == 3) && isAgregarCM" [formGroup]="cuentaMunicipalForm">
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>Usuario(Cedula)</mat-label>
+          <input matInput formControlName="cuentaMunicipal" type="text" class="example-right-align" (input)="onUsuarioInput($event)">
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>Contrasena</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" formControlName="contrasenaMunicipal">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+  <table>
+    <tr>
+      <td>
+        <button type="button" mat-raised-button color="primary" (click)="procesarGuardado()">Guardar</button>
+      </td>
+    </tr>
+  </table>
+</form>

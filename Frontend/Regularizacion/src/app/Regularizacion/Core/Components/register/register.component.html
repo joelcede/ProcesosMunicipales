@@ -1,0 +1,42 @@
+<!--<mat-card class="example-card">
+  <mat-card-content>Simple card</mat-card-content>
+</mat-card>-->
+<div class="container">
+  <mat-card class="example-card">
+    <mat-card-content>
+      <div class="example-input-wrapper">
+        <label hidden="true" for="duration">Animation duration:</label>
+        <input id="duration" hidden="true" value="500" type="number" min="0" step="100" #duration>
+      </div>
+      <mat-vertical-stepper [linear]="false" #stepper [animationDuration]="duration.value" (selectionChange)="onSelectionChange($event)">
+        <mat-step [stepControl]="firstFormGroup">
+          <ng-template matStepLabel>Agregar posible Cliente</ng-template>
+          <app-usuario [tipoUsuario]="tipoCliente"></app-usuario>
+        </mat-step>
+        <mat-step [stepControl]="firstFormGroup">
+          <ng-template matStepLabel>Agregar Propietarios</ng-template>
+          <app-usuario [esPropietario]="true" [noEsCliente]="true" [tipoUsuario]="tipoPropietario"></app-usuario>
+        </mat-step>
+        <mat-step [stepControl]="thirdFormGroup">
+          <ng-template matStepLabel>Agregar Familiar</ng-template>
+          <app-usuario [noEsCliente]="true" [tipoUsuario]="tipoFamiliar"></app-usuario>
+        </mat-step>
+        <mat-step [stepControl]="fourthFormGroup">
+          <ng-template matStepLabel>Agregar Viviendas</ng-template>
+          <app-vivienda></app-vivienda>
+        </mat-step>
+        <mat-step [stepControl]="fifthFormGroup">
+          <ng-template matStepLabel >Agregar Regularizacion</ng-template>
+          <app-regularizacion></app-regularizacion>
+          
+          <!--<div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>-->
+        </mat-step>
+      </mat-vertical-stepper>
+
+
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -426,6 +426,16 @@
           "bin/placeholder/Commons.Connection.dll": {}
         }
       },
+      "Commons.Cryptography/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/Commons.Cryptography.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Commons.Cryptography.dll": {}
+        }
+      },
       "Commons.EmailService/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
@@ -1318,6 +1328,11 @@
       "path": "../../../../Commons/Commons.Connection/Commons.Connection.csproj",
       "msbuildProject": "../../../../Commons/Commons.Connection/Commons.Connection.csproj"
     },
+    "Commons.Cryptography/1.0.0": {
+      "type": "project",
+      "path": "../../../../Commons/Commons.Cryptography/Commons.Cryptography.csproj",
+      "msbuildProject": "../../../../Commons/Commons.Cryptography/Commons.Cryptography.csproj"
+    },
     "Commons.EmailService/1.0.0": {
       "type": "project",
       "path": "../../../../Commons/Commons.EmailService/Commons.EmailService.csproj",
@@ -1342,6 +1357,7 @@
   "projectFileDependencyGroups": {
     "net8.0": [
       "Commons.Connection >= 1.0.0",
+      "Commons.Cryptography >= 1.0.0",
       "Commons.EmailService >= 1.0.0",
       "Commons.logger >= 1.0.0",
       "Email.Application >= 1.0.0",
@@ -1377,6 +1393,9 @@
           "projectReferences": {
             "C:\\PROYECTOS\\Arquitectura\\src\\Commons\\Commons.Connection\\Commons.Connection.csproj": {
               "projectPath": "C:\\PROYECTOS\\Arquitectura\\src\\Commons\\Commons.Connection\\Commons.Connection.csproj"
+            },
+            "C:\\PROYECTOS\\Arquitectura\\src\\Commons\\Commons.Cryptography\\Commons.Cryptography.csproj": {
+              "projectPath": "C:\\PROYECTOS\\Arquitectura\\src\\Commons\\Commons.Cryptography\\Commons.Cryptography.csproj"
             },
             "C:\\PROYECTOS\\Arquitectura\\src\\Commons\\Commons.EmailService\\Commons.EmailService.csproj": {
               "projectPath": "C:\\PROYECTOS\\Arquitectura\\src\\Commons\\Commons.EmailService\\Commons.EmailService.csproj"

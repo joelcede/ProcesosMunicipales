@@ -1,0 +1,93 @@
+<form class="example-form" [formGroup]="regularizacionForm">
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field>
+          <mat-label>Escoge una vivienda</mat-label>
+          <mat-select formControlName="idVivienda" class="example-additional-selection">
+            <mat-option *ngFor="let vivienda of ultimas10Viviendas" [value]="vivienda.id" class="example-additional-selection">{{ vivienda.value}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      </td>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>N. de expediente</mat-label>
+          <input matInput formControlName="NumeroExpediente">
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field color="accent">
+          <mat-label>Fecha de registro</mat-label>
+          <input matInput [matDatepicker]="picker1" formControlName="FechaRegistro">
+          <!--<mat-hint>MM/DD/YYYY</mat-hint>-->
+          <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+      </td>
+
+    </tr>
+  </table>
+
+
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <div class="example-container">
+          <mat-form-field floatLabel="always">
+            <mat-label>Valor de la regularizacion</mat-label>
+            <input matInput type="number" class="example-right-align" placeholder="0" formControlName="valorRegularizacion">
+            <span matTextPrefix>$&nbsp;</span>
+            <span matTextSuffix>.00</span>
+          </mat-form-field>
+        </div>
+      </td>
+      <td>
+        <mat-form-field floatLabel="always">
+          <mat-label>Anticipo</mat-label>
+          <input matInput type="number" class="example-right-align" placeholder="0" formControlName="Anticipo">
+          <span matTextPrefix>$&nbsp;</span>
+          <span matTextSuffix>.00</span>
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field floatLabel="always">
+          <mat-label>Valor pendiente a pagar</mat-label>
+          <input matInput type="number" class="example-right-align" placeholder="0" formControlName="ValorPendiente" readonly [attr.disabled]="true">
+          <span matTextPrefix disabled>$&nbsp;</span>
+          <span matTextSuffix disable>.00</span>
+        </mat-form-field>
+      </td>
+
+    </tr>
+  </table>
+
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <div class="example-container">
+          <mat-form-field>
+            <mat-label>Ingresa el correo</mat-label>
+            <input matInput placeholder="pat@example.com" formControlName="Correo" required>
+            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+
+      </td>
+      <td>
+        <div class="example-container">
+          <mat-form-field>
+            <mat-label>Ingresa una contrasena</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName="Contrasena">
+          </mat-form-field>
+        </div>
+      </td>
+      <mat-divider></mat-divider>
+      <td>
+        <div class="example-button-row">
+          <button mat-raised-button color="primary" (click)="addRegularizacion()">Guardar</button>
+        </div>
+      </td>
+    </tr>
+  </table>
+</form>

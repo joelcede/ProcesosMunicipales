@@ -10,8 +10,8 @@ namespace Commons.Cryptography
         //private static readonly string Key = "J10SK4lC0RP_FUNDATION_KEY"; // Debe ser de 16, 24 o 32 bytes para AES-128, AES-192 o AES-256
         //private static readonly string IV = "IV_J10SK4l_FUNDATION_IV";   // Debe ser de 16 bytes
         //esto vale
-        private static readonly string EncryptionKey = "J10SK4lC0RP_FUNDATION_KEY_123456";
-        private static readonly string IV_Key = "J10SK4lC0RP_FUNDATION_KEY_123456";
+        private static readonly string EncryptionKey = "_J10SK4_CORP_KEY";
+        private static readonly string IV_Key = "_J10SK4_CORP_IV_";
         // Clave de 32 bytes (256 bits) para AES-256
         //private static readonly byte[] encryptionKey = Encoding.UTF8.GetBytes("J10SK4lC0RP_FUNDATION_KEY_12345");
 
@@ -48,10 +48,11 @@ namespace Commons.Cryptography
                         }
                         byte[] encryptedBytes = msEncrypt.ToArray();
                         string encryptedBase64 = Convert.ToBase64String(encryptedBytes);
-                        var xd = encryptedBase64.Length;
-                        // Comprimir el resultado para reducir la longitud
-                        string compressedBase64 = CompressString(encryptedBase64);
-                        return compressedBase64.Length > 100 ? compressedBase64.Substring(0, 100) : compressedBase64;
+                        return encryptedBase64;
+                        //var xd = encryptedBase64.Length;
+                        //// Comprimir el resultado para reducir la longitud
+                        //string compressedBase64 = CompressString(encryptedBase64);
+                        //return compressedBase64;
                     }
                 }
             }
@@ -63,12 +64,12 @@ namespace Commons.Cryptography
             }
         }
 
-        public static string DecryptString(string compressedBase64)
+        public static string DecryptString(string text)
         {
             try
             {
-                string decompressedBase64 = DecompressString(compressedBase64);
-                byte[] encryptedBytes = Convert.FromBase64String(decompressedBase64);
+                //string decompressedBase64 = DecompressString(compressedBase64);
+                byte[] encryptedBytes = Convert.FromBase64String(text);
 
                 using (Aes aesAlg = Aes.Create())
                 {

@@ -12,9 +12,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\Commons\Commons.Connection\Commons.Connection.csproj" />
+    <ProjectReference Include="..\..\..\..\Commons\Commons.Cryptography\Commons.Cryptography.csproj" />
     <ProjectReference Include="..\..\..\..\Commons\Commons.EmailService\Commons.EmailService.csproj" />
     <ProjectReference Include="..\..\..\..\Commons\Commons.logger\Commons.logger.csproj" />
-    <ProjectReference Include="..\Service.Email.Application\Service.Email.Application.csproj" />
+    <ProjectReference Include="..\Email.Application\Email.Application.csproj" />
   </ItemGroup>
 
 </Project>

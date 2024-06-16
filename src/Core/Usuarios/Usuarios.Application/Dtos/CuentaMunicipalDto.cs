@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Usuarios.Domain.Interfaces;
+using Usuarios.Application.Validators;
 
 namespace Usuarios.Application.Dtos
 {
@@ -17,20 +18,19 @@ namespace Usuarios.Application.Dtos
         [Key]
         [Required]
         public Guid IdUsuario { get; set; }
-        [Required]
-        [EmailAddress(ErrorMessage = "El formato del Email no es válido.")]
-        public string CorreoElectronico { get; set; } = string.Empty;
-        [Required]
-        [PasswordPropertyText]
-        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$", ErrorMessage = "La contraseña debe tener al menos una letra mayúscula, una letra minúscula, un dígito, un carácter especial y al menos 8 caracteres de longitud.")]
-        public string Password { get; set; } = string.Empty;
-        [Required]
-        public bool EsPropietario { get; set; }
         [RegularExpression("^[0-9]*$", ErrorMessage = "El Cuenta Municipal(DNI) solo debe contener números.")]
         public string cuentaMunicipal { get; set; } = string.Empty;
         [PasswordPropertyText]
-        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$", ErrorMessage = "La contraseña debe tener al menos una letra mayúscula, una letra minúscula, un dígito, un carácter especial y al menos 8 caracteres de longitud.")]
+        //[RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#&()_+{}?&])[A-Za-z\d@$!%*?&]{8,}$", ErrorMessage = "La contraseña debe tener al menos una letra mayúscula, una letra minúscula, un dígito, un carácter especial y al menos 8 caracteres de longitud.")]
+        [CustomValidation(typeof(PasswordValidator), nameof(PasswordValidator.ValidateLowerCase))]
+        [CustomValidation(typeof(PasswordValidator), nameof(PasswordValidator.ValidateUpperCase))]
+        [CustomValidation(typeof(PasswordValidator), nameof(PasswordValidator.ValidateDigit))]
+        [CustomValidation(typeof(PasswordValidator), nameof(PasswordValidator.ValidateSpecialChar))]
+        [CustomValidation(typeof(PasswordValidator), nameof(PasswordValidator.ValidateLength))]
+
         public string contrasenaMunicipal { get; set; } = string.Empty;
+        public bool EsPropietario { get; set; }
+        
         public DateTime FechaCreacion { get; set; }
         public DateTime FechaModificacion { get; set;}
     }

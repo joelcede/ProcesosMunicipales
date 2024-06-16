@@ -1,0 +1,86 @@
+
+<mat-dialog-content class="mat-typography">
+  
+  <form class="example-form" [formGroup]="viviendaForm">
+    <table class="example-full-width" cellspacing="0">
+      <tr>
+        <td>
+          <!--<mat-form-field>
+    <mat-label>Propietarios</mat-label>
+  </mat-form-field>-->
+
+            <mat-form-field>
+              <mat-label>Propietarios</mat-label>
+              <mat-select [formControl]="PropietarioControl" multiple (selectionChange)="onSelectionChange($event)">
+                <mat-select-trigger class="example-additional-selection">
+                  {{ getPropietariosDisplay() }}
+                </mat-select-trigger>
+                <mat-option
+                            *ngFor="let usuario of top10Propietarios"
+                            [value]="usuario.id"
+                            class="example-additional-selection"
+                            [disabled]="usuario.principal && isPrincipalSelected && selectedUserId !== usuario.id">
+                  {{usuario.nombres}}
+                  <span *ngIf="usuario.principal" class="green-circle"></span>
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field>
+            <mat-label>Familiares</mat-label>
+            <mat-select [formControl]="FamiliarControl" multiple>
+              <mat-select-trigger class="example-additional-selection">
+                {{ getSelectedFamiliaresDisplay() }}
+              </mat-select-trigger>
+              <mat-option *ngFor="let familiar of top10Familiares" [value]="familiar.id" class="example-additional-selection">{{familiar.nombres}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="example-full-width">
+            <mat-label>Direccion</mat-label>
+            <input matInput formControlName="direccion">
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+    <table>
+      <tr>
+        <td>
+          <mat-form-field class="example-full-width">
+            <mat-label>CodigoCatastral</mat-label>
+            <input matInput formControlName="codigoCatastral" required>
+            <mat-error *ngIf="codigoCastastral.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="example-full-width">
+            <mat-label>Telefono</mat-label>
+            <input matInput formControlName="telefono">
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="example-full-width">
+            <mat-label>Coordenadas</mat-label>
+            <input matInput formControlName="coordenadas">
+          </mat-form-field>
+        </td>
+        <td>
+          <button type="button" mat-raised-button color="primary" (click)="fileInput.click()">Subir Imagen</button>
+          <input hidden (change)="onFileSelected($event)" #fileInput type="file" id="file">
+          <!--<input #csvInput hidden="true" type="file" (change)="csvInputChange($event)" accept=".csv" />
+          <button mat-raised-button color="primary" >Choose Spreadsheet File (CSV)</button>
+
+          <input class="ng-hide" id="input-file-id" multiple type="file" />
+          <label for="input-file-id" class="md-button md-raised md-primary">Choose Files</label>-->
+
+        </td>
+      </tr>
+    </table>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <!--<button mat-button mat-dialog-close>Cancel</button>-->
+  <button mat-raised-button color="primary" [mat-dialog-close]="true" cdkFocusInitial (click)="addVivienda()">Guardar</button>
+</mat-dialog-actions>

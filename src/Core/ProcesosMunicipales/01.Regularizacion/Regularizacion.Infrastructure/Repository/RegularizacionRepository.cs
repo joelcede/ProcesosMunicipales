@@ -1,4 +1,5 @@
 ﻿using Commons.Connection;
+using Commons.Cryptography;
 using Commons.logger;
 using Microsoft.Extensions.Configuration;
 using Regularizacion.Application.Dtos;
@@ -52,13 +53,13 @@ namespace Regularizacion.Infrastructure.Repository
                 parameters.Add("@ValorRegularizacion", regularizacion.ValorRegularizacion);
                 parameters.Add("@Anticipo", regularizacion.Anticipo);
                 parameters.Add("@ValorPendiente", regularizacion.ValorPendiente);
-                parameters.Add("@Pagado", regularizacion.Pagado);
+                parameters.Add("@Pagado", regularizacion.Pagado); 
                 parameters.Add("@Estado", regularizacion.Estado);
                 parameters.Add("@FechaRegistro", regularizacion.FechaRegistro);
                 //parameters.Add("@FechaInsercion", regularizacion.FechaInsercion);
                 //parameters.Add("@FechaActualizacion", regularizacion.FechaActualizacion);
                 parameters.Add("@Correo", regularizacion.Correo);
-                parameters.Add("@Contrasena", regularizacion.Contrasena);
+                parameters.Add("@Contrasena", EncryptionHelper.EncryptString(regularizacion.Contrasena));
             }
             return parameters;
         }
