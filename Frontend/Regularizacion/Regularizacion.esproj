@@ -12,6 +12,7 @@
     <Folder Include="src\app\Regularizacion\Core\Services\" />
     <Folder Include="src\app\Regularizacion\Services\" />
     <Folder Include="src\app\Directives\" />
+    <Folder Include="src\app\Regularizacion\shared\PDF\models\" />
     <Folder Include="src\app\Regularizacion\shared\Usuario\Enums\" />
     <Folder Include="src\app\Regularizacion\shared\Usuario\Services\" />
     <Folder Include="src\app\Regularizacion\shared\Vivienda\Components\" />

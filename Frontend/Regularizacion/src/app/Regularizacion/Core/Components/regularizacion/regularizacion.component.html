@@ -13,7 +13,7 @@
       <td>
         <mat-form-field class="example-full-width">
           <mat-label>N. de expediente</mat-label>
-          <input matInput formControlName="NumeroExpediente">
+          <input matInput formControlName="NumeroExpediente" (input)="onNumberInput($event, 'NumeroExpediente')">
         </mat-form-field>
       </td>
       <td>
@@ -82,7 +82,23 @@
           </mat-form-field>
         </div>
       </td>
-      <mat-divider></mat-divider>
+      <td>
+        <div>
+          <mat-form-field class="example-form-field">
+            <mat-label>Num Regularizacion</mat-label>
+            <input matInput type="text" (input)="onNumberInput($event, 'numRegularizacion')" formControlName="numRegularizacion">
+          </mat-form-field>
+        </div>
+      </td>
+      <!--<mat-slide-toggle [(ngModel)]="isAgregarCM" formControlName="abrirCM">Desea agregarle una cuenta municipal?</mat-slide-toggle>-->
+      <!--<mat-slide-toggle formControlName="abrirCM">Ultima Reg?</mat-slide-toggle>-->
+      <td>
+        <div [formGroup]="getSecuenciaReg_ToggleForm">
+          <mat-slide-toggle (change)="onToggleChange($event.checked)" formControlName="obtenerSecuencia">Obtener Secuencia</mat-slide-toggle>
+        </div>
+      </td>
+      </tr>
+    <tr>
       <td>
         <div class="example-button-row">
           <button mat-raised-button color="primary" (click)="addRegularizacion()">Guardar</button>

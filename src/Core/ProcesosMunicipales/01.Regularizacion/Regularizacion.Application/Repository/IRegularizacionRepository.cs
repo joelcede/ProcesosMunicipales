@@ -22,5 +22,6 @@ namespace Regularizacion.Application.Repository
         Task<IEnumerable<TarjetaRegularizacionDomain>> GetRegularizacionesAsync();
         Dictionary<string, object> UpdateR(IRegularizacionDomain regularizacion, CrudType operacion);
         Task UpdateRegularizacionAsync(RegularizacionDto regularizacion, Guid id);
+        Task<NumRegDomain> ObtenerSecuenciaRegularizacion();
     }
 }

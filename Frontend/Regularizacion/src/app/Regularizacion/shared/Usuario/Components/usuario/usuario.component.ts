@@ -289,7 +289,7 @@ export class UsuarioComponent implements OnInit, OnDestroy {
   }
   addCuentaMunicipal(): void {
     const cuentaMunicipalForm = this.cuentaMunicipalF;
-    this.usuarioService.addCuentaMunicipal(cuentaMunicipalForm).subscribe({
+    this.usuarioService.addCuentaMunicipal(cuentaMunicipalForm, this.tipoUsuario).subscribe({
       next: (response: any) => {
         console.log("Nueva cuenta municipal creada", response);
         this.resetForm();

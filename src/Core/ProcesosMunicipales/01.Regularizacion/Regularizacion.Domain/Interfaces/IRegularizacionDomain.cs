@@ -22,5 +22,6 @@ namespace Regularizacion.Domain.Interfaces
         DateTime FechaActualizacion { get; }
         string Correo { get; }
         string Contrasena { get; }
+        int numRegularizacion { get; }
     }
 }

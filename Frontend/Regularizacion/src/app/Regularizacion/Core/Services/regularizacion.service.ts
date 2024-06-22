@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { IRegularizacion } from '../Models/IRegularizacion';
 import { Observable } from 'rxjs';
 import { IRegularizacionesCard } from '../Models/IRegularizacionesCard';
+import { ISecReg } from '../Models/ISecReg';
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +17,8 @@ export class RegularizacionService {
   /*  ############################## Regularizacion ##############################*/
 
   getAllRegularizaciones(): Observable<IRegularizacionesCard[]> {
-    //const url = `${this.urlRegularizacion}GetAllRegularizaciones`;
-    return this.http.get<IRegularizacionesCard[]>(`${this.urlRegularizacion}GetAllRegularizaciones`);
+    const url = `${this.urlRegularizacion}GetAllRegularizaciones`;
+    return this.http.get<IRegularizacionesCard[]>(url);
   }
   addRegularizacion(regularizacion: IRegularizacion): Observable<IRegularizacion> {
     const url = `${this.urlRegularizacion}AddRegularizacion`;
@@ -36,6 +37,10 @@ export class RegularizacionService {
     const url = `${this.urlRegularizacion}UpdateRegularizacion/${id}`;
     const headers = { 'Content-Type': 'application/json' };
     return this.http.put<any>(url, regularizacion, { headers });
+  }
+  getSecuenciaRegularizacion(): Observable<ISecReg> {
+    const url = `${this.urlRegularizacion}GetSecuenciaReg`;
+    return this.http.get<ISecReg>(url);
   }
   /*  ############################## FIN Regularizacion ##############################*/
 }

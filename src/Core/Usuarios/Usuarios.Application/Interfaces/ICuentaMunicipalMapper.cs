@@ -10,7 +10,7 @@ namespace Usuarios.Application.Interfaces
 {
     public interface ICuentaMunicipalMapper
     {
-        CuentaMunicipal CreateCuentaMunicipal(CuentaMunicipalDto cuentaMunicipalDto);
-        CuentaMunicipalDto CreateCuentaMunicipalDto(CuentaMunicipal cuentaMunicipal);
+        CuentaMunicipalDomain CreateCuentaMunicipal(CuentaMunicipalDto cuentaMunicipalDto);
+        CuentaMunicipalDto CreateCuentaMunicipalDto(CuentaMunicipalDomain cuentaMunicipal);
     }
 }

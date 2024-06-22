@@ -10,9 +10,8 @@ namespace Usuarios.Domain.Interfaces
     {
         Guid Id { get; }
         Guid IdUsuario { get; }
-        string cuentaMunicipal { get; }
-        string contrasenaMunicipal { get; }
-        bool EsPropietario { get; }
+        string CuentaMunicipal { get; }
+        string ContrasenaMunicipal { get; }
         DateTime FechaCreacion { get; }
         DateTime FechaModificacion { get; }
     }

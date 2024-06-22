@@ -13,11 +13,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { ViviendaComponent } from '../../../shared/Vivienda/Components/vivienda/vivienda.component';
 import { MatStepper, MatStepperModule } from '@angular/material/stepper';
-import { SharedModule } from '../../../shared/shared.module';
 import { TipoUsuario } from '../../../shared/Usuario/Enums/TipoUsuario';
 import { RegularizacionComponent } from '../regularizacion/regularizacion.component';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { SharedService } from '../../../shared/Servives/shared.service';
+import { SharedModule } from '../../../shared/shared.module';
 
 @Component({
   selector: 'app-register',

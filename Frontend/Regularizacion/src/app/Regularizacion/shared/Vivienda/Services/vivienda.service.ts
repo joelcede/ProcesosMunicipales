@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IVivienda } from '../Models/IVivienda';
 import { IViviendaUsuario } from '../Models/IViviendaUsuario';
+import { IViviendaFamProp } from '../Models/IViviendaFamProp';
 
 @Injectable({
   providedIn: 'root'
@@ -48,9 +49,9 @@ export class ViviendaService {
     const headers = { 'Content-Type': 'application/json' };
     return this.http.post<IViviendaUsuario>(url, vivienda, { headers });
   }
-  getByIdViviendaFamiliar(id: string): Observable<IVivienda> {
+  getByIdViviendaFamiliar(id: string): Observable<IViviendaFamProp[]> {
     const url = `${this.urlFamiliar}GetViviendaFamiliar/${id}`;
-    return this.http.get<IVivienda>(url);
+    return this.http.get<IViviendaFamProp[]>(url);
   }
   /*  ############################## Fin Vivienda Familiar ##############################*/
 
@@ -64,9 +65,9 @@ export class ViviendaService {
     const headers = { 'Content-Type': 'application/json' };
     return this.http.post<IViviendaUsuario>(url, vivienda, { headers });
   }
-  getByIdViviendaPropietario(id: string): Observable<IVivienda> {
+  getByIdViviendaPropietario(id: string): Observable<IViviendaFamProp[]> {
     const url = `${this.urlPropietario}GetViviendaPropietario/${id}`;
-    return this.http.get<IVivienda>(url);
+    return this.http.get<IViviendaFamProp[]>(url);
   }
   /*  ############################## FIN Vivienda Propietario ##############################*/
 

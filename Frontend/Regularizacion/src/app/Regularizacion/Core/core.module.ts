@@ -21,6 +21,10 @@ import { SharedModule } from '../shared/shared.module';
 import { RegularizacionComponent } from './Components/regularizacion/regularizacion.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatTableModule } from '@angular/material/table';
+import { MatNativeDateModule } from '@angular/material/core';
 @NgModule({
   declarations: [
   
@@ -41,6 +45,11 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatGridListModule,
     MatExpansionModule,
     MatPaginatorModule,
+    MatToolbarModule,
+    MatSlideToggleModule,
+    MatTableModule,
+    MatNativeDateModule,
+
     //SharedModule,
     MainComponent,
     ViewComponent,

@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "zPy6BkXi9P7JAnyRJ2E93shP1oSMuLmjjS/gPhYbdw63FSQnwRGAje/s0S0pLKM3nMzlP64tLDQle1m2A17qSA==",
+  "dgSpecHash": "j7YNW8wHwBDUzfvV9G5Ps6rFxt2V8K8TF3ERaQpsmmahthgMRsKk/EsMbnHEsUrrF/Biru2loBbYz48WJZkOtg==",
   "success": true,
   "projectFilePath": "C:\\PROYECTOS\\Arquitectura\\src\\Core\\ProcesosMunicipales\\01.Regularizacion\\Regularizacion.Domain\\Regularizacion.Domain.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Jioska\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
   "logs": []
 }

@@ -1,7 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UsuarioComponent } from './Usuario/Components/usuario/usuario.component';
-import { ViviendaComponent } from './Vivienda/Components/vivienda/vivienda.component';
 
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -18,9 +16,14 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { PdfFichaComponent } from './PDF/components/pdf-ficha/pdf-ficha.component';
+import { UsuarioComponent } from './Usuario/Components/usuario/usuario.component';
+import { ViviendaComponent } from './Vivienda/Components/vivienda/vivienda.component';
 
 @NgModule({
   declarations: [
+  
+    
   ],
   imports: [
     CommonModule,
@@ -41,12 +44,14 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     ReactiveFormsModule,
     MatSnackBarModule,
     UsuarioComponent,
-    ViviendaComponent
+    ViviendaComponent,
+    PdfFichaComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports: [
     UsuarioComponent,
-    ViviendaComponent
+    ViviendaComponent,
+    PdfFichaComponent
   ]
 })
 export class SharedModule { }

@@ -12,4 +12,5 @@ export interface IRegularizacion {
   fechaActualizacion: Date;
   correo: string;
   contrasena: string;
+  numRegularizacion: Number;
 }

@@ -54,3 +54,4 @@ C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regular
 C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.API\obj\Debug\net8.0\Regularizacion.API.sourcelink.json
 C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.API\bin\Debug\net8.0\Commons.Cryptography.dll
 C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.API\bin\Debug\net8.0\Commons.Cryptography.pdb
+C:\PROYECTOS\Arquitectura\src\Core\ProcesosMunicipales\01.Regularizacion\Regularizacion.API\bin\Debug\net8.0\Newtonsoft.Json.dll

@@ -50,14 +50,14 @@
         <td>
           <mat-form-field class="example-full-width">
             <mat-label>CodigoCatastral</mat-label>
-            <input matInput formControlName="codigoCatastral" required>
+            <input matInput formControlName="codigoCatastral" required (input)="onNumberInput($event, 'codigoCatastral', 15)">
             <mat-error *ngIf="codigoCastastral.invalid">{{getErrorMessage()}}</mat-error>
           </mat-form-field>
         </td>
         <td>
           <mat-form-field class="example-full-width">
             <mat-label>Telefono</mat-label>
-            <input matInput formControlName="telefono">
+            <input matInput formControlName="telefono" (input)="onNumberInput($event, 'telefono', 10)">
           </mat-form-field>
         </td>
         <td>

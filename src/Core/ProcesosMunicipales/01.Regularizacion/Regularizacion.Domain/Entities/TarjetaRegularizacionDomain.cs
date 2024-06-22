@@ -13,10 +13,12 @@ namespace Regularizacion.Domain.Entities
         public Guid IdVivienda { get; set; }
         public string NombreTramite { get; set; }
         public string EstadoRegularizacion { get; set; }
+        public int numRegularizacion { get; set; }
         public decimal ValorRegularizacion { get; set; }
         public byte[] ImagenPrincipal { get; set; }
         public string NombrePropietario { get; set; }
         public string Celular { get; set; }
+        public string DNI { get; set; }
         public string CodigoCatastral { get; set; }
     }
 }

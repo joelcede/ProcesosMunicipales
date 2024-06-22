@@ -3,7 +3,6 @@ export interface ICuentaMunicipal {
   idUsuario: string; // Correspondiente a Guid en C#
   cuentaMunicipal: string;
   contrasenaMunicipal: string;
-  esPropietario: boolean;
   fechaCreacion: Date;
   fechaModificacion: Date;
 }

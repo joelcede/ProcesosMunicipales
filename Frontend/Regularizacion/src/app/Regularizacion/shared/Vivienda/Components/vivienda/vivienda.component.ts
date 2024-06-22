@@ -154,7 +154,14 @@ export class ViviendaComponent implements OnInit, OnDestroy {
     fechaActualizacion: new FormControl(new Date()),
     imagen: new FormControl('')
   });
-
+  onNumberInput(event: Event, control: string, cant: number): void {
+    const input = event.target as HTMLInputElement;
+    let cleanedValue = input.value.replace(/\D/g, '');
+    if (cleanedValue.length > 10) {
+      cleanedValue = cleanedValue.substring(0, cant);
+    }
+    this.viviendaForm.get(control)?.setValue(cleanedValue, { emitEvent: false });
+  }
   get viviendaF(): IVivienda {
     return this.viviendaForm.value as unknown as IVivienda;
   }
@@ -317,4 +324,5 @@ export class ViviendaComponent implements OnInit, OnDestroy {
     return `${firstSelected?.nombres} (+${selected.length - 1} ${selected.length === 2 ? 'otro' : 'otros'})`;
 
   }
+
 }

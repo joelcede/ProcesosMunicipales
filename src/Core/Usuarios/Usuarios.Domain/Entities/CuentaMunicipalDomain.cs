@@ -7,13 +7,12 @@ using Usuarios.Domain.Interfaces;
 
 namespace Usuarios.Domain.Entities
 {
-    public class CuentaMunicipal : ICuentaMunicipalDomain
+    public class CuentaMunicipalDomain : ICuentaMunicipalDomain
     {
         public Guid Id { get; set; }
         public Guid IdUsuario { get; set; }
-        public string cuentaMunicipal { get; set; } = string.Empty;
-        public string contrasenaMunicipal { get; set; } = string.Empty;
-        public bool EsPropietario { get; set; }
+        public string CuentaMunicipal { get; set; } = string.Empty;
+        public string ContrasenaMunicipal { get; set; } = string.Empty;
         public DateTime FechaCreacion { get; set; }
         public DateTime FechaModificacion { get; set; }
     }

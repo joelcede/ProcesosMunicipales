@@ -5,6 +5,7 @@ import { environment } from '../environmentUsuario';
 import { Observable } from 'rxjs';
 import { IUsuario } from '../Models/IUsuario';
 import { ICuentaMunicipal } from '../Models/ICuentaMunicipal';
+import { TipoUsuario } from '../Enums/TipoUsuario';
 
 
 @Injectable({
@@ -143,22 +144,22 @@ export class UsuarioService {
 
 
   /*  ############################## INICIO CUENTA MUNICIPAL USUARIO ##############################*/
-  addCuentaMunicipal(cm: ICuentaMunicipal): Observable<ICuentaMunicipal> {
-    const url = `${this.urlCuentaMunicipal}AddCuentaMunicipal`;
+  addCuentaMunicipal(cm: ICuentaMunicipal, usuario: TipoUsuario): Observable<ICuentaMunicipal> {
+    const url = `${this.urlCuentaMunicipal}AddCuentaMunicipal/${usuario}`;
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post<ICuentaMunicipal>(url, cm, { headers });
   }
-  getByIdCuentaMunicipalUsuario(id: string): Observable<ICuentaMunicipal> {
-    const url = `${this.urlCuentaMunicipal}GetCuentaMunicipal/${id}`;
+  getByIdCuentaMunicipalUsuario(id: string, usuario: TipoUsuario): Observable<ICuentaMunicipal> {
+    const url = `${this.urlCuentaMunicipal}GetCuentaMunicipal/${id}/${usuario}`;
     return this.http.get<ICuentaMunicipal>(url);
   }
-  updateCuentaMunicipalUsuario(id: string, cm: ICuentaMunicipal): Observable<ICuentaMunicipal> {
-    const url = `${this.urlCuentaMunicipal}UpdateCuentaMunicipal/${id}`;
+  updateCuentaMunicipalUsuario(id: string, cm: ICuentaMunicipal, usuario: TipoUsuario): Observable<ICuentaMunicipal> {
+    const url = `${this.urlCuentaMunicipal}UpdateCuentaMunicipal/${id}/${usuario}`;
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.put<ICuentaMunicipal>(url, cm, { headers });
   }
-  deleteCuentaMunicipalUsuario(id: string): Observable<any> {
-    const url = `${this.urlCuentaMunicipal}DeleteCuentaMunicipal/${id}`;
+  deleteCuentaMunicipalUsuario(id: string, usuario: TipoUsuario): Observable<any> {
+    const url = `${this.urlCuentaMunicipal}DeleteCuentaMunicipal/${id}/${usuario}`;
     return this.http.delete(url);
   }
 

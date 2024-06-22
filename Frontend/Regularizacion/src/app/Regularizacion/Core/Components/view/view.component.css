@@ -1,110 +1,80 @@
-
-/*@import '~@angular/material/prebuilt-themes/indigo-pink.css';
-*/
-.grid-container {
-  margin: 2%;
-  display: grid;
-  gap: 16px;
-  grid-template-columns: repeat(6, 7fr); /* 4 columnas por defecto */
+td {
+  padding-right: 1%;
+}
+/*section{
+    height:100%;
+}*/
+.example-form-field {
+  margin: 0 8px 16px 0;
+  /*height:100%;*/
+}
+table {
+  width: 100%;
+  /*height: 100%;*/
 }
 
-.grid-item {
+.mat-mdc-form-field {
+  font-size: 14px;
   width: 100%;
 }
 
-@media (max-width: 1500px) {
-  .grid-container {
-    grid-template-columns: repeat(5, 1fr); /* 2 columnas para pantallas medianas */
-  }
+td, th {
+  width: 25%;
 }
-
-@media (max-width: 1300px) {
-  .grid-container {
-    grid-template-columns: repeat(4, 1fr); /* 2 columnas para pantallas medianas */
-  }
+.example-container {
+  width: 100%;
+  max-width: 100%;
+  overflow: auto;
 }
-
-@media (max-width: 900px) {
-  .grid-container {
-    grid-template-columns: repeat(3, 1fr); /* 2 columnas para pantallas medianas */
-  }
-}
-
-@media (max-width: 800px) {
-  .grid-container {
-    grid-template-columns: repeat(2, 1fr); /* 1 columna para pantallas pequeñas */
-  }
-}
-@media (max-width: 500px) {
-  .grid-container {
-    grid-template-columns: 1fr; /* 1 columna para pantallas pequeñas */
-  }
-}
-.example-card {
+.centered-section {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  background-color: #f8f9fa;
-  border-radius: 8px;
-  /*padding: 16px;*/
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+}
+table {
+  width: 100%;
 }
 
-.image-container {
-  width: 100%;
-  height: 100px;
+tr.example-detail-row {
+  height: 0;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.example-element-row td {
+  border-bottom-width: 0;
+}
+
+.example-element-detail {
   overflow: hidden;
   display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.example-header-image {
-  /*background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');*/
-  background-size: cover;
-}
-.image-container img {
-  max-width: 100%;
-  max-height: 100%;
 }
 
-.text-container {
-  /*margin-top: 16px;*/
-  font-size: 15px;
+.example-element-diagram {
+  min-width: 80px;
+  border: 2px solid black;
+  padding: 8px;
+  font-weight: lighter;
+  margin: 8px 0;
+  height: 104px;
+}
+
+.example-element-symbol {
   font-weight: bold;
-  color: #333;
+  font-size: 40px;
+  line-height: normal;
 }
 
-
-
-.card-content {
-  display: flex;
-  align-items: center; /* Opcional: Alinea verticalmente los elementos */
+.example-element-description {
+  padding: 16px;
 }
 
-.image-container {
-  flex: 2; /* Ajusta este valor según el porcentaje deseado */
-  max-width: 100%; /* O establece el porcentaje que desees */
-}
-
-.text-container {
-  flex: 2; /* Ajusta este valor según el porcentaje deseado */
-  padding-left: 15px; /* Añade un poco de espacio entre la imagen y el texto */
-}
-.text-container2 {
-  margin: 2%;
-  font-size: 14px;
-  /*font-weight: bold;*/
-  color: #727273;
-}
-.text-container2 {
-  flex: 2; /* Ajusta este valor según el porcentaje deseado */
-  padding-left: 12px; /* Añade un poco de espacio entre la imagen y el texto */
-}
-/* Opcional: Para hacer la imagen responsiva */
-.image-container img {
-  width: 100%;
-  height: auto;
-  object-fit: cover; /* Asegura que la imagen mantenga su proporción */
+.example-element-description-attribution {
+  opacity: 0.5;
 }

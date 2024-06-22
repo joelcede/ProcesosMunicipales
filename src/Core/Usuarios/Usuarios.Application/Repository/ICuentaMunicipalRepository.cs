@@ -11,9 +11,9 @@ namespace Usuarios.Application.Repository
 {
     public interface ICuentaMunicipalRepository
     {
-        Task<CuentaMunicipal> GetCuentaByIdUsuarioAsync(Guid id);
-        Task<CuentaMunicipal> AddCuentaMunicipalAsync(CuentaMunicipalDto cuentaMunicipal);
-        Task UpdateCuentaMunicipalAsync(Guid identity, CuentaMunicipal cuentaMunicipal);
-        Task DeleteCuentaMunicipalAsync(Guid id);
+        Task<CuentaMunicipalDomain> GetCuentaByIdUsuarioAsync(Guid id, UsuarioType usuario);
+        Task<CuentaMunicipalDomain> AddCuentaMunicipalAsync(CuentaMunicipalDto cuentaMunicipal, UsuarioType usuario);
+        Task UpdateCuentaMunicipalAsync(Guid identity, CuentaMunicipalDomain cuentaMunicipal, UsuarioType usuario);
+        Task DeleteCuentaMunicipalAsync(Guid id, UsuarioType usuario);
     }
 }

@@ -60,5 +60,10 @@ namespace Regularizacion.API.Controllers
             await _RegularizacionRepository.DeleteRegularizacionAsync(id);
             return Ok();
         }
+        [HttpGet("GetSecuenciaReg", Name = "GetSecuenciaReg")]
+        public async Task<NumRegDomain> GetSecuenciaReg()
+        {
+            return await _RegularizacionRepository.ObtenerSecuenciaRegularizacion();
+        }
     }
 }

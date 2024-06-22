@@ -23,5 +23,6 @@ namespace Regularizacion.Domain.Entities
         public DateTime FechaActualizacion { get; set; }
         public string Correo { get; set; }
         public string Contrasena { get; set; }
+        public int numRegularizacion { get; set; }
     }
 }

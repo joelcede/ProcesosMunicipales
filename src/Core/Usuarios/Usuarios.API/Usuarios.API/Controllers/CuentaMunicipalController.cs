@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Usuarios.Application.Dtos;
 using Usuarios.Application.Repository;
 using Usuarios.Domain.Entities;
+using Usuarios.Domain.Enums;
 using Usuarios.Infrastructure.Repository;
 
 namespace Usuarios.API.Controllers
@@ -15,34 +16,33 @@ namespace Usuarios.API.Controllers
     {
         private readonly IConfiguration _configuration;
         private readonly ICuentaMunicipalRepository _cuentaMunicipalRepository;
-
         public CuentaMunicipalController(IConfiguration configuration)
         {
             _configuration = configuration;
             _cuentaMunicipalRepository = new CuentaMunicipalRepository(_configuration);
         }
+        #region Cuenta Municipal
+        [HttpPost("AddCuentaMunicipal/{usuario}", Name = "AddCuentaMunicipal")]
+        public async Task<CuentaMunicipalDomain> AddCuentaMunicipal(UsuarioType usuario, CuentaMunicipalDto cuentaMunicipal)
+        {
+            return await _cuentaMunicipalRepository.AddCuentaMunicipalAsync(cuentaMunicipal, usuario);
+        }
+        [HttpGet("GetCuentaMunicipal/{id}/{usuario}", Name = "GetCuentaMunicipal")]
+        public async Task<CuentaMunicipalDomain> GetCuentaMunicipal(Guid id, UsuarioType usuario)
+        {
+            return await _cuentaMunicipalRepository.GetCuentaByIdUsuarioAsync(id, usuario);
+        }
 
-        [HttpPost("AddCuentaMunicipal", Name = "AddCuentaMunicipal")]
-        public async Task<CuentaMunicipal> AddCuentaMunicipal(CuentaMunicipalDto cuentaMunicipal)
+        [HttpPut("UpdateCuentaMunicipal/{id}/{usuario}", Name = "UpdateCuentaMunicipal")]
+        public async Task UpdateCuentaMunicipal(Guid id, CuentaMunicipalDomain cuentaMunicipal, UsuarioType usuario)
         {
-            cuentaMunicipal.EsPropietario = true;
-            return await _cuentaMunicipalRepository.AddCuentaMunicipalAsync(cuentaMunicipal);
+            await _cuentaMunicipalRepository.UpdateCuentaMunicipalAsync(id, cuentaMunicipal, usuario);
         }
-        [HttpGet("GetCuentaMunicipal/{id}")]
-        public async Task<CuentaMunicipal> GetCuentaMunicipal(Guid id)
+        [HttpDelete("DeleteCuentaMunicipal/{id}/{usuario}", Name = "DeleteCuentaMunicipal")]
+        public async Task DeleteCuentaMunicipal(Guid id, UsuarioType usuario)
         {
-            return await _cuentaMunicipalRepository.GetCuentaByIdUsuarioAsync(id);
+            await _cuentaMunicipalRepository.DeleteCuentaMunicipalAsync(id, usuario);
         }
-
-        [HttpPut("UpdateCuentaMunicipal/{id}", Name = "UpdateCuentaMunicipal")]
-        public async Task UpdateCuentaMunicipal(Guid id, CuentaMunicipal cuentaMunicipal)
-        {
-            await _cuentaMunicipalRepository.UpdateCuentaMunicipalAsync(id, cuentaMunicipal);
-        }
-        [HttpDelete("DeleteCuentaMunicipal/{id}", Name = "DeleteCuentaMunicipal")]
-        public async Task DeleteCuentaMunicipal(Guid id)
-        {
-            await _cuentaMunicipalRepository.DeleteCuentaMunicipalAsync(id);
-        }
+        #endregion
     }
 }

@@ -50,7 +50,7 @@
           <mat-slide-toggle [(ngModel)]="isChecked" formControlName="esPrincipal">Es el Propietario Principal?</mat-slide-toggle>
 
         </div>
-        
+
         <div *ngIf="tipoUsuario == 2 || tipoUsuario == 3" [formGroup]="cm_ToggleForm">
           <mat-slide-toggle [(ngModel)]="isAgregarCM" formControlName="abrirCM">Desea agregarle una cuenta municipal?</mat-slide-toggle>
         </div>

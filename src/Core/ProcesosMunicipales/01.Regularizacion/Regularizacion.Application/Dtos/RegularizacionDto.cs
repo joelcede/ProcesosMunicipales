@@ -17,9 +17,9 @@ namespace Regularizacion.Application.Dtos
         [Required]
         public Guid IdVivienda { get; set; }
         public string NumeroExpediente { get; set; } = string.Empty;
-        [Required]
+        [Required(ErrorMessage = "Ingresa el valor de la regularización")]
         public decimal ValorRegularizacion { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Ingresa el anticipo")]
         public decimal Anticipo { get; set; }
         public decimal ValorPendiente { get; set; }
         [JsonIgnore]
@@ -30,6 +30,7 @@ namespace Regularizacion.Application.Dtos
         public DateTime FechaActualizacion { get; set; }
         public string Correo { get; set; } = string.Empty;
         public string Contrasena { get; set; } = string.Empty;
+        public int numRegularizacion { get; set; }
 
     }
 }

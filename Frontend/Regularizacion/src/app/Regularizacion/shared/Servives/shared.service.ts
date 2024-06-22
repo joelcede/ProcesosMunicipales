@@ -14,6 +14,9 @@ export class SharedService {
   private selectedTabIndexSubject = new BehaviorSubject<number>(0);
   selectedTabIndex$ = this.selectedTabIndexSubject.asObservable();
 
+  private tabChangeSubject = new BehaviorSubject<void>(undefined);
+  tabChange$ = this.tabChangeSubject.asObservable();
+
   updateTop10ClientesList(newList: any[]) {
     this.top10ClientesSubject.next(newList);
   }
@@ -39,5 +42,7 @@ export class SharedService {
   getSelectedTabIndex() {
     return this.selectedTabIndexSubject.getValue();
   }
-
+  notifyTabChange() {
+    this.tabChangeSubject.next();
+  }
 }

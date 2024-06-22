@@ -23,6 +23,9 @@ import { RegularizacionService } from '../../Services/regularizacion.service';
 import { EstadosType } from '../../Enums/EstadosType';
 import { SharedService } from '../../../shared/Servives/shared.service';
 import { Subscription } from 'rxjs';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { ISecReg } from '../../Models/ISecReg';
 
 @Component({
   selector: 'app-regularizacion',
@@ -34,7 +37,7 @@ import { Subscription } from 'rxjs';
     MatCardModule, MatSelectModule, ReactiveFormsModule,
     NgIf, NgFor, MatButtonModule, MatIconModule, MatDatepickerModule,
     MatNativeDateModule, MatDividerModule, MatDialogModule,
-    MatStepperModule, SharedModule, 
+    MatStepperModule, SharedModule, MatToolbarModule, MatSlideToggleModule
   ]
 })
 export class RegularizacionComponent implements OnInit, OnDestroy {
@@ -66,6 +69,38 @@ export class RegularizacionComponent implements OnInit, OnDestroy {
   private subscription!: Subscription;
   currentStep: number = 0;
 
+  getSecuenciaReg_ToggleForm = new FormGroup({
+    obtenerSecuencia: new FormControl(false)
+  });
+
+  isObtenerSecuencia = false;
+
+  onNumberInput(event: Event, control: string): void {
+    const input = event.target as HTMLInputElement;
+    let cleanedValue = input.value.replace(/\D/g, '');
+    if (cleanedValue.length > 10) {
+      cleanedValue = cleanedValue.substring(0, 10);
+    }
+    this.regularizacionForm.get(control)?.setValue(cleanedValue, { emitEvent: false });
+  }
+
+  onToggleChange(isChecked: boolean): void {
+    if (isChecked) {
+      //const secuencia: string = this.getSecuenciaReg();
+      this.regularizacion.getSecuenciaRegularizacion().subscribe({
+        next: (response: ISecReg) => {
+          const secuencia: number = response.nuM_REGULARIZACION;
+          this.regularizacionForm.get('numRegularizacion')?.setValue(secuencia?.toString(), { emitEvent: false });
+        },
+        error: (error: HttpErrorResponse) => {
+          console.log("Error al obtener los clientes", error);
+        }
+      });
+      
+    } else {
+      this.regularizacionForm.get('numRegularizacion')?.setValue('');
+    }
+  }
   ngOnInit(): void {
 
     this.regularizacionForm.get('Anticipo')?.valueChanges.subscribe(() => {
@@ -108,6 +143,22 @@ export class RegularizacionComponent implements OnInit, OnDestroy {
     })
   }
 
+  getSecuenciaReg() {
+    let cantidadReg = 0;
+    this.regularizacion.getSecuenciaRegularizacion().subscribe({
+      next: (response: ISecReg) => {
+        cantidadReg = response.nuM_REGULARIZACION
+      },
+      error: (error: HttpErrorResponse) => {
+        console.log("Error al obtener los clientes", error);
+      },
+      complete: () =>{
+        return cantidadReg.toString();
+      }
+    });
+    
+  }
+
   regularizacionForm = new FormGroup({
     id: new FormControl('00000000-0000-0000-0000-000000000000'),
     idVivienda: new FormControl('00000000-0000-0000-0000-000000000000'),
@@ -124,6 +175,7 @@ export class RegularizacionComponent implements OnInit, OnDestroy {
     intentosSubidas: new FormControl(''),
     intentosSubsanacion: new FormControl(''),
     cantidadNegada: new FormControl(''),
+    numRegularizacion: new FormControl(''),
   });
 
 

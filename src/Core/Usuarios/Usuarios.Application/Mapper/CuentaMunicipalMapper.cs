@@ -22,12 +22,12 @@ namespace Usuarios.Application.Mapper
             _mapper = config.CreateMapper();
         }
 
-        public CuentaMunicipal CreateCuentaMunicipal(CuentaMunicipalDto cuentaMunicipalDto)
+        public CuentaMunicipalDomain CreateCuentaMunicipal(CuentaMunicipalDto cuentaMunicipalDto)
         {
-            return _mapper.Map<CuentaMunicipal>(cuentaMunicipalDto);
+            return _mapper.Map<CuentaMunicipalDomain>(cuentaMunicipalDto);
         }
 
-        public CuentaMunicipalDto CreateCuentaMunicipalDto(CuentaMunicipal cuentaMunicipal)
+        public CuentaMunicipalDto CreateCuentaMunicipalDto(CuentaMunicipalDomain cuentaMunicipal)
         {
             return _mapper.Map<CuentaMunicipalDto>(cuentaMunicipal);
         }
@@ -36,8 +36,8 @@ namespace Usuarios.Application.Mapper
     {
         public CuentaMunicipalProfile()
         {
-            CreateMap<CuentaMunicipalDto, CuentaMunicipal>();
-            CreateMap<CuentaMunicipal, CuentaMunicipalDto>();
+            CreateMap<CuentaMunicipalDto, CuentaMunicipalDomain>();
+            CreateMap<CuentaMunicipalDomain, CuentaMunicipalDto>();
         }
     }
 }

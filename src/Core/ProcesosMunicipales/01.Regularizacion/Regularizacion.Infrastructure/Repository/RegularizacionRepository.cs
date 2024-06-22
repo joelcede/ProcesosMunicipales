@@ -60,6 +60,7 @@ namespace Regularizacion.Infrastructure.Repository
                 //parameters.Add("@FechaActualizacion", regularizacion.FechaActualizacion);
                 parameters.Add("@Correo", regularizacion.Correo);
                 parameters.Add("@Contrasena", EncryptionHelper.EncryptString(regularizacion.Contrasena));
+                parameters.Add("@NumRegularizacion", regularizacion.numRegularizacion);
             }
             return parameters;
         }
@@ -117,6 +118,7 @@ namespace Regularizacion.Infrastructure.Repository
             _logger.LogInicio(_clase);
             var parameters = GetR(id, CrudType.GetById);
             var response = await new Database(_connectionString).ExecuteScalarAsync<RegularizacionDomain>(SP_REGULARIZACION, parameters);
+            response.Contrasena = EncryptionHelper.DecryptString(response.Contrasena);
             _logger.LogFin(_clase);
             return response;
         }
@@ -155,6 +157,7 @@ namespace Regularizacion.Infrastructure.Repository
                 parameters.Add("@Pagado", regularizacion.Pagado);
                 parameters.Add("@Estado", regularizacion.Estado);
                 parameters.Add("@FechaRegistro", regularizacion.FechaRegistro);
+                parameters.Add("@NumRegularizacion", regularizacion.numRegularizacion);
             }
             return parameters;
         }
@@ -165,6 +168,24 @@ namespace Regularizacion.Infrastructure.Repository
             var parameters = UpdateR(regularizacion, CrudType.Update);
             await new Database(_connectionString).ExecuteNonQueryAsync(SP_REGULARIZACION, parameters);
             _logger.LogFin(_clase);
+        }
+        public Dictionary<string, object> GetCountReg(CrudType operacion = CrudType.None)
+        {
+            var parameters = new Dictionary<string, object>();
+
+            if (operacion != CrudType.None)
+            {
+                parameters.Add("@Trx", (int)operacion);
+            }
+            return parameters;
+        }
+        public async Task<NumRegDomain> ObtenerSecuenciaRegularizacion()
+        {
+            _logger.LogInicio(_clase);
+            var parameters = GetCountReg(CrudType.GetCountAll);
+            var result = await new Database(_connectionString).ExecuteScalarAsync<NumRegDomain>(SP_REGULARIZACION, parameters);
+            _logger.LogFin(_clase);
+            return result;
         }
     }
 }
