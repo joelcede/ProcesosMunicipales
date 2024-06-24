@@ -54,7 +54,6 @@ namespace Commons.EmailService
             catch (Exception ex)
             {
 
-                throw;
             }
             return correos;
         }

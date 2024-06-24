@@ -14,7 +14,7 @@ namespace Regularizacion.Application.Dtos
     {
         [Key]
         public Guid Id { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Debes ingresar una vivienda")]
         public Guid IdVivienda { get; set; }
         public string NumeroExpediente { get; set; } = string.Empty;
         [Required(ErrorMessage = "Ingresa el valor de la regularización")]
@@ -28,8 +28,11 @@ namespace Regularizacion.Application.Dtos
         public DateTime FechaRegistro { get; set; }
         public DateTime FechaInsercion { get; set; }
         public DateTime FechaActualizacion { get; set; }
+        [Required(ErrorMessage = "Ingresa tu correo municipal")]
         public string Correo { get; set; } = string.Empty;
+        [Required(ErrorMessage = "Ingresa la contrasena del correo municipal")]
         public string Contrasena { get; set; } = string.Empty;
+        [Required(ErrorMessage = "Ingresa el numero de la regularizacion")]
         public int numRegularizacion { get; set; }
 
     }

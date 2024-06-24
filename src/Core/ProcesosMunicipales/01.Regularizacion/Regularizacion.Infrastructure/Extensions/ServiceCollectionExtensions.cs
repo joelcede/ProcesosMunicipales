@@ -12,5 +12,10 @@ namespace Regularizacion.Infrastructure.Extensions
             services.AddScoped<IRegularizacionRepository, RegularizacionRepository>();
             return services;
         }
+        public static IServiceCollection AddGraficosServices(this IServiceCollection services)
+        {
+            services.AddScoped<IGraphicsRepository, GraphicsRepository>();
+            return services;
+        }
     }
 }

@@ -14,6 +14,7 @@ namespace Regularizacion.Domain.Enums
         Create = 3,
         Update = 4,
         Delete = 5,
-        GetCountAll = 6
+        GetCountAll = 6,
+        GetDataContrato = 1000
     }
 }

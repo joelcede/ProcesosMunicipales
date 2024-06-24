@@ -14,4 +14,8 @@
     <ProjectReference Include="..\Regularizacion.Infrastructure\Regularizacion.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Contratos\" />
+  </ItemGroup>
+
 </Project>

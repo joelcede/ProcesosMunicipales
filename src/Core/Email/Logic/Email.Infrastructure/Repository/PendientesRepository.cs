@@ -90,7 +90,16 @@ namespace Service.Email.Infrastructure.Repository
 
             return parameters;
         }
-        
+        private Dictionary<string, object> updateCredentialIncorect(int parametro, Guid idRegularizacion)
+        {
+            var parameters = new Dictionary<string, object>()
+            {
+                { "@Trx", parametro },
+                { "@IdReg", idRegularizacion }
+            };
+
+            return parameters;
+        }
         public async Task CambiarEstadoRegularizacion()
         {
             _logger.LogInicio(_clase);
@@ -108,21 +117,32 @@ namespace Service.Email.Infrastructure.Repository
         {
             //obtienes los correo por hacer y los cambia a estado pendiente
             _logger.LogInicio(_clase);
-
-            var parametrosG = getCredenciales(1, (int)EstadoType.PorHacer); 
-            var correosPorHacer = await new Database(_connectionString).ExecuteReaderAsync<Credencial>(SP_SERVICE_CORREO, parametrosG);
-
-            foreach (var reg in correosPorHacer)
+            var IdRegularizacion = Guid.NewGuid();
+            try
             {
-                RevisarCorreo revisarCorreo = new RevisarCorreo();
-                var correoObtenido = await revisarCorreo.obtenerCorreosEnProceso(reg.Correo, EncryptionHelper.DecryptString(reg.Contrasena), SolicitudIngresada);
+                var parametrosG = getCredenciales(1, (int)EstadoType.PorHacer);
+                var correosPorHacer = await new Database(_connectionString).ExecuteReaderAsync<Credencial>(SP_SERVICE_CORREO, parametrosG);
 
-                if (correoObtenido.Count() > 0)
+                foreach (var reg in correosPorHacer)
                 {
-                    var parametrosU = updateEstado(2, reg.Id, (int)EstadoType.EnEspera);
-                    await new Database(_connectionString).ExecuteNonQueryAsync(SP_SERVICE_CORREO, parametrosU);
+                    RevisarCorreo revisarCorreo = new RevisarCorreo();
+                    IdRegularizacion = reg.Id;
+                    var correoObtenido = await revisarCorreo.obtenerCorreosEnProceso(reg.Correo, EncryptionHelper.DecryptString(reg.Contrasena), SolicitudIngresada);
+
+                    if (correoObtenido.Count() > 0)
+                    {
+                        var parametrosU = updateEstado(2, reg.Id, (int)EstadoType.EnEspera);
+                        await new Database(_connectionString).ExecuteNonQueryAsync(SP_SERVICE_CORREO, parametrosU);
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                var parametrosUpd = updateCredentialIncorect(6, IdRegularizacion);
+                await new Database(_connectionString).ExecuteNonQueryAsync(SP_SERVICE_CORREO, parametrosUpd);
+            }
+
 
             _logger.LogFin(_clase);
         }
@@ -130,25 +150,34 @@ namespace Service.Email.Infrastructure.Repository
         public async Task cambiarEstadoEnSubsanacion()
         {
             _logger.LogInicio(_clase);
-
-            var parametrosG = getCredenciales2(1, (int)EstadoType.EnEspera, (int)EstadoType.EnEsperaVueltaASubir);
-            var correosPorHacer = await new Database(_connectionString).ExecuteReaderAsync<Credencial>(SP_SERVICE_CORREO, parametrosG);
-
-            foreach (var reg in correosPorHacer)
+            var IdRegularizacion = Guid.NewGuid();
+            try
             {
-                RevisarCorreo revisarCorreo = new RevisarCorreo();
-                var correoObtenido = await revisarCorreo.obtenerCorreosEnProceso(reg.Correo, EncryptionHelper.DecryptString(reg.Contrasena), SolicitudIngresada);
+                var parametrosG = getCredenciales2(1, (int)EstadoType.EnEspera, (int)EstadoType.EnEsperaVueltaASubir);
+                var correosPorHacer = await new Database(_connectionString).ExecuteReaderAsync<Credencial>(SP_SERVICE_CORREO, parametrosG);
 
-                if (correoObtenido.Count() > 0)
+                foreach (var reg in correosPorHacer)
                 {
-                    
-                    var parametrosU = updateEstado(2, reg.Id, (int)EstadoType.SubSanacion);
-                    await new Database(_connectionString).ExecuteNonQueryAsync(SP_SERVICE_CORREO, parametrosU);
+                    RevisarCorreo revisarCorreo = new RevisarCorreo();
+                    IdRegularizacion = reg.Id;
+                    var correoObtenido = await revisarCorreo.obtenerCorreosEnProceso(reg.Correo, EncryptionHelper.DecryptString(reg.Contrasena), SolicitudIngresada);
 
-                    int cantidadSubsanacion = reg.IntentosSubsanacion + 1;
-                    var parametrosUS = updateCantIntentosR(3, reg.Id, cantidadSubsanacion);
-                    await new Database(_connectionString).ExecuteNonQueryAsync(SP_SERVICE_CORREO, parametrosUS);
+                    if (correoObtenido.Count() > 0)
+                    {
+                        var parametrosU = updateEstado(2, reg.Id, (int)EstadoType.SubSanacion);
+                        await new Database(_connectionString).ExecuteNonQueryAsync(SP_SERVICE_CORREO, parametrosU);
+
+                        int cantidadSubsanacion = reg.IntentosSubsanacion + 1;
+                        var parametrosUS = updateCantIntentosR(3, reg.Id, cantidadSubsanacion);
+                        await new Database(_connectionString).ExecuteNonQueryAsync(SP_SERVICE_CORREO, parametrosUS);
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                var parametrosUpd = updateCredentialIncorect(6, IdRegularizacion);
+                await new Database(_connectionString).ExecuteNonQueryAsync(SP_SERVICE_CORREO, parametrosUpd);
             }
 
             _logger.LogFin(_clase);
@@ -157,25 +186,37 @@ namespace Service.Email.Infrastructure.Repository
         public async Task cambiarEstadoNegado()
         {
             _logger.LogInicio(_clase);
-
-            var parametrosG = getCredenciales3(1, (int)EstadoType.EnEspera, (int)EstadoType.SubSanacion, (int)EstadoType.EnEsperaVueltaASubir);
-            var correosPorHacer = await new Database(_connectionString).ExecuteReaderAsync<Credencial>(SP_SERVICE_CORREO, parametrosG);
-
-            foreach (var reg in correosPorHacer)
+            var IdRegularizacion = Guid.NewGuid();
+            try
             {
-                RevisarCorreo revisarCorreo = new RevisarCorreo();
-                var correoObtenido = await revisarCorreo.obtenerCorreosEnProceso(reg.Correo, EncryptionHelper.DecryptString(reg.Contrasena), SolicitudIngresada);
+                var parametrosG = getCredenciales3(1, (int)EstadoType.EnEspera, (int)EstadoType.SubSanacion, (int)EstadoType.EnEsperaVueltaASubir);
+                var correosPorHacer = await new Database(_connectionString).ExecuteReaderAsync<Credencial>(SP_SERVICE_CORREO, parametrosG);
 
-                if (correoObtenido.Count() > 0)
+                foreach (var reg in correosPorHacer)
                 {
-                    var parametrosU = updateEstado(2, reg.Id, (int)EstadoType.Negada);
-                    await new Database(_connectionString).ExecuteNonQueryAsync(SP_SERVICE_CORREO, parametrosU);
+                    RevisarCorreo revisarCorreo = new RevisarCorreo();
+                    IdRegularizacion = reg.Id;
+                    var correoObtenido = await revisarCorreo.obtenerCorreosEnProceso(reg.Correo, EncryptionHelper.DecryptString(reg.Contrasena), SolicitudIngresada);
 
-                    int cantidadNegada = reg.cantidadNegada + 1;
-                    var parametrosUS = updateCantIntentosR(3, reg.Id, cantidadNegada);
-                    await new Database(_connectionString).ExecuteNonQueryAsync(SP_SERVICE_CORREO, parametrosUS);
+                    if (correoObtenido.Count() > 0)
+                    {
+                        var parametrosU = updateEstado(2, reg.Id, (int)EstadoType.Negada);
+                        await new Database(_connectionString).ExecuteNonQueryAsync(SP_SERVICE_CORREO, parametrosU);
+
+                        int cantidadNegada = reg.cantidadNegada + 1;
+                        var parametrosUS = updateCantIntentosR(3, reg.Id, cantidadNegada);
+                        await new Database(_connectionString).ExecuteNonQueryAsync(SP_SERVICE_CORREO, parametrosUS);
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                var parametrosUpd = updateCredentialIncorect(6, IdRegularizacion);
+                await new Database(_connectionString).ExecuteNonQueryAsync(SP_SERVICE_CORREO, parametrosUpd);
+            }
+
+            
 
             _logger.LogFin(_clase);
         }
@@ -183,26 +224,37 @@ namespace Service.Email.Infrastructure.Repository
         public async Task CambiarEstadoVueltaASubir()
         {
             _logger.LogInicio(_clase);
-
-            var parametrosG = getCredenciales(1, (int)EstadoType.Negada);
-            var correosPorHacer = await new Database(_connectionString).ExecuteReaderAsync<Credencial>(SP_SERVICE_CORREO, parametrosG);
-
-            foreach (var reg in correosPorHacer)
+            var IdRegularizacion = Guid.NewGuid();
+            try
             {
-                RevisarCorreo revisarCorreo = new RevisarCorreo();
-                var correoIngreso = await revisarCorreo.obtenerCorreosEnProceso(reg.Correo, EncryptionHelper.DecryptString(reg.Contrasena), SolicitudIngresada);
-                var correoNegado = await revisarCorreo.obtenerCorreosEnProceso(reg.Correo, EncryptionHelper.DecryptString(reg.Contrasena), SolicitudNegada);
+                var parametrosG = getCredenciales(1, (int)EstadoType.Negada);
+                var correosPorHacer = await new Database(_connectionString).ExecuteReaderAsync<Credencial>(SP_SERVICE_CORREO, parametrosG);
 
-                if (correoIngreso.Count() >= 2 && correoNegado.Count() > 0)
+                foreach (var reg in correosPorHacer)
                 {
-                    var parametrosU = updateEstado(2, reg.Id, (int)EstadoType.Negada);
-                    await new Database(_connectionString).ExecuteNonQueryAsync(SP_SERVICE_CORREO, parametrosU);
+                    RevisarCorreo revisarCorreo = new RevisarCorreo();
+                    IdRegularizacion = reg.Id;
+                    var correoIngreso = await revisarCorreo.obtenerCorreosEnProceso(reg.Correo, EncryptionHelper.DecryptString(reg.Contrasena), SolicitudIngresada);
+                    var correoNegado = await revisarCorreo.obtenerCorreosEnProceso(reg.Correo, EncryptionHelper.DecryptString(reg.Contrasena), SolicitudNegada);
 
-                    int cantidadIntentos = reg.IntentosSubsanacion + 1;
-                    var parametrosUS = updateCantIntentosR(3, reg.Id, cantidadIntentos);
-                    await new Database(_connectionString).ExecuteNonQueryAsync(SP_SERVICE_CORREO, parametrosUS);
+                    if (correoIngreso.Count() >= 2 && correoNegado.Count() > 0)
+                    {
+                        var parametrosU = updateEstado(2, reg.Id, (int)EstadoType.Negada);
+                        await new Database(_connectionString).ExecuteNonQueryAsync(SP_SERVICE_CORREO, parametrosU);
+
+                        int cantidadIntentos = reg.IntentosSubsanacion + 1;
+                        var parametrosUS = updateCantIntentosR(3, reg.Id, cantidadIntentos);
+                        await new Database(_connectionString).ExecuteNonQueryAsync(SP_SERVICE_CORREO, parametrosUS);
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                var parametrosUpd = updateCredentialIncorect(6, IdRegularizacion);
+                await new Database(_connectionString).ExecuteNonQueryAsync(SP_SERVICE_CORREO, parametrosUpd);
+            }
+            
 
             _logger.LogFin(_clase);
         }
@@ -210,20 +262,30 @@ namespace Service.Email.Infrastructure.Repository
         public async Task CambiarEstadoAprobado()
         {
             _logger.LogInicio(_clase);
-
-            var parametrosG = getCredenciales3(1, (int)EstadoType.EnEspera, (int)EstadoType.SubSanacion, (int)EstadoType.EnEsperaVueltaASubir);
-            var correosPorAprobar = await new Database(_connectionString).ExecuteReaderAsync<Credencial>(SP_SERVICE_CORREO, parametrosG);
-
-            foreach (var correo in correosPorAprobar)
+            var IdRegularizacion = Guid.NewGuid();
+            try
             {
-                RevisarCorreo revisarCorreo = new RevisarCorreo();
-                var correoAprobado = await revisarCorreo.obtenerCorreosEnProceso(correo.Correo, EncryptionHelper.DecryptString(correo.Contrasena), SolicitudAprobada);
+                var parametrosG = getCredenciales3(1, (int)EstadoType.EnEspera, (int)EstadoType.SubSanacion, (int)EstadoType.EnEsperaVueltaASubir);
+                var correosPorAprobar = await new Database(_connectionString).ExecuteReaderAsync<Credencial>(SP_SERVICE_CORREO, parametrosG);
 
-                if (correoAprobado.Count() > 0)
+                foreach (var reg in correosPorAprobar)
                 {
-                    var parametrosU = updateEstado(2, correo.Id, (int)EstadoType.Aprobada);
-                    await new Database(_connectionString).ExecuteNonQueryAsync(SP_SERVICE_CORREO, parametrosU);
+                    RevisarCorreo revisarCorreo = new RevisarCorreo();
+                    IdRegularizacion = reg.Id;
+                    var correoAprobado = await revisarCorreo.obtenerCorreosEnProceso(reg.Correo, EncryptionHelper.DecryptString(reg.Contrasena), SolicitudAprobada);
+
+                    if (correoAprobado.Count() > 0)
+                    {
+                        var parametrosU = updateEstado(2, reg.Id, (int)EstadoType.Aprobada);
+                        await new Database(_connectionString).ExecuteNonQueryAsync(SP_SERVICE_CORREO, parametrosU);
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                var parametrosUpd = updateCredentialIncorect(6, IdRegularizacion);
+                await new Database(_connectionString).ExecuteNonQueryAsync(SP_SERVICE_CORREO, parametrosUpd);
             }
 
             _logger.LogFin(_clase);

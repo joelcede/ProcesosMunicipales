@@ -65,5 +65,10 @@ namespace Regularizacion.API.Controllers
         {
             return await _RegularizacionRepository.ObtenerSecuenciaRegularizacion();
         }
+        [HttpGet("GetContrato/{idRegularizacion}", Name ="GetContrato")]
+        public async Task<byte[]> GetContrato(Guid idRegularizacion)
+        {
+            return await _RegularizacionRepository.GetContratoDefaultAsync(idRegularizacion);
+        }
     }
 }

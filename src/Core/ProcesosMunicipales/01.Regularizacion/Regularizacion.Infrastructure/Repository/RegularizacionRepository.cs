@@ -8,6 +8,7 @@ using Regularizacion.Application.Repository;
 using Regularizacion.Domain.Entities;
 using Regularizacion.Domain.Enums;
 using Regularizacion.Domain.Interfaces;
+using Regularizacion.Infrastructure.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -186,6 +187,32 @@ namespace Regularizacion.Infrastructure.Repository
             var result = await new Database(_connectionString).ExecuteScalarAsync<NumRegDomain>(SP_REGULARIZACION, parameters);
             _logger.LogFin(_clase);
             return result;
+        }
+        private Dictionary<string, object> GetContratoReg(Guid idReg, CrudType operacion = CrudType.None)
+        {
+            var parameters = new Dictionary<string, object>();
+
+            if (operacion != CrudType.None)
+            {
+                parameters.Add("@Trx", (int)operacion);
+                if(idReg == Guid.Empty)
+                    throw new ArgumentException("Debes ingresar el identificador de la regularizacion");
+                else
+                    parameters.Add("@IdRegularizacion", idReg);
+            }
+            return parameters;
+        }
+
+        public async Task<byte[]> GetContratoDefaultAsync(Guid idReg)
+        {
+            _logger.LogInicio(_clase);
+            var parameters = GetContratoReg(idReg, CrudType.GetDataContrato);
+            var result = await new Database(_connectionString).ExecuteScalarAsync<ContratoDefaultDomain>(SP_REGULARIZACION, parameters);
+            //ContratoService service = new ContratoService();
+            var contratoDefault = _connectionString.GetSection("contratos").GetValue<string>("contratoDefault") ?? "";
+            var pdf = ContratoService.obtenerContratoByte(contratoDefault, result);
+            _logger.LogFin(_clase);
+            return pdf;
         }
     }
 }
