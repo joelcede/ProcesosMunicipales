@@ -17,7 +17,6 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatStepperModule } from '@angular/material/stepper';
-import { SharedModule } from '../shared/shared.module';
 import { RegularizacionComponent } from './Components/regularizacion/regularizacion.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -25,9 +24,13 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTableModule } from '@angular/material/table';
 import { MatNativeDateModule } from '@angular/material/core';
+import { DeletedComponent } from './Components/deleted/deleted/deleted.component';
+import { ToastrModule } from 'ngx-toastr';
+import { GraphicsComponent } from './Components/graphics/graphics.component';
+import { EdithComponent } from './Components/edith/edith.component';
+
 @NgModule({
   declarations: [
-  
   ],
   imports: [
     CommonModule,
@@ -49,19 +52,25 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatSlideToggleModule,
     MatTableModule,
     MatNativeDateModule,
-
+    ToastrModule.forRoot(),
+    DeletedComponent,
     //SharedModule,
     MainComponent,
     ViewComponent,
     RegisterComponent,
-    RegularizacionComponent
+    RegularizacionComponent,
+    GraphicsComponent,
+    EdithComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports: [
     MainComponent,
     ViewComponent,
     RegisterComponent,
-    RegularizacionComponent
+    RegularizacionComponent,
+    DeletedComponent,
+    GraphicsComponent,
+    EdithComponent
   ]
 })
 export class CoreModule { }

@@ -18,6 +18,7 @@ import { RegularizacionService } from '../../../../Core/Services/regularizacion.
 import { IRegularizacionesCard } from '../../../../Core/Models/IRegularizacionesCard';
 import { DatePipe } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
+import { NgxLoadingButtonsModule } from 'ngx-loading-buttons';
 
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
@@ -27,7 +28,7 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
   templateUrl: './pdf-ficha.component.html',
   styleUrls: ['./pdf-ficha.component.css'],
   standalone: true,
-  imports: [MatButtonModule],
+  imports: [MatButtonModule, NgxLoadingButtonsModule],
   providers: [DatePipe]
 
 })
@@ -48,7 +49,7 @@ export class PdfFichaComponent {
   CMPropietario: ICuentaMunicipal;
   regularizacionLocal: IRegularizacion;
 
-
+  loading = false;
   usrFamiliar: TipoUsuario = TipoUsuario.Familiar;
   usrPropietario: TipoUsuario = TipoUsuario.Propietario;
   userPropietario: IUsuarioCM[] = [];
@@ -444,5 +445,34 @@ export class PdfFichaComponent {
         background: 'lightblue'
       }
     }
+  }
+
+  obtenerContrato() {
+    this.loading = true;
+    this.regularizacionService.getPdfContrato(this.regularizacion.idRegularizacion).subscribe({
+      next: (response: string) => {
+        let xd = response;
+        const pdfBlob = this.base64ToBlob(response, 'application/pdf')
+        const pdfUrl = URL.createObjectURL(pdfBlob);
+        // Abrir el PDF en una nueva ventana
+        window.open(pdfUrl);
+      },
+      error: (error: HttpErrorResponse) => {
+      },
+      complete: () => {
+        this.loading = false;
+      }
+    });
+  }
+  base64ToBlob(base64: string, contentType: string) {
+    const byteCharacters = atob(base64);
+    const byteNumbers = new Array(byteCharacters.length);
+
+    for (let i = 0; i < byteCharacters.length; i++) {
+      byteNumbers[i] = byteCharacters.charCodeAt(i);
+    }
+
+    const byteArray = new Uint8Array(byteNumbers);
+    return new Blob([byteArray], { type: contentType });
   }
 }

@@ -28,7 +28,7 @@ td {
 
 .example-card {
   width: 75%;
-  height: 100vh; /* Ocupa el 50% de la altura del viewport */
+  height: 110vh; /* Ocupa el 50% de la altura del viewport */
   box-sizing: border-box; /* Incluye el padding y el border en el tamaño total del card */
   padding: 20px;
   background-color: white;

@@ -56,6 +56,9 @@
           <input matInput type="number" class="example-right-align" placeholder="0" formControlName="ValorPendiente" readonly [attr.disabled]="true">
           <span matTextPrefix disabled>$&nbsp;</span>
           <span matTextSuffix disable>.00</span>
+          <mat-error *ngIf="!valorPositivo">
+          El valor no puede ser negativo
+          </mat-error>
         </mat-form-field>
       </td>
 
@@ -101,7 +104,7 @@
     <tr>
       <td>
         <div class="example-button-row">
-          <button mat-raised-button color="primary" (click)="addRegularizacion()">Guardar</button>
+          <button mat-raised-button color="primary" [disabled]="!regularizacionForm.valid" (click)="addRegularizacion()">Guardar</button>
         </div>
       </td>
     </tr>

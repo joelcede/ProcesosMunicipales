@@ -1,0 +1,126 @@
+<h2 mat-dialog-title>Editar Regularizacion</h2>
+<mat-dialog-content class="mat-typography">
+  <form class="example-form" [formGroup]="regularizacionForm">
+    <table class="example-full-width" cellspacing="0">
+      <tr>
+        <td>
+          <!--<mat-form-field>
+            <mat-label>Escoge una vivienda</mat-label>
+            <mat-select formControlName="idVivienda" class="example-additional-selection">
+              <mat-option *ngFor="let vivienda of ultimas10Viviendas" [value]="vivienda.id" class="example-additional-selection">{{ vivienda.value}}</mat-option>
+            </mat-select>
+          </mat-form-field>-->
+
+        </td>
+        <td>
+          <mat-form-field class="example-full-width">
+            <mat-label>N. de expediente</mat-label>
+            <input matInput formControlName="NumeroExpediente" (input)="onNumberInput($event, 'NumeroExpediente')">
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field color="accent">
+            <mat-label>Fecha de registro</mat-label>
+            <input matInput [matDatepicker]="picker1" formControlName="FechaRegistro">
+            <!--<mat-hint>MM/DD/YYYY</mat-hint>-->
+            <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+        </td>
+
+      </tr>
+    </table>
+
+
+    <table class="example-full-width" cellspacing="0">
+      <tr>
+        <td>
+          <div class="example-container">
+            <mat-form-field floatLabel="always">
+              <mat-label>Valor de la regularizacion</mat-label>
+              <input matInput type="number" class="example-right-align" placeholder="0" formControlName="valorRegularizacion">
+              <span matTextPrefix>$&nbsp;</span>
+              <span matTextSuffix>.00</span>
+            </mat-form-field>
+          </div>
+        </td>
+        <td>
+          <mat-form-field floatLabel="always">
+            <mat-label>Anticipo</mat-label>
+            <input matInput type="number" class="example-right-align" placeholder="0" formControlName="Anticipo">
+            <span matTextPrefix>$&nbsp;</span>
+            <span matTextSuffix>.00</span>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field floatLabel="always">
+            <mat-label>Valor pendiente a pagar</mat-label>
+            <input matInput type="number" class="example-right-align" placeholder="0" formControlName="ValorPendiente" readonly [attr.disabled]="true">
+            <span matTextPrefix disabled>$&nbsp;</span>
+            <span matTextSuffix disable>.00</span>
+            <mat-error *ngIf="!valorPositivo">
+              El valor no puede ser negativo
+            </mat-error>
+          </mat-form-field>
+        </td>
+
+      </tr>
+    </table>
+
+    <table class="example-full-width" cellspacing="0">
+      <tr>
+        <td>
+          <div class="example-container">
+            <mat-form-field>
+              <mat-label>Ingresa el correo</mat-label>
+              <input matInput placeholder="pat@example.com" formControlName="Correo" required>
+              <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+          </div>
+
+        </td>
+        <td>
+          <div class="example-container">
+
+            <mat-form-field>
+              <mat-label>Ingresa una contrasena</mat-label>
+              <input matInput [type]="hide ? 'password' : 'text'" formControlName="Contrasena">
+              <button mat-icon-button matSuffix
+                      (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+        </td>
+        <td>
+          <div>
+            <mat-form-field class="example-form-field">
+              <mat-label>Num Regularizacion</mat-label>
+              <input matInput type="text" (input)="onNumberInput($event, 'numRegularizacion')" formControlName="numRegularizacion">
+            </mat-form-field>
+          </div>
+        </td>
+        <!--<mat-slide-toggle [(ngModel)]="isAgregarCM" formControlName="abrirCM">Desea agregarle una cuenta municipal?</mat-slide-toggle>-->
+        <!--<mat-slide-toggle formControlName="abrirCM">Ultima Reg?</mat-slide-toggle>-->
+        <td>
+          <div [formGroup]="getSecuenciaReg_ToggleForm">
+            <mat-slide-toggle (change)="onToggleChange($event.checked)" formControlName="obtenerSecuencia">Obtener Secuencia</mat-slide-toggle>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="example-button-row">
+           
+            <button mat-raised-button color="primary" [disabled]="!regularizacionForm.valid" (click)="edithRegularizacion()">Editar</button>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </form>
+
+</mat-dialog-content>
+<!--<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button>
+</mat-dialog-actions>-->

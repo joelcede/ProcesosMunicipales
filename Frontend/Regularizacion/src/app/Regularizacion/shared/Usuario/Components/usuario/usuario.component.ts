@@ -17,6 +17,7 @@ import { TipoUsuario } from '../../Enums/TipoUsuario';
 import { ICuentaMunicipal } from '../../Models/ICuentaMunicipal';
 import { Subscription } from 'rxjs';
 import { SharedService } from '../../../Servives/shared.service';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-usuario',
@@ -25,14 +26,16 @@ import { SharedService } from '../../../Servives/shared.service';
   standalone: true,
   imports: [MatButtonModule, MatDialogModule, MatFormFieldModule, ReactiveFormsModule,
     NgIf, NgFor, MatIconModule, MatInputModule, MatToolbarModule, MatSlideToggleModule, FormsModule, MatSelectModule,
-    ],
+    ToastrModule],
 })
 export class UsuarioComponent implements OnInit, OnDestroy {
   @Input() esPropietario: boolean = false;
   @Input() noEsCliente: boolean = false;
   @Input() tipoUsuario: TipoUsuario = TipoUsuario.None;
 
-  constructor(private usuarioService: UsuarioService, private sharedService: SharedService) {
+  constructor(private usuarioService: UsuarioService,
+    private sharedService: SharedService,
+    private toastr: ToastrService) {
     this.getTop10Clients();
     
   }
@@ -64,9 +67,6 @@ export class UsuarioComponent implements OnInit, OnDestroy {
   toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
   hide = true;
 
-  //funciones creada por mi
-  //top10ClientesList: any[] = [];
-  //selected: any;
   private subscription!: Subscription;
   currentStep: number = 0;
 
@@ -146,15 +146,11 @@ export class UsuarioComponent implements OnInit, OnDestroy {
         telefonoConvencional: selectedCliente.telefonoConvencional
       });
     }
-    //this.selectedCliente = this.top10ClientesList.find(cliente => cliente.id === selectedId);
-    //console.log('Cliente seleccionado:', this.selectedCliente);
-    // Aquí puedes agregar lógica adicional para llenar otros campos
   }
 
   procesarGuardado(): void {
     this.accionAgregar();
     this.getTop10Clients();
-    //this.sharedService.triggerReload();
   }
 
   accionAgregar(): void {
@@ -205,7 +201,6 @@ export class UsuarioComponent implements OnInit, OnDestroy {
           nombres: cliente.nombres + ' ' + cliente.apellidos + ' ' + cliente.dni
         }));
         this.top10Clientes = response.slice(0, 10);
-        console.log("Clientes", response.slice(0, 10));
       },
       error: (error: HttpErrorResponse) => {
         console.log("Error al obtener los clientes", error);
@@ -222,19 +217,18 @@ export class UsuarioComponent implements OnInit, OnDestroy {
       next: (response: IUsuario) => {
         this.resetForm();
         //this.sharedService.updateTop10ClientesList(this.top10ClientesList);
-        console.log("Nuevo Cliente creado", response);
+        this.toastr.error('Cliente Guardado', 'Exito');
       },
       error: (error: HttpErrorResponse) => {
         if (error.error.errors) {
           const errorMessages = this.extractErrorMessages(error.error.errors);
           errorMessages.forEach(errMsg => {
+            this.toastr.error(errMsg, 'ERROR');
             //this.alert.open(`Error al guardar el Cliente:</strong><br> ${errMsg}`).subscribe();
           });
         } else {
           //this.alert.open(`Error al guardar el Cliente: ${error.message}`).subscribe();
         }
-        //this.alert.open(`Error al guardar el Cliente: ${error.error.errors.forear}`).subscribe();
-        console.log("Error al crear un cliente", error);
       }
     });
   }
@@ -242,12 +236,22 @@ export class UsuarioComponent implements OnInit, OnDestroy {
     const usuarioForm = this.usuarioF;
     this.usuarioService.addFamiliar(usuarioForm).subscribe({
       next: (response: IUsuario) => {
+        this.toastr.success('Familiar Guardado con exito', 'Exito');
         this.procesoCuentaMunicipal(response.id, response.esPrincipal);
-        console.log("Nuevo familiar creado", response);
+        
         //this.emitirEventoActualizado();
       },
-      error: (error: any) => {
-        console.log("Error al crear un familiar", error);
+      error: (error: HttpErrorResponse) => {
+        if (error.error.errors) {
+          const errorMessages = this.extractErrorMessages(error.error.errors);
+          errorMessages.forEach(errMsg => {
+            this.toastr.error(errMsg, 'ERROR');
+            //this.alert.open(`Error al guardar el Cliente:</strong><br> ${errMsg}`).subscribe();
+          });
+        } else {
+          //this.alert.open(`Error al guardar el Cliente: ${error.message}`).subscribe();
+        }
+        //console.log("Error al crear un familiar", error);
       }
     });
   }
@@ -259,13 +263,24 @@ export class UsuarioComponent implements OnInit, OnDestroy {
     const usuarioForm = this.usuarioF;
     this.usuarioService.addPropietario(usuarioForm).subscribe({
       next: (response: IUsuario) => {
-          this.procesoCuentaMunicipal(response.id, response.esPrincipal);
+        this.toastr.success('Se guardo correctamente el propietario', 'Exito');
+        this.procesoCuentaMunicipal(response.id, response.esPrincipal);
           
-        console.log("Nuevo propietario creado", response);
+        //console.log("Nuevo propietario creado", response);
         //this.emitirEventoActualizado();
       },
-      error: (error: any) => {
-        console.log("Error al crear un propietario", error);
+      error: (error: HttpErrorResponse) => {
+
+        if (error.error.errors) {
+          const errorMessages = this.extractErrorMessages(error.error.errors);
+          errorMessages.forEach(errMsg => {
+            this.toastr.error(errMsg, 'ERROR');
+            //this.alert.open(`Error al guardar el Cliente:</strong><br> ${errMsg}`).subscribe();
+          });
+        } else {
+          //this.alert.open(`Error al guardar el Cliente: ${error.message}`).subscribe();
+        }
+        //console.log("Error al crear un propietario", error);
       }
     });
   }
@@ -291,15 +306,24 @@ export class UsuarioComponent implements OnInit, OnDestroy {
     const cuentaMunicipalForm = this.cuentaMunicipalF;
     this.usuarioService.addCuentaMunicipal(cuentaMunicipalForm, this.tipoUsuario).subscribe({
       next: (response: any) => {
-        console.log("Nueva cuenta municipal creada", response);
         this.resetForm();
+        this.toastr.success('Cuenta Municipal Guardada', 'Exito');
       },
-      error: (error: any) => {
+      error: (error: HttpErrorResponse) => {
         if (this.tipoUsuario == TipoUsuario.Familiar)
           this.deletedFamiliar(cuentaMunicipalForm.idUsuario);
         else if (this.tipoUsuario == TipoUsuario.Propietario)
-          this.deletedPropietario(cuentaMunicipalForm.idUsuario); 
-        console.log("Error al crear una cuenta municipal", error);
+          this.deletedPropietario(cuentaMunicipalForm.idUsuario);
+
+        if (error.error.errors) {
+          const errorMessages = this.extractErrorMessages(error.error.errors);
+          errorMessages.forEach(errMsg => {
+            this.toastr.error(errMsg, 'ERROR');
+            //this.alert.open(`Error al guardar el Cliente:</strong><br> ${errMsg}`).subscribe();
+          });
+        } else {
+          //this.alert.open(`Error al guardar el Cliente: ${error.message}`).subscribe();
+        }
       }
     });
   }

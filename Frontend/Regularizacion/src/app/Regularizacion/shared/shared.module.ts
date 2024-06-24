@@ -19,11 +19,11 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { PdfFichaComponent } from './PDF/components/pdf-ficha/pdf-ficha.component';
 import { UsuarioComponent } from './Usuario/Components/usuario/usuario.component';
 import { ViviendaComponent } from './Vivienda/Components/vivienda/vivienda.component';
+import { NgxLoadingButtonsModule } from 'ngx-loading-buttons';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
-  
-    
   ],
   imports: [
     CommonModule,
@@ -43,6 +43,8 @@ import { ViviendaComponent } from './Vivienda/Components/vivienda/vivienda.compo
     HttpClientModule,
     ReactiveFormsModule,
     MatSnackBarModule,
+    NgxLoadingButtonsModule,
+    ToastrModule.forRoot(),
     UsuarioComponent,
     ViviendaComponent,
     PdfFichaComponent

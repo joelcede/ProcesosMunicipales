@@ -19,6 +19,7 @@ import { IViviendaUsuario } from '../../Models/IViviendaUsuario';
 import { Subscription } from 'rxjs';
 import { SharedService } from '../../../Servives/shared.service';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -28,17 +29,20 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
   standalone: true,
   imports: [MatButtonModule, MatDialogModule, MatFormFieldModule, MatSelectModule, ReactiveFormsModule,
     NgIf, NgFor, MatIconModule, MatInputModule, MatToolbarModule, TextFieldModule, MatDividerModule, FormsModule,
-    MatSnackBarModule],
+    MatSnackBarModule, ToastrModule],
 })
 export class ViviendaComponent implements OnInit, OnDestroy {
   //private reloadSubscription!: Subscription;
   constructor(private usuarioService: UsuarioService,
     private viviendaService: ViviendaService,
     private sharedService: SharedService,
-    private snackBar: MatSnackBar) {
+    private snackBar: MatSnackBar,
+    private toastr: ToastrService) {
     this.obtenerUltimos10Propietarios();
     this.obtenerUltimos10Familiares();
   }
+  textoImagen = 'Subir Imagen';
+
   ngOnInit(): void {
     this.subscription = this.sharedService.currentStep$.subscribe((step) => {
       this.currentStep = step;
@@ -56,12 +60,16 @@ export class ViviendaComponent implements OnInit, OnDestroy {
   codigoCastastral = new FormControl('', [Validators.required]);
   getErrorMessage() {
     if (this.codigoCastastral.hasError('required')) {
-      return 'Ingresa un correo';
+      return 'Ingresa un codigo Catastral';
     }
-
     return  '';
   }
-  
+  //getErrorMessageImage() {
+  //  if (this.codigoCastastral.hasError('required')) {
+  //    return 'Ingresa un codigo Catastral';
+  //  }
+  //  return '';
+  //}
   disableSelect = new FormControl(false);
   toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
   hide = true;
@@ -72,6 +80,7 @@ export class ViviendaComponent implements OnInit, OnDestroy {
     const reader = new FileReader();
     if (event.target.files && event.target.files.length) {
       const [file] = event.target.files;
+      let fileName = file.name;
       reader.readAsDataURL(file);
 
       reader.onload = (e: any) => {
@@ -82,6 +91,11 @@ export class ViviendaComponent implements OnInit, OnDestroy {
         this.snackBar.open('Imagen subida correctamente', 'Cerrar', {
           duration: 3000,
         });
+        if (fileName.length > 15) {
+          fileName = fileName.substring(0, 15) + '...';
+          this.textoImagen = fileName;
+        }
+        
       };
     
     }
@@ -135,8 +149,8 @@ export class ViviendaComponent implements OnInit, OnDestroy {
   top10Propietarios: { id: string, nombres: string, principal: boolean }[] = [];
   top10Familiares: { id: string, nombres: string }[] = [];
 
-  PropietarioControl = new FormControl([]);
-  FamiliarControl = new FormControl([]);
+  PropietarioControl = new FormControl([], [Validators.required]);
+  FamiliarControl = new FormControl([], [Validators.required]);
 
   TI_ViviendaUsuarioForm = new FormGroup({
     id: new FormControl('00000000-0000-0000-0000-000000000000'),
@@ -146,14 +160,17 @@ export class ViviendaComponent implements OnInit, OnDestroy {
 
   viviendaForm = new FormGroup({
     id: new FormControl('00000000-0000-0000-0000-000000000000'),
-    direccion: new FormControl(''),
+    direccion: new FormControl('', [Validators.required]),
     codigoCatastral: new FormControl(''),
     telefono: new FormControl(''),
     coordenadas: new FormControl(''),
     fechaCreacion: new FormControl(new Date()),
     fechaActualizacion: new FormControl(new Date()),
-    imagen: new FormControl('')
+    imagen: new FormControl('', [Validators.required])
   });
+  allFormsValid(): boolean {
+    return this.viviendaForm.valid && this.PropietarioControl.valid && this.FamiliarControl.valid;
+  }
   onNumberInput(event: Event, control: string, cant: number): void {
     const input = event.target as HTMLInputElement;
     let cleanedValue = input.value.replace(/\D/g, '');
@@ -176,9 +193,19 @@ export class ViviendaComponent implements OnInit, OnDestroy {
         const listFamiliares = this.listFamiliares(response.id);
         this.addFamiliarVivienda(listFamiliares);
         this.resetForm();
+        this.toastr.success('Vivienda Guardado', 'Exito');
       },
       error: (error: HttpErrorResponse) => {
-        console.log("Error al agregar la vivienda", error);
+        if (error.error.errors) {
+          const errorMessages = this.extractErrorMessages(error.error.errors);
+          errorMessages.forEach(errMsg => {
+            this.toastr.error(errMsg, 'ERROR');
+            //this.alert.open(`Error al guardar el Cliente:</strong><br> ${errMsg}`).subscribe();
+          });
+        } else {
+          //this.alert.open(`Error al guardar el Cliente: ${error.message}`).subscribe();
+        }
+        //console.log("Error al agregar la vivienda", error);
       }
     })
     console.log(this.viviendaForm.value);
@@ -207,7 +234,7 @@ export class ViviendaComponent implements OnInit, OnDestroy {
 
       this.viviendaService.addViviendaPropietario(propiedad).subscribe({
         next: (response: any) => {
-          console.log("Vivienda Usuario agregado", response);
+          //console.log("Vivienda Usuario agregado", response);
         },
         error: (error: HttpErrorResponse) => {
           console.log("Error al agregar la vivienda usuario", error);
@@ -241,10 +268,11 @@ export class ViviendaComponent implements OnInit, OnDestroy {
 
       this.viviendaService.addViviendaFamiliar(familiar).subscribe({
         next: (response: any) => {
-          console.log("Vivienda Usuario agregado", response);
+          //console.log("Vivienda Usuario agregado", response);
         },
         error: (error: HttpErrorResponse) => {
-          console.log("Error al agregar la vivienda usuario", error);
+
+          //console.log("Error al agregar la vivienda usuario", error);
         }
       })
 
@@ -324,5 +352,19 @@ export class ViviendaComponent implements OnInit, OnDestroy {
     return `${firstSelected?.nombres} (+${selected.length - 1} ${selected.length === 2 ? 'otro' : 'otros'})`;
 
   }
-
+  private extractErrorMessages(errors: any): string[] {
+    const errorMessages: string[] = [];
+    for (const key in errors) {
+      if (errors.hasOwnProperty(key)) {
+        if (Array.isArray(errors[key])) {
+          errors[key].forEach((errorMsg: string) => {
+            errorMessages.push(errorMsg);
+          });
+        } else {
+          errorMessages.push(errors[key]);
+        }
+      }
+    }
+    return errorMessages;
+  }
 }

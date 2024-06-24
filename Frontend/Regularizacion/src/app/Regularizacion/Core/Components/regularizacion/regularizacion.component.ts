@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TipoUsuario } from '../../../shared/Usuario/Enums/TipoUsuario';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
@@ -26,6 +26,7 @@ import { Subscription } from 'rxjs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ISecReg } from '../../Models/ISecReg';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-regularizacion',
@@ -37,13 +38,17 @@ import { ISecReg } from '../../Models/ISecReg';
     MatCardModule, MatSelectModule, ReactiveFormsModule,
     NgIf, NgFor, MatButtonModule, MatIconModule, MatDatepickerModule,
     MatNativeDateModule, MatDividerModule, MatDialogModule,
-    MatStepperModule, SharedModule, MatToolbarModule, MatSlideToggleModule
+    MatStepperModule, SharedModule, MatToolbarModule, MatSlideToggleModule,
+    ToastrModule
   ]
 })
 export class RegularizacionComponent implements OnInit, OnDestroy {
 
 
-  constructor(private viviendaService: ViviendaService, private regularizacion: RegularizacionService, private sharedService: SharedService) {
+  constructor(private viviendaService: ViviendaService,
+    private regularizacion: RegularizacionService,
+    private sharedService: SharedService,
+    private toastr: ToastrService) {
     this.getUltimasViviendas();
   }
 
@@ -105,10 +110,12 @@ export class RegularizacionComponent implements OnInit, OnDestroy {
 
     this.regularizacionForm.get('Anticipo')?.valueChanges.subscribe(() => {
       this.calcularValorPendiente();
+      this.nonNegativeNumberValidator();
     });
 
     this.regularizacionForm.get('valorRegularizacion')?.valueChanges.subscribe(() => {
       this.calcularValorPendiente();
+      this.nonNegativeNumberValidator();
     });
 
     this.subscription = this.sharedService.currentStep$.subscribe((step) => {
@@ -116,8 +123,8 @@ export class RegularizacionComponent implements OnInit, OnDestroy {
       if (this.currentStep == 4) {
         this.getUltimasViviendas();
       }
-
     });
+
   }
   ngOnDestroy(): void {
     if (this.subscription) {
@@ -161,23 +168,31 @@ export class RegularizacionComponent implements OnInit, OnDestroy {
 
   regularizacionForm = new FormGroup({
     id: new FormControl('00000000-0000-0000-0000-000000000000'),
-    idVivienda: new FormControl('00000000-0000-0000-0000-000000000000'),
+    idVivienda: new FormControl('', [Validators.required]),
     NumeroExpediente: new FormControl(''),
     valorRegularizacion: new FormControl('', [Validators.required]),
-    Anticipo: new FormControl(''),
-    ValorPendiente: new FormControl(''),
+    Anticipo: new FormControl('', [Validators.required]),
+    ValorPendiente: new FormControl('', [this.nonNegativeNumberValidator()]),
     Estado: new FormControl(EstadosType.None),
     FechaRegistro: new FormControl(new Date()),
     FechaInsercion: new FormControl(new Date()),
     FechaActualizacion: new FormControl(new Date()),
-    Correo: new FormControl('', [Validators.email]),
-    Contrasena: new FormControl(''),
+    Correo: new FormControl('', [Validators.email, Validators.required]),
+    Contrasena: new FormControl('', [Validators.required]),
     intentosSubidas: new FormControl(''),
     intentosSubsanacion: new FormControl(''),
     cantidadNegada: new FormControl(''),
-    numRegularizacion: new FormControl(''),
+    numRegularizacion: new FormControl('', [Validators.required]),
   });
-
+  nonNegativeNumberValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const value = control.value;
+      if (value !== null && value !== undefined && value < 0) {
+        return { nonNegative: true };
+      }
+      return null;
+    };
+  }
 
   get regularizacionF(): IRegularizacion {
     return this.regularizacionForm.value as unknown as IRegularizacion;
@@ -188,17 +203,31 @@ export class RegularizacionComponent implements OnInit, OnDestroy {
     this.regularizacion.addRegularizacion(viviendaForm).subscribe({
       next: (response: any) => {
         this.resetForm();
+        this.toastr.success('Regularizacion Guardada', 'Exito');
       },
       error: (error: HttpErrorResponse) => {
+        if (error.error.errors) {
+          const errorMessages = this.extractErrorMessages(error.error.errors);
+          errorMessages.forEach(errMsg => {
+            this.toastr.error(errMsg, 'ERROR');
+            //this.alert.open(`Error al guardar el Cliente:</strong><br> ${errMsg}`).subscribe();
+          });
+        } else {
+          //this.alert.open(`Error al guardar el Cliente: ${error.message}`).subscribe();
+        }
         console.log("Error al agregar la regularizacion", error);
       }
     });
   }
-
+  valorPositivo = true;
   calcularValorPendiente() {
     const valorRegularizacion = parseFloat(this.regularizacionForm.get('valorRegularizacion')?.value || '0');
     const anticipo = parseFloat(this.regularizacionForm.get('Anticipo')?.value || '0');
-    this.regularizacionForm.get('ValorPendiente')?.setValue((valorRegularizacion - anticipo).toString());
+    const valorPendiente = valorRegularizacion - anticipo;
+    this.regularizacionForm.get('ValorPendiente')?.setValue((valorPendiente).toString());
+
+    if (valorPendiente < 0) this.valorPositivo = false;
+    else this.valorPositivo = true;
   }
 
   resetForm() {
@@ -219,5 +248,20 @@ export class RegularizacionComponent implements OnInit, OnDestroy {
       intentosSubsanacion: '',
       cantidadNegada: ''
     });
+  }
+  private extractErrorMessages(errors: any): string[] {
+    const errorMessages: string[] = [];
+    for (const key in errors) {
+      if (errors.hasOwnProperty(key)) {
+        if (Array.isArray(errors[key])) {
+          errors[key].forEach((errorMsg: string) => {
+            errorMessages.push(errorMsg);
+          });
+        } else {
+          errorMessages.push(errors[key]);
+        }
+      }
+    }
+    return errorMessages;
   }
 }

@@ -1,2 +1,12 @@
-<button mat-raised-button color="primary" (click)="createPdf()">GENERAR FICHA</button>
-<button mat-raised-button color="primary" (click)="createPdf()">GENERAR FICHA</button>
+<table>
+  <tr>
+    <th>
+      <button mat-raised-button color="primary" (click)="createPdf()">GENERAR FICHA</button>
+    </th>
+    <th>
+      <button mat-raised-button color="primary" [class.spinner]="loading" [disabled]="loading" (click)="obtenerContrato()">GENERAR CONTRATO</button>
+    </th>
+  </tr>
+</table>
+
+

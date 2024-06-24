@@ -34,7 +34,7 @@
        [dataSource]="dataSource" multiTemplateDataRows>
   <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
     <th mat-header-cell *matHeaderCellDef> {{columnNames[column]}} </th>
-    <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+    <td mat-cell mat-row *matCellDef="let element"> {{element[column]}} </td>
   </ng-container>
   <ng-container matColumnDef="expand">
     <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
@@ -71,15 +71,16 @@
           <!--<span class="example-element-description-attribution"> -- Wikipedia </span>-->
           <table>
             <tr>
+              <app-pdf-ficha [regularizacion]="element"></app-pdf-ficha>
               <th class="example-full-width">
-                <button mat-raised-button color="primary">VER/EDITAR</button>
+                <button mat-raised-button color="primary" (click)="openDialogEdith(element.idRegularizacion)">VER/EDITAR</button>
               </th>
               <th class="example-full-width">
-                <button mat-raised-button color="warn">ELIMINAR</button>
+                <button mat-raised-button color="warn" (click)="openDialog('200ms', '200ms', element.idRegularizacion)">ELIMINAR</button>
               </th>
             </tr>
             <tr>
-              <th class="example-full-width">
+              <!--<th class="example-full-width">
                 <button mat-raised-button>
                   <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="picture_as_pdf" />
                   CONTRATO
@@ -90,8 +91,11 @@
                   <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="picture_as_pdf" />
                   FICHA
                 </button>
-              </th>
-              <app-pdf-ficha  [regularizacion]="element"  ></app-pdf-ficha>
+              </th>-->
+              <!--<th class="example-full-width">
+                <app-pdf-ficha [regularizacion]="element"></app-pdf-ficha>
+              </th>-->
+              
             </tr>
           </table>
         </div>

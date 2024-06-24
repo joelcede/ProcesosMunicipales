@@ -23,6 +23,9 @@ import { MatTabChangeEvent } from '@angular/material/tabs';
 import { PdfFichaComponent } from '../../../shared/PDF/components/pdf-ficha/pdf-ficha.component';
 import { IVivienda } from '../../../shared/Vivienda/Models/IVivienda';
 import { ViviendaService } from '../../../shared/Vivienda/Services/vivienda.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DeletedComponent } from '../deleted/deleted/deleted.component';
+import { EdithComponent } from '../edith/edith.component';
 
 
 const today = new Date();
@@ -44,7 +47,7 @@ const year = today.getFullYear();
   imports: [FormsModule, MatFormFieldModule, MatInputModule, MatCardModule, MatButtonModule,
     NgIf, NgFor, MatIconModule, MatInputModule, CommonModule, MatGridListModule,
     MatExpansionModule, MatPaginatorModule, MatTableModule, MatSelectModule, MatDatepickerModule,
-    MatNativeDateModule, ReactiveFormsModule, PdfFichaComponent]
+    MatNativeDateModule, ReactiveFormsModule, PdfFichaComponent, EdithComponent]
 })
 
 
@@ -54,7 +57,9 @@ export class ViewComponent implements OnInit, AfterViewInit {
   private subscription!: Subscription;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+
  
+
   selectedValue: string = '';
   selectedValueE: string = '';
   categoriaFiltros = [
@@ -83,9 +88,32 @@ export class ViewComponent implements OnInit, AfterViewInit {
   constructor(
     private sharedService: SharedService,
     private regularizacionService: RegularizacionService,
+    public dialog: MatDialog,
     ) {
     this.obtenerRegularizaciones();
   }
+  openDialogEdith(idReg: string) {
+    const dialogRef = this.dialog.open(EdithComponent, {
+      data: idReg
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string, data: string): void {
+    const dialogRef = this.dialog.open(DeletedComponent, {
+      width: '250px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+      data: data
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.obtenerRegularizaciones();
+    });
+  }
+
   CARDS: IRegularizacionesCard[] = [
     {
       idRegularizacion: '1',
@@ -315,8 +343,8 @@ export class ViewComponent implements OnInit, AfterViewInit {
 
   dataSource = new MatTableDataSource<IRegularizacionesCard>(this.regularizaciones);
   columnsToDisplay = [
-    'nombrePropietario', 'dni', 'codigoCatastral', 'estadoRegularizacion',
-     'celular', 'numRegularizacion', 'valorRegularizacion',
+    'nombrePropietario', 'dni', 'codigoCatastral', 'celular', 'valorRegularizacion',
+    'estadoRegularizacion', 'numRegularizacion'
     
   ];
   columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
@@ -408,8 +436,6 @@ export class ViewComponent implements OnInit, AfterViewInit {
     });
     //console.log("Obteniendo regularizaciones");
   }
-
-
 
   toggleRow(element: IRegularizacionesCard) {
     this.subscription = this.sharedService.tabChange$.subscribe(() => {

@@ -12,6 +12,8 @@ import { ISecReg } from '../Models/ISecReg';
 })
 export class RegularizacionService {
   private urlRegularizacion: string = `${getEnvironment(environment)}Regularizacion/`;
+  private urlGraficos: string = `${getEnvironment(environment)}Graficos/`
+    
   constructor(private http: HttpClient) { }
 
   /*  ############################## Regularizacion ##############################*/
@@ -42,5 +44,20 @@ export class RegularizacionService {
     const url = `${this.urlRegularizacion}GetSecuenciaReg`;
     return this.http.get<ISecReg>(url);
   }
+  getPdfContrato(id: string): Observable<string> {
+    const url = `${this.urlRegularizacion}GetContrato/${id}`;
+    return this.http.get<string>(url);
+  }
+  getGraficoMesesReg(): Observable<any> {
+    const url = `${this.urlGraficos}GetGraficaCantMes`;
+    return this.http.get(url);
+      
+  }
+  GetGananciaRegMes(): Observable<any> {
+    const url = `${this.urlGraficos}GetGananciaRegMes`;
+    return this.http.get(url);
+
+  }
+  
   /*  ############################## FIN Regularizacion ##############################*/
 }
