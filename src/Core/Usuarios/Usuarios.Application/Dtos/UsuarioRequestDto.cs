@@ -29,8 +29,7 @@ namespace Usuarios.Application.Dtos
         [RegularExpression("^[0-9]*$", ErrorMessage = "El DNI solo debe contener números.")]
         public string DNI { get; set; }
 
-        [Required(ErrorMessage = "El teléfono celular es requerido")]
-        [StringLength(10, MinimumLength =10, ErrorMessage ="El telefono celular debe de tener 10 digitos")]
+        [StringLength(10, MinimumLength =0, ErrorMessage ="El telefono celular debe de tener 10 digitos")]
         [RegularExpression("^[0-9]*$", ErrorMessage = "El Telefono Celular solo debe contener números.")]
         public string TelefonoCelular { get; set; }
         public bool esPrincipal { get; set; }

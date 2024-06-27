@@ -92,13 +92,12 @@ namespace Usuarios.Infrastructure.Repository
                 _logger.LogError(_clase, error);
                 throw new ArgumentNullException(nameof(usuario), error);
             }
-                
             var parameters = keyValuePairs(usuario, CrudType.Create, userType);
-            var response = await new Database(_connectionString).ExecuteScalarAsync<Usuario>(SP_USUARIO, parameters);
+            Usuario response = await new Database(_connectionString).ExecuteScalarAsync<Usuario>(SP_USUARIO, parameters);
 
-            //usuario.Id = (Guid)parameters["@IdUsuario"];
-            //var usuarioM = _viviendaMapper.CreateVivienda(usuario);
             _logger.LogFin(_clase);
+
+
             return response;
 
         }

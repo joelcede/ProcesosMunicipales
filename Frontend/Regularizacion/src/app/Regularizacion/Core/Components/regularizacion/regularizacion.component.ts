@@ -27,6 +27,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ISecReg } from '../../Models/ISecReg';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { MaskitoOptions } from '@maskito/core';
+import { MaskitoDirective } from '@maskito/angular';
 
 @Component({
   selector: 'app-regularizacion',
@@ -39,12 +41,14 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
     NgIf, NgFor, MatButtonModule, MatIconModule, MatDatepickerModule,
     MatNativeDateModule, MatDividerModule, MatDialogModule,
     MatStepperModule, SharedModule, MatToolbarModule, MatSlideToggleModule,
-    ToastrModule
+    ToastrModule, MaskitoDirective
   ]
 })
 export class RegularizacionComponent implements OnInit, OnDestroy {
 
-
+  readonly digitos10: MaskitoOptions = {
+    mask: [/\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/],
+  };
   constructor(private viviendaService: ViviendaService,
     private regularizacion: RegularizacionService,
     private sharedService: SharedService,

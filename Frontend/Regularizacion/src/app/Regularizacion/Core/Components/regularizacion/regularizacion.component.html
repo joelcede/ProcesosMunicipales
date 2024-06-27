@@ -13,7 +13,7 @@
       <td>
         <mat-form-field class="example-full-width">
           <mat-label>N. de expediente</mat-label>
-          <input matInput formControlName="NumeroExpediente" (input)="onNumberInput($event, 'NumeroExpediente')">
+          <input matInput formControlName="NumeroExpediente" [maskito]="digitos10">
         </mat-form-field>
       </td>
       <td>
@@ -82,6 +82,9 @@
           <mat-form-field>
             <mat-label>Ingresa una contrasena</mat-label>
             <input matInput [type]="hide ? 'password' : 'text'" formControlName="Contrasena">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
           </mat-form-field>
         </div>
       </td>

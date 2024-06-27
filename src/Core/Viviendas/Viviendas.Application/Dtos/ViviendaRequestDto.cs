@@ -18,7 +18,7 @@ namespace Viviendas.Application.Dtos
         [Required(ErrorMessage = "La Direccion es requerida")]
         public string Direccion { get; set; } = string.Empty;
 
-        [StringLength(25, MinimumLength = 15, ErrorMessage = "El Codigo Catastral debe de estar en el rango de 15 a 25 caracteres")]
+        [StringLength(25, MinimumLength = 14, ErrorMessage = "El Codigo Catastral debe de estar en el rango de 14 a 25 caracteres")]
         [Required(ErrorMessage = "El Codigo Catastral es requerido")]
         public string CodigoCatastral { get; set; } = string.Empty;
 

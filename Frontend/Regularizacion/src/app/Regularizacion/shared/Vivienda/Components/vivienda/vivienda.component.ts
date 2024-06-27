@@ -20,7 +20,8 @@ import { Subscription } from 'rxjs';
 import { SharedService } from '../../../Servives/shared.service';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
-
+import { MaskitoDirective } from '@maskito/angular';
+import { MaskitoOptions, MaskitoElementPredicate } from '@maskito/core';
 
 @Component({
   selector: 'app-vivienda',
@@ -29,7 +30,7 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
   standalone: true,
   imports: [MatButtonModule, MatDialogModule, MatFormFieldModule, MatSelectModule, ReactiveFormsModule,
     NgIf, NgFor, MatIconModule, MatInputModule, MatToolbarModule, TextFieldModule, MatDividerModule, FormsModule,
-    MatSnackBarModule, ToastrModule],
+    MatSnackBarModule, ToastrModule, MaskitoDirective],
 })
 export class ViviendaComponent implements OnInit, OnDestroy {
   //private reloadSubscription!: Subscription;
@@ -42,6 +43,7 @@ export class ViviendaComponent implements OnInit, OnDestroy {
     this.obtenerUltimos10Familiares();
   }
   textoImagen = 'Subir Imagen';
+  colorSubida = 'warn';
 
   ngOnInit(): void {
     this.subscription = this.sharedService.currentStep$.subscribe((step) => {
@@ -57,6 +59,9 @@ export class ViviendaComponent implements OnInit, OnDestroy {
       this.subscription.unsubscribe();
     }
   }
+  readonly digitos10: MaskitoOptions = {
+    mask: [/\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, '-', /\d/, '-', /\d/, '-', /\d/, '-', /\d/],
+  };
   codigoCastastral = new FormControl('', [Validators.required]);
   getErrorMessage() {
     if (this.codigoCastastral.hasError('required')) {
@@ -95,7 +100,7 @@ export class ViviendaComponent implements OnInit, OnDestroy {
           fileName = fileName.substring(0, 15) + '...';
           this.textoImagen = fileName;
         }
-        
+        this.colorSubida = 'primary';
       };
     
     }
@@ -150,7 +155,7 @@ export class ViviendaComponent implements OnInit, OnDestroy {
   top10Familiares: { id: string, nombres: string }[] = [];
 
   PropietarioControl = new FormControl([], [Validators.required]);
-  FamiliarControl = new FormControl([], [Validators.required]);
+  FamiliarControl = new FormControl([]);
 
   TI_ViviendaUsuarioForm = new FormGroup({
     id: new FormControl('00000000-0000-0000-0000-000000000000'),
@@ -169,7 +174,7 @@ export class ViviendaComponent implements OnInit, OnDestroy {
     imagen: new FormControl('', [Validators.required])
   });
   allFormsValid(): boolean {
-    return this.viviendaForm.valid && this.PropietarioControl.valid && this.FamiliarControl.valid;
+    return this.viviendaForm.valid && this.PropietarioControl.valid;
   }
   onNumberInput(event: Event, control: string, cant: number): void {
     const input = event.target as HTMLInputElement;

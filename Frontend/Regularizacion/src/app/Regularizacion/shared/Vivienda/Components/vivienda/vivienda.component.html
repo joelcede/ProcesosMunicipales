@@ -4,25 +4,16 @@
     <table class="example-full-width" cellspacing="0">
       <tr>
         <td>
-          <button type="button" mat-raised-button color="primary" (click)="fileInput.click()">
+          <button type="button" mat-raised-button color="{{colorSubida}}" (click)="fileInput.click()">
             <i class="material-icons">upload</i>
             {{textoImagen}}
           </button>
           <input hidden (change)="onFileSelected($event)" #fileInput type="file" id="file">
-          <!--<input #csvInput hidden="true" type="file" (change)="csvInputChange($event)" accept=".csv" />
-    <button mat-raised-button color="primary" >Choose Spreadsheet File (CSV)</button>
-
-    <input class="ng-hide" id="input-file-id" multiple type="file" />
-    <label for="input-file-id" class="md-button md-raised md-primary">Choose Files</label>-->
-
         </td>
       </tr>
       <tr>
  
         <td>
-          <!--<mat-form-field>
-      <mat-label>Propietarios</mat-label>
-    </mat-form-field>-->
 
           <mat-form-field>
             <mat-label>Propietarios</mat-label>
@@ -64,7 +55,7 @@
         <td>
           <mat-form-field class="example-full-width">
             <mat-label>CodigoCatastral</mat-label>
-            <input matInput formControlName="codigoCatastral" required (input)="onNumberInput($event, 'codigoCatastral', 15)">
+            <input matInput formControlName="codigoCatastral" required [maskito]="digitos10">
             <mat-error *ngIf="codigoCastastral.invalid">{{getErrorMessage()}}</mat-error>
           </mat-form-field>
         </td>

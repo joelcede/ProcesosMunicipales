@@ -18,6 +18,7 @@ import { ICuentaMunicipal } from '../../Models/ICuentaMunicipal';
 import { Subscription } from 'rxjs';
 import { SharedService } from '../../../Servives/shared.service';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { MaskitoDirective } from '@maskito/angular';
 
 @Component({
   selector: 'app-usuario',
@@ -26,7 +27,7 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
   standalone: true,
   imports: [MatButtonModule, MatDialogModule, MatFormFieldModule, ReactiveFormsModule,
     NgIf, NgFor, MatIconModule, MatInputModule, MatToolbarModule, MatSlideToggleModule, FormsModule, MatSelectModule,
-    ToastrModule],
+    ToastrModule, MaskitoDirective],
 })
 export class UsuarioComponent implements OnInit, OnDestroy {
   @Input() esPropietario: boolean = false;
@@ -45,7 +46,7 @@ export class UsuarioComponent implements OnInit, OnDestroy {
     nombres: new FormControl(''),
     apellidos: new FormControl(''),
     dni: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.maxLength(13)]),
-    telefonoCelular: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.maxLength(10)]),
+    telefonoCelular: new FormControl('', [, Validators.pattern('^[0-9]*$'), Validators.maxLength(10)]),
     telefonoConvencional: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.maxLength(15)]),
     esPrincipal: new FormControl(false, [Validators.required]),
     fechaCreacion: new FormControl(new Date()),
@@ -57,7 +58,7 @@ export class UsuarioComponent implements OnInit, OnDestroy {
   });
 
   readonly digitos10: MaskitoOptions = {
-    mask: [/\d/, /\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/],
+    mask: [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/],
   };
 
   isChecked = false;
