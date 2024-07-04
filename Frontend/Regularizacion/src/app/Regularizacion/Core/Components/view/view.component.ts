@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -9,7 +9,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { IRegularizacionesCard } from '../../Models/IRegularizacionesCard';
-import { CommonModule, NgFor, NgIf } from '@angular/common';
+import { CommonModule, DatePipe, NgFor, NgIf } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -26,6 +26,7 @@ import { ViviendaService } from '../../../shared/Vivienda/Services/vivienda.serv
 import { MatDialog } from '@angular/material/dialog';
 import { DeletedComponent } from '../deleted/deleted/deleted.component';
 import { EdithComponent } from '../edith/edith.component';
+import { NgxLoadingButtonsModule } from 'ngx-loading-buttons';
 
 
 const today = new Date();
@@ -33,9 +34,11 @@ const month = today.getMonth();
 const year = today.getFullYear();
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-view',
   templateUrl: './view.component.html',
   styleUrls: ['./view.component.css'],
+  providers: [DatePipe],
   animations: [
     trigger('detailExpand', [
       state('collapsed', style({ height: '0px', minHeight: '0' })),
@@ -47,7 +50,7 @@ const year = today.getFullYear();
   imports: [FormsModule, MatFormFieldModule, MatInputModule, MatCardModule, MatButtonModule,
     NgIf, NgFor, MatIconModule, MatInputModule, CommonModule, MatGridListModule,
     MatExpansionModule, MatPaginatorModule, MatTableModule, MatSelectModule, MatDatepickerModule,
-    MatNativeDateModule, ReactiveFormsModule, PdfFichaComponent, EdithComponent]
+    MatNativeDateModule, ReactiveFormsModule, PdfFichaComponent, EdithComponent, NgxLoadingButtonsModule]
 })
 
 
@@ -58,8 +61,31 @@ export class ViewComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
- 
+  loadingAll = false;
+  loadingAprob = false;
+  loadingPend = false;
+  loadingNeg = false;
+  loadingCorreo = false;
+  loadingFicha = false;
 
+  buttonColors: { [key: string]: string } = {
+    obtenerRegularizaciones: 'primary',
+    obtenerRegAprobadas: 'primary',
+    obtenerRegPendientes: 'primary',
+    obtenerRegNegadas: 'primary',
+    obtenerRegConCorreoErroneo: 'primary'
+  };
+  resetColors() {
+    for (let key in this.buttonColors) {
+      this.buttonColors[key] = 'primary';
+    }
+  }
+
+  cambiarColorFinal() {
+    for (let key in this.buttonColors) {
+      this.buttonColors[key] = key === 'obtenerRegConCorreoErroneo' ? 'warn' : 'primary';
+    }
+  }
   selectedValue: string = '';
   selectedValueE: string = '';
   categoriaFiltros = [
@@ -88,9 +114,9 @@ export class ViewComponent implements OnInit, AfterViewInit {
   constructor(
     private sharedService: SharedService,
     private regularizacionService: RegularizacionService,
-    public dialog: MatDialog,
+    public dialog: MatDialog, private cdr: ChangeDetectorRef
     ) {
-    this.obtenerRegularizaciones();
+    //this.obtenerRegularizaciones();
   }
   openDialogEdith(idReg: string) {
     const dialogRef = this.dialog.open(EdithComponent, {
@@ -98,7 +124,6 @@ export class ViewComponent implements OnInit, AfterViewInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
     });
   }
 
@@ -110,242 +135,15 @@ export class ViewComponent implements OnInit, AfterViewInit {
       data: data
     });
     dialogRef.afterClosed().subscribe(result => {
-      this.obtenerRegularizaciones();
+      //this.obtenerRegularizaciones();
     });
   }
-
-  CARDS: IRegularizacionesCard[] = [
-    {
-      idRegularizacion: '1',
-      idVivienda: '1',
-      nombreTramite: 'REGULARIZACION',
-      estadoRegularizacion: 'PENDIENTE',
-      numRegularizacion: 1,
-      valorRegularizacion: 1000,
-      imagenPrincipal: 'https://material.angular.io/assets/img/examples/shiba2.jpg', // Example base64 string
-      nombrePropietario: 'John Doe',
-      celular: '1234567890',
-      dni: '12345667890',
-      codigoCatastral: 'ABC123'
-    },
-    {
-      idRegularizacion: '1',
-      idVivienda: '1',
-      nombreTramite: 'REGULARIZACION',
-      estadoRegularizacion: 'TERMINADA - PAGO INCOMPLETO',
-      numRegularizacion: 2,
-      valorRegularizacion: 1000,
-      imagenPrincipal: 'https://material.angular.io/assets/img/examples/shiba2.jpg', // Example base64 string
-      nombrePropietario: 'John Doe',
-      celular: '1234567890',
-      dni: '12345667890',
-      codigoCatastral: 'ABC123'
-    },
-    {
-      idRegularizacion: '1',
-      idVivienda: '1',
-      nombreTramite: 'REGULARIZACION',
-      estadoRegularizacion: 'TERMINADA - PAGO INCOMPLETO',
-      numRegularizacion: 3,
-      valorRegularizacion: 1000,
-      imagenPrincipal: 'https://material.angular.io/assets/img/examples/shiba2.jpg', // Example base64 string
-      nombrePropietario: 'John Doe',
-      celular: '1234567890',
-      dni: '12345667890',
-      codigoCatastral: 'ABC123'
-    },
-    {
-      idRegularizacion: '1',
-      idVivienda: '1',
-      nombreTramite: 'REGULARIZACION',
-      estadoRegularizacion: 'TERMINADA - PAGO INCOMPLETO',
-      numRegularizacion: 4,
-      valorRegularizacion: 1000,
-      imagenPrincipal: 'https://material.angular.io/assets/img/examples/shiba2.jpg', // Example base64 string
-      nombrePropietario: 'John Doe',
-      celular: '1234567890',
-      dni: '12345667890',
-      codigoCatastral: 'ABC123'
-    },
-    {
-      idRegularizacion: '1',
-      idVivienda: '1',
-      nombreTramite: 'REGULARIZACION',
-      estadoRegularizacion: 'TERMINADA - PAGO INCOMPLETO',
-      numRegularizacion: 5,
-      valorRegularizacion: 1000,
-      imagenPrincipal: 'https://material.angular.io/assets/img/examples/shiba2.jpg', // Example base64 string
-      nombrePropietario: 'John Doe',
-      celular: '1234567890',
-      dni: '12345667890',
-      codigoCatastral: 'ABC123'
-    },
-    {
-      idRegularizacion: '1',
-      idVivienda: '1',
-      nombreTramite: 'REGULARIZACION',
-      estadoRegularizacion: 'TERMINADA - PAGO INCOMPLETO',
-      numRegularizacion: 6,
-      valorRegularizacion: 1000,
-      imagenPrincipal: 'https://material.angular.io/assets/img/examples/shiba2.jpg', // Example base64 string
-      nombrePropietario: 'John Doe',
-      celular: '1234567890',
-      dni: '12345667890',
-      codigoCatastral: 'ABC123'
-    },
-    {
-      idRegularizacion: '1',
-      idVivienda: '1',
-      nombreTramite: 'REGULARIZACION',
-      estadoRegularizacion: 'TERMINADA - PAGO INCOMPLETO',
-      numRegularizacion: 7,
-      valorRegularizacion: 1000,
-      imagenPrincipal: 'https://material.angular.io/assets/img/examples/shiba2.jpg', // Example base64 string
-      nombrePropietario: 'John Doe',
-      celular: '1234567890',
-      dni: '12345667890',
-      codigoCatastral: 'ABC123'
-    },
-    {
-      idRegularizacion: '1',
-      idVivienda: '1',
-      nombreTramite: 'REGULARIZACION',
-      estadoRegularizacion: 'TERMINADA - PAGO INCOMPLETO',
-      numRegularizacion: 8,
-      valorRegularizacion: 1000,
-      imagenPrincipal: 'https://material.angular.io/assets/img/examples/shiba2.jpg', // Example base64 string
-      nombrePropietario: 'John Doe',
-      celular: '1234567890',
-      dni: '12345667890',
-      codigoCatastral: 'ABC123'
-    },
-    {
-      idRegularizacion: '1',
-      idVivienda: '1',
-      nombreTramite: 'REGULARIZACION',
-      estadoRegularizacion: 'TERMINADA - PAGO INCOMPLETO',
-      numRegularizacion: 9,
-      valorRegularizacion: 1000,
-      imagenPrincipal: 'https://material.angular.io/assets/img/examples/shiba2.jpg', // Example base64 string
-      nombrePropietario: 'John Doe',
-      celular: '1234567890',
-      dni: '12345667890',
-      codigoCatastral: 'ABC123'
-    },
-    {
-      idRegularizacion: '1',
-      idVivienda: '1',
-      nombreTramite: 'Tramite 1',
-      estadoRegularizacion: 'Pendiente',
-      numRegularizacion: 10,
-      valorRegularizacion: 1000,
-      imagenPrincipal: 'https://material.angular.io/assets/img/examples/shiba2.jpg', // Example base64 string
-      nombrePropietario: 'John Doe',
-      celular: '1234567890',
-      dni: '12345667890',
-      codigoCatastral: 'ABC123'
-    },
-    {
-      idRegularizacion: '1',
-      idVivienda: '1',
-      nombreTramite: 'Tramite 1',
-      estadoRegularizacion: 'Pendiente',
-      numRegularizacion: 11,
-      valorRegularizacion: 1000,
-      imagenPrincipal: 'https://material.angular.io/assets/img/examples/shiba2.jpg', // Example base64 string
-      nombrePropietario: 'John Doe',
-      celular: '1234567890',
-      dni: '12345667890',
-      codigoCatastral: 'ABC123'
-    },
-    {
-      idRegularizacion: '1',
-      idVivienda: '1',
-      nombreTramite: 'Tramite 1',
-      estadoRegularizacion: 'Pendiente',
-      numRegularizacion: 12,
-      valorRegularizacion: 1000,
-      imagenPrincipal: 'https://material.angular.io/assets/img/examples/shiba2.jpg', // Example base64 string
-      nombrePropietario: 'John Doe',
-      celular: '1234567890',
-      dni: '12345667890',
-      codigoCatastral: 'ABC123'
-    },
-    {
-      idRegularizacion: '1',
-      idVivienda: '1',
-      nombreTramite: 'Tramite 1',
-      estadoRegularizacion: 'Pendiente',
-      numRegularizacion: 13,
-      valorRegularizacion: 1000,
-      imagenPrincipal: 'https://material.angular.io/assets/img/examples/shiba2.jpg', // Example base64 string
-      nombrePropietario: 'John Doe',
-      celular: '1234567890',
-      dni: '12345667890',
-      codigoCatastral: 'ABC123'
-    },
-    {
-      idRegularizacion: '1',
-      idVivienda: '1',
-      nombreTramite: 'Tramite 1',
-      estadoRegularizacion: 'Pendiente',
-      numRegularizacion: 14,
-      valorRegularizacion: 1000,
-      imagenPrincipal: 'https://material.angular.io/assets/img/examples/shiba2.jpg', // Example base64 string
-      nombrePropietario: 'John Doe',
-      celular: '1234567890',
-      dni: '12345667890',
-      codigoCatastral: 'ABC123'
-    },
-    {
-      idRegularizacion: '1',
-      idVivienda: '1',
-      nombreTramite: 'Tramite 1',
-      estadoRegularizacion: 'Pendiente',
-      numRegularizacion: 15,
-      valorRegularizacion: 1000,
-      imagenPrincipal: 'https://material.angular.io/assets/img/examples/shiba2.jpg', // Example base64 string
-      nombrePropietario: 'John Doe',
-      celular: '1234567890',
-      dni: '12345667890',
-      codigoCatastral: 'ABC123'
-    },
-    {
-      idRegularizacion: '1',
-      idVivienda: '1',
-      nombreTramite: 'Tramite 1',
-      estadoRegularizacion: 'Pendiente',
-      numRegularizacion: 16,
-      valorRegularizacion: 1000,
-      imagenPrincipal: 'https://material.angular.io/assets/img/examples/shiba2.jpg', // Example base64 string
-      nombrePropietario: 'John Doe',
-      celular: '1234567890',
-      dni: '12345667890',
-      codigoCatastral: 'ABC123'
-    },
-    {
-      idRegularizacion: '1',
-      idVivienda: '1',
-      nombreTramite: 'Regularizacion',
-      estadoRegularizacion: 'Pendiente',
-      numRegularizacion: 17,
-      valorRegularizacion: 1000,
-      imagenPrincipal: 'https://material.angular.io/assets/img/examples/shiba2.jpg', // Example base64 string
-      nombrePropietario: 'John Doe',
-      celular: '1234567890',
-      dni: '12345667890',
-      codigoCatastral: 'ABC123'
-    },
-    // Agrega más tarjetas aquí
-  ];
   regularizaciones: IRegularizacionesCard[] = []
   
 
   dataSource = new MatTableDataSource<IRegularizacionesCard>(this.regularizaciones);
   columnsToDisplay = [
-    'nombrePropietario', 'dni', 'codigoCatastral', 'celular', 'valorRegularizacion',
-    'estadoRegularizacion', 'numRegularizacion'
-    
+    'nombrePropietario', 'dni', 'codigoCatastral', 'celular', 'estadoRegularizacion', 'numRegularizacion'
   ];
   columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
   expandedElement: IRegularizacionesCard | null = null;
@@ -363,10 +161,8 @@ export class ViewComponent implements OnInit, AfterViewInit {
   };
   ngAfterViewInit() {
     if (this.paginator) {
-      console.log('Paginator:', this.paginator);
       this.dataSource.paginator = this.paginator;
     } else {
-      console.error('Paginator no está definido');
     }
   }
   onTabChange(event: MatTabChangeEvent) {
@@ -393,11 +189,10 @@ export class ViewComponent implements OnInit, AfterViewInit {
     this.subscription = this.sharedService.selectedTabIndex$.subscribe(index => {
       this.selectedTabIndex = index;
 
-      this.obtenerRegularizaciones();
+      //this.obtenerRegularizaciones();
       //this.items = Array.from({ length: 100 }, (_, i) => i + 1);
       this.loadMoreItems();
       
-      console.log("regularizaciones obtenidas desde la instancia: ", this.regularizaciones)
       //console.log("Estoy visualizando las regfularizaciones: ", this.selectedTabIndex);
     });
     this.subscription = this.sharedService.tabChange$.subscribe(() => {
@@ -409,7 +204,6 @@ export class ViewComponent implements OnInit, AfterViewInit {
     const endIndex = this.currentPage * this.itemsPerPage;
     this.displayedRegularizaciones = this.regularizaciones.slice(0, endIndex);
     this.currentPage++;
-    console.log('loadMoreItems:', this.displayedRegularizaciones);
   }
   ngOnDestroy(): void {
     if (this.subscription) {
@@ -418,6 +212,9 @@ export class ViewComponent implements OnInit, AfterViewInit {
   }
 
   obtenerRegularizaciones() {
+    this.resetColors();
+    this.buttonColors['obtenerRegularizaciones'] = 'accent';
+    this.loadingAll = true;
     this.regularizacionService.getAllRegularizaciones().subscribe({
       next: (response: IRegularizacionesCard[]) => {
         response.forEach((reg: IRegularizacionesCard) => reg.imagenPrincipal = `data:image/png;base64,${reg.imagenPrincipal}`);
@@ -427,21 +224,117 @@ export class ViewComponent implements OnInit, AfterViewInit {
         this.dataSource = new MatTableDataSource(response);
         this.dataSource.paginator = this.paginator;
         this.regularizaciones = response;
-        this.toggleRow(response[0]);
-        console.log("Regularizaciones obtenidas", response);
+        //this.toggleRow(response[0]);
       },
       error: (error: HttpErrorResponse) => {
-        console.log("Error al agregar la regularizacion", error);
+      },
+      complete: () => {
+        this.loadingAll = false;
       }
     });
     //console.log("Obteniendo regularizaciones");
   }
+  obtenerRegAprobadas() {
+    this.resetColors();
+    this.buttonColors['obtenerRegAprobadas'] = 'accent';
+    this.loadingAprob = true;
+    this.regularizacionService.getAllAprobadas().subscribe({
+      next: (response: IRegularizacionesCard[]) => {
+        response.forEach((reg: IRegularizacionesCard) => reg.imagenPrincipal = `data:image/png;base64,${reg.imagenPrincipal}`);
 
+        this.dataSource = new MatTableDataSource(response);
+        this.dataSource.paginator = this.paginator;
+        this.regularizaciones = response;
+        //this.toggleRow(response[0]);
+      },
+      error: (error: HttpErrorResponse) => {
+      },
+      complete: () => {
+        this.loadingAprob = false;
+      }
+    });
+  }
+  obtenerRegPendientes() {
+    this.resetColors();
+    this.buttonColors['obtenerRegPendientes'] = 'accent';
+    this.loadingPend = true;
+    this.regularizacionService.getAllPendientes().subscribe({
+      next: (response: IRegularizacionesCard[]) => {
+        response.forEach((reg: IRegularizacionesCard) => reg.imagenPrincipal = `data:image/png;base64,${reg.imagenPrincipal}`);
+
+        this.dataSource = new MatTableDataSource(response);
+        this.dataSource.paginator = this.paginator;
+        this.regularizaciones = response;
+        //this.toggleRow(response[0]);
+      },
+      error: (error: HttpErrorResponse) => {
+      },
+      complete: () => {
+        this.loadingPend = false;
+      }
+    });
+  }
+  obtenerRegNegadas() {
+    this.resetColors();
+    this.buttonColors['obtenerRegNegadas'] = 'accent';
+    this.loadingNeg = true;
+    this.regularizacionService.getAllNegadas().subscribe({
+      next: (response: IRegularizacionesCard[]) => {
+        response.forEach((reg: IRegularizacionesCard) => reg.imagenPrincipal = `data:image/png;base64,${reg.imagenPrincipal}`);
+
+        this.dataSource = new MatTableDataSource(response);
+        this.dataSource.paginator = this.paginator;
+        this.regularizaciones = response;
+        //this.toggleRow(response[0]);
+      },
+      error: (error: HttpErrorResponse) => {
+      },
+      complete: () => {
+        this.loadingNeg = false;
+      }
+    });
+  }
+  obtenerRegConCorreoErroneo() {
+    this.resetColors();
+    this.buttonColors['obtenerRegConCorreoErroneo'] = 'accent';
+    this.loadingCorreo = true;
+    this.regularizacionService.getAllCorreosIncorrectos().subscribe({
+      next: (response: IRegularizacionesCard[]) => {
+        response.forEach((reg: IRegularizacionesCard) => reg.imagenPrincipal = `data:image/png;base64,${reg.imagenPrincipal}`);
+
+        this.dataSource = new MatTableDataSource(response);
+        this.dataSource.paginator = this.paginator;
+        this.regularizaciones = response;
+        //this.toggleRow(response[0]);
+      },
+      error: (error: HttpErrorResponse) => {
+      },
+      complete: () => {
+        this.loadingCorreo = false;
+      }
+    });
+  }
   toggleRow(element: IRegularizacionesCard) {
     this.subscription = this.sharedService.tabChange$.subscribe(() => {
       /*this.expandedElement = null;*/
       this.expandedElement = this.expandedElement === element ? null : element;
     });
     //this.expandedElement = this.expandedElement === element ? null : element;
+  }
+  obtenerFichaExcel() {
+    this.loadingFicha = true;
+    this.regularizacionService.getFichaExcel().subscribe({
+      next: (response: string) => {
+        const nombreDoc = 'Ficha de Regularizaciones.xlsx';
+        const tipoDoc = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
+        this.regularizacionService.downloadFile(response, nombreDoc, tipoDoc);
+      },
+      error: (error: HttpErrorResponse) => {
+      },
+      complete: () => {
+        this.loadingFicha = false;
+        this.cdr.detectChanges();
+      }
+    });
   }
 }

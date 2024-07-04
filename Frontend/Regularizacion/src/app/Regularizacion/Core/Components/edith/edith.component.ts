@@ -16,6 +16,8 @@ import { ISecReg } from '../../Models/ISecReg';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ToastrService } from 'ngx-toastr';
 import { IRegularizacion } from '../../Models/IRegularizacion';
+import { MaskitoOptions } from '@maskito/core';
+import { MaskitoDirective } from '@maskito/angular';
 
 @Component({
   selector: 'app-edith',
@@ -25,7 +27,7 @@ import { IRegularizacion } from '../../Models/IRegularizacion';
   imports: [CommonModule, MatButtonModule, MatDialogModule, FormsModule, MatFormFieldModule, MatInputModule,
     MatSelectModule, ReactiveFormsModule,
     NgIf, NgFor, MatButtonModule, MatIconModule, MatDatepickerModule,
-    MatNativeDateModule, MatSlideToggleModule
+    MatNativeDateModule, MatSlideToggleModule, MaskitoDirective
   ],
 })
 export class EdithComponent implements OnInit {
@@ -50,6 +52,9 @@ export class EdithComponent implements OnInit {
       this.nonNegativeNumberValidator();
     });
   }
+  readonly digitos10: MaskitoOptions = {
+    mask: [/\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/],
+  };
   regularizacionForm = new FormGroup({
     id: new FormControl('00000000-0000-0000-0000-000000000000'),
     idVivienda: new FormControl('', [Validators.required]),

@@ -78,6 +78,6 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <!--<button mat-button mat-dialog-close>Cancel</button>-->
-  <button mat-raised-button [disabled]="!allFormsValid()"
+  <button mat-raised-button [class.spinner]="loading" [disabled]="!allFormsValid()"
           color="primary" [mat-dialog-close]="true" cdkFocusInitial (click)="addVivienda()">Guardar</button>
 </mat-dialog-actions>

@@ -1,0 +1,11 @@
+<mat-tab-group>
+  <mat-tab label="Clientes">
+    <app-usuarios [TipoUsuarioI]="tipoCliente"></app-usuarios>
+  </mat-tab>
+  <mat-tab label="Propietarios">
+    <app-usuarios [TipoUsuarioI]="tipoPropietario"></app-usuarios>
+  </mat-tab>
+  <mat-tab label="Familiares">
+    <app-usuarios [TipoUsuarioI]="tipoFamiliar"></app-usuarios>
+  </mat-tab>
+</mat-tab-group>

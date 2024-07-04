@@ -28,6 +28,30 @@ namespace Regularizacion.API.Controllers
             var Regularizacions = await _RegularizacionRepository.GetRegularizacionesAsync();
             return Ok(Regularizacions);
         }
+        [HttpGet("GetAprobadas", Name = "GetAprobadas")]
+        public async Task<IActionResult> GetAprobadas()
+        {
+            var Regularizacions = await _RegularizacionRepository.GetAprobadas();
+            return Ok(Regularizacions);
+        }
+        [HttpGet("GetPendientesRevision", Name = "GetPendientesRevision")]
+        public async Task<IActionResult> GetPendientesRevision()
+        {
+            var Regularizacions = await _RegularizacionRepository.GetPendientes();
+            return Ok(Regularizacions);
+        }
+        [HttpGet("GetRegNegadas", Name = "GetRegNegadas")]
+        public async Task<IActionResult> GetRegNegadas()
+        {
+            var Regularizacions = await _RegularizacionRepository.GetNegadas();
+            return Ok(Regularizacions);
+        }
+        [HttpGet("GetCorreosIncorrectos", Name = "GetCorreosIncorrectos")]
+        public async Task<IActionResult> GetCorreosIncorrectos()
+        {
+            var Regularizacions = await _RegularizacionRepository.GetCorreosIncorrectos();
+            return Ok(Regularizacions);
+        }
 
         [HttpGet("GetRegularizacion/{id}", Name = "GetRegularizacion")]
         public async Task<IActionResult> GetRegularizacion(Guid id)
@@ -69,6 +93,11 @@ namespace Regularizacion.API.Controllers
         public async Task<byte[]> GetContrato(Guid idRegularizacion)
         {
             return await _RegularizacionRepository.GetContratoDefaultAsync(idRegularizacion);
+        }
+        [HttpGet("GetExcelFicha", Name = "GetExcelFicha")]
+        public async Task<byte[]> GetExcelFicha()
+        {
+            return await _RegularizacionRepository.GetExcelRegistro();
         }
     }
 }

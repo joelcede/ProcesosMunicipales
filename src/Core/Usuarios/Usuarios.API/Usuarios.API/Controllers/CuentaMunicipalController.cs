@@ -23,7 +23,7 @@ namespace Usuarios.API.Controllers
         }
         #region Cuenta Municipal
         [HttpPost("AddCuentaMunicipal/{usuario}", Name = "AddCuentaMunicipal")]
-        public async Task<CuentaMunicipalDomain> AddCuentaMunicipal(UsuarioType usuario, CuentaMunicipalDto cuentaMunicipal)
+        public async Task<CuentaMunicipalDomain> AddCuentaMunicipal([FromBody] CuentaMunicipalDto cuentaMunicipal, UsuarioType usuario)
         {
             return await _cuentaMunicipalRepository.AddCuentaMunicipalAsync(cuentaMunicipal, usuario);
         }

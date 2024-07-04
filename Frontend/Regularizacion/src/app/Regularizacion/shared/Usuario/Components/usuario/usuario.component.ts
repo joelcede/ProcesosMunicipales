@@ -19,6 +19,7 @@ import { Subscription } from 'rxjs';
 import { SharedService } from '../../../Servives/shared.service';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { MaskitoDirective } from '@maskito/angular';
+import { NgxLoadingButtonsModule } from 'ngx-loading-buttons';
 
 @Component({
   selector: 'app-usuario',
@@ -27,7 +28,7 @@ import { MaskitoDirective } from '@maskito/angular';
   standalone: true,
   imports: [MatButtonModule, MatDialogModule, MatFormFieldModule, ReactiveFormsModule,
     NgIf, NgFor, MatIconModule, MatInputModule, MatToolbarModule, MatSlideToggleModule, FormsModule, MatSelectModule,
-    ToastrModule, MaskitoDirective],
+    ToastrModule, MaskitoDirective, NgxLoadingButtonsModule],
 })
 export class UsuarioComponent implements OnInit, OnDestroy {
   @Input() esPropietario: boolean = false;
@@ -40,7 +41,7 @@ export class UsuarioComponent implements OnInit, OnDestroy {
     this.getTop10Clients();
     
   }
-
+  loading = false;
   UsuarioForm = new FormGroup({
     id: new FormControl('00000000-0000-0000-0000-000000000000'),
     nombres: new FormControl(''),
@@ -192,6 +193,7 @@ export class UsuarioComponent implements OnInit, OnDestroy {
       fechaCreacion: new Date(),
       fechaModificacion: new Date()
     })
+    this.loading = false;
   }
 
   getTop10Clients(): void {
@@ -213,14 +215,16 @@ export class UsuarioComponent implements OnInit, OnDestroy {
   }
 
   addCliente(): void {
+    this.loading = true;
     const usuarioForm = this.usuarioF;
     this.usuarioService.addCliente(usuarioForm).subscribe({
       next: (response: IUsuario) => {
         this.resetForm();
         //this.sharedService.updateTop10ClientesList(this.top10ClientesList);
-        this.toastr.error('Cliente Guardado', 'Exito');
+        this.toastr.success('Cliente Guardado', 'Exito');
       },
       error: (error: HttpErrorResponse) => {
+        this.loading = false;
         if (error.error.errors) {
           const errorMessages = this.extractErrorMessages(error.error.errors);
           errorMessages.forEach(errMsg => {
@@ -230,10 +234,15 @@ export class UsuarioComponent implements OnInit, OnDestroy {
         } else {
           //this.alert.open(`Error al guardar el Cliente: ${error.message}`).subscribe();
         }
+
+      },
+      complete: () => {
+        this.loading = false;
       }
     });
   }
   addFamiliar(): void {
+    this.loading = true;
     const usuarioForm = this.usuarioF;
     this.usuarioService.addFamiliar(usuarioForm).subscribe({
       next: (response: IUsuario) => {
@@ -243,6 +252,7 @@ export class UsuarioComponent implements OnInit, OnDestroy {
         //this.emitirEventoActualizado();
       },
       error: (error: HttpErrorResponse) => {
+        this.loading = false;
         if (error.error.errors) {
           const errorMessages = this.extractErrorMessages(error.error.errors);
           errorMessages.forEach(errMsg => {
@@ -253,6 +263,9 @@ export class UsuarioComponent implements OnInit, OnDestroy {
           //this.alert.open(`Error al guardar el Cliente: ${error.message}`).subscribe();
         }
         //console.log("Error al crear un familiar", error);
+      },
+      complete: () => {
+        this.loading = false;
       }
     });
   }
@@ -261,6 +274,7 @@ export class UsuarioComponent implements OnInit, OnDestroy {
 
 
   addPropietario(): void {
+    this.loading = true;
     const usuarioForm = this.usuarioF;
     this.usuarioService.addPropietario(usuarioForm).subscribe({
       next: (response: IUsuario) => {
@@ -271,7 +285,7 @@ export class UsuarioComponent implements OnInit, OnDestroy {
         //this.emitirEventoActualizado();
       },
       error: (error: HttpErrorResponse) => {
-
+        this.loading = false;
         if (error.error.errors) {
           const errorMessages = this.extractErrorMessages(error.error.errors);
           errorMessages.forEach(errMsg => {
@@ -282,6 +296,9 @@ export class UsuarioComponent implements OnInit, OnDestroy {
           //this.alert.open(`Error al guardar el Cliente: ${error.message}`).subscribe();
         }
         //console.log("Error al crear un propietario", error);
+      },
+      complete: () => {
+        this.loading = false;
       }
     });
   }
@@ -311,6 +328,7 @@ export class UsuarioComponent implements OnInit, OnDestroy {
         this.toastr.success('Cuenta Municipal Guardada', 'Exito');
       },
       error: (error: HttpErrorResponse) => {
+        this.loading = false;
         if (this.tipoUsuario == TipoUsuario.Familiar)
           this.deletedFamiliar(cuentaMunicipalForm.idUsuario);
         else if (this.tipoUsuario == TipoUsuario.Propietario)
@@ -325,6 +343,9 @@ export class UsuarioComponent implements OnInit, OnDestroy {
         } else {
           //this.alert.open(`Error al guardar el Cliente: ${error.message}`).subscribe();
         }
+      },
+      complete: () => {
+        this.loading = false;
       }
     });
   }

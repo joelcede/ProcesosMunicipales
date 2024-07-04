@@ -15,6 +15,11 @@ namespace Regularizacion.Domain.Enums
         Update = 4,
         Delete = 5,
         GetCountAll = 6,
+        GetAprobadas = 7,
+        GetPendientes = 8,
+        GetNegadas = 9,
+        GetCorreosErroneos = 10,
+        GetFichaExcel = 11,
         GetDataContrato = 1000
     }
 }

@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Eliminar {{getUsuarioString()}}</h1>
+<div mat-dialog-content>
+  Deseas eliminar al {{getUsuarioString()}} {{data.Usuario.nombres}} {{data.Usuario.apellidos}} con el DNI: {{data.Usuario.dni}}
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>No</button>
+  <button mat-button mat-dialog-close cdkFocusInitial color="warn" (click)="deleteUsuario()">Eliminar</button>
+</div>

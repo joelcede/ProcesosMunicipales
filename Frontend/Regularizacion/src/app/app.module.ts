@@ -8,17 +8,22 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './Regularizacion/Core/core.module';
 import { SharedModule } from './Regularizacion/shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ViviendaModule } from './Viviendas/vivienda/vivienda.module';
+import { UsuarioModule } from './Usuarios/usuario/usuario.module';
+import { UsuariocmvComponent } from './Usuarios/Components/usuariocmv/usuariocmv.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     CoreModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ViviendaModule,
+    UsuarioModule
   ],
   providers: [],
   bootstrap: [AppComponent]

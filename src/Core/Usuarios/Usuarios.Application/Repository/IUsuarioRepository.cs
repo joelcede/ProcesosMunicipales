@@ -16,5 +16,6 @@ namespace Usuarios.Application.Repository
         Task<Usuario> AddUsuarioAsync(UsuarioRequestDto usuario, UsuarioType userType);
         Task UpdateUsuarioAsync(Guid identity, Usuario usuario, UsuarioType userType);
         Task DeleteUsuarioAsync(Guid id, UsuarioType userType);
+        Task DeleteUsuarioTI_CMAsync(Guid id, UsuarioType userType);
     }
 }

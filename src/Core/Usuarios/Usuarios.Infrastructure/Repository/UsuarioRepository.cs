@@ -13,6 +13,7 @@ using Usuarios.Application.Repository;
 using Usuarios.Domain.Entities;
 using Usuarios.Domain.Enums;
 using Usuarios.Domain.Interfaces;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Usuarios.Infrastructure.Repository
 {
@@ -139,6 +140,30 @@ namespace Usuarios.Infrastructure.Repository
             _logger.LogInicio(_clase);
             usuario.Id = id;
             var parameters = keyValuePairs(usuario, CrudType.Update, userType);
+            await new Database(_connectionString).ExecuteNonQueryAsync(SP_USUARIO, parameters);
+            _logger.LogFin(_clase);
+        }
+        public Dictionary<string, object> keyValueDeletePairs(Guid idUsuario, CrudType operacion = CrudType.None, UsuarioType userType = UsuarioType.None)
+        {
+            var parameters = new Dictionary<string, object>();
+
+            if (operacion != CrudType.None)
+                parameters.Add("@Trx", (int)operacion);
+
+            if (userType != UsuarioType.None)
+                parameters.Add("@TipoUsuario", (int)userType);
+
+            if (idUsuario != Guid.Empty)
+                parameters.Add("@IdUsuario", idUsuario);
+            else
+                throw new ArgumentException("Ingrese el Id del Usuario");
+
+            return parameters;
+        }
+        public async Task DeleteUsuarioTI_CMAsync(Guid id, UsuarioType userType)
+        {
+            _logger.LogInicio(_clase);
+            var parameters = keyValueDeletePairs(id, CrudType.DeleteAll, userType);
             await new Database(_connectionString).ExecuteNonQueryAsync(SP_USUARIO, parameters);
             _logger.LogFin(_clase);
         }

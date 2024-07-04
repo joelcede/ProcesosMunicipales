@@ -149,6 +149,27 @@ namespace Viviendas.Infrastructure.Repository
             _logger.LogFin(_clase);
             return viviendaR;
         }
+        public Dictionary<string, object> keyValuePairsDelete(Guid idVivienda, IntermediatTableType tabla = IntermediatTableType.None)
+        {
+            var parameters = new Dictionary<string, object>();
+
+            if (tabla != IntermediatTableType.None)
+                parameters.Add("@Tabla", (int)tabla);
+
+            if (idVivienda != Guid.Empty)
+                parameters.Add("@IdVivienda", idVivienda);
+            else
+                throw new ArgumentNullException(nameof(idVivienda), "El Id de la vivienda no puede ser nulo.");
+
+            return parameters;
+        }
+        public async Task DeleteViviendaIT(Guid idVivienda)
+        {
+            _logger.LogInicio(_clase);
+            var parameters = keyValuePairsDelete(idVivienda, IntermediatTableType.S_DeleteViviendaIT);
+            await new Database(_connectionString).ExecuteReaderAsync<ViviendaFamProp>(SP_VIVIENDA_INTERMEDIATE, parameters);
+            _logger.LogFin(_clase);
+        }
     }
 }
   

@@ -16,5 +16,6 @@ namespace Viviendas.Domain.Enums
         S_ViviendaPropietario = 5,
         S_ViviendaImagen = 6,
         S_iviendaUsuarios = 7,
+        S_DeleteViviendaIT = 8
     }
 }

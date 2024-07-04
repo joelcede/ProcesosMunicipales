@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input } from '@angular/core';
 declare module 'pdfmake/build/pdfmake';
 import * as pdfMake from 'pdfmake/build/pdfmake';
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
@@ -24,13 +24,13 @@ import { NgxLoadingButtonsModule } from 'ngx-loading-buttons';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-pdf-ficha',
   templateUrl: './pdf-ficha.component.html',
   styleUrls: ['./pdf-ficha.component.css'],
   standalone: true,
   imports: [MatButtonModule, NgxLoadingButtonsModule],
   providers: [DatePipe]
-
 })
 
 export class PdfFichaComponent {
@@ -50,31 +50,34 @@ export class PdfFichaComponent {
   regularizacionLocal: IRegularizacion;
 
   loading = false;
+  loadingFicha = false;
   usrFamiliar: TipoUsuario = TipoUsuario.Familiar;
   usrPropietario: TipoUsuario = TipoUsuario.Propietario;
   userPropietario: IUsuarioCM[] = [];
   //const styles = this.estilos();
   constructor(private viviendaService: ViviendaService, private usuarioService: UsuarioService,
-    private regularizacionService: RegularizacionService, private datePipe: DatePipe) {
+    private regularizacionService: RegularizacionService, private datePipe: DatePipe,
+    private cdr: ChangeDetectorRef) {
   }
 
   createPdf() {
+    this.loadingFicha = true;
+    this.contentPdf = [];
     this.createTablesPDF(this.regularizacion).then(() => {
       const pdfDefinition: any = {
         content: [...this.contentPdf],
         styles: this.estilos()
       };
       const pdf = pdfMake.createPdf(pdfDefinition);
-      pdf.open();
+      const pdfUrl = URL.createObjectURL(new Blob([pdf], { type: 'application/pdf' }));
+      const pdfWindow = pdf.open();
+      pdfWindow.location.href = `${pdfUrl}#${new Date().getTime()}`;
+      this.loadingFicha = false;
     }).catch(error => {
+    }).finally(() => {
+      this.loadingFicha = false;
+      this.cdr.detectChanges();
     });
-    //this.createTablesPDF(this.regularizacion)
-    //const pdfDefinition: any = {
-    //  content: [...this.contentPdf]
-    //}
-    //console.log('pdfDefinition', pdfDefinition);
-    //const pdf = pdfMake.createPdf(pdfDefinition);
-    //pdf.open();
   }
 
   createCabezera(reg: IRegularizacion) {
@@ -100,21 +103,20 @@ export class PdfFichaComponent {
           headerRows: 1,
           widths: ['*'],
           body: [
-            [{ text: 'Datos de la Regularización', bold: true, style: 'header' }]
+            [{ text: 'Datos de la Regularización', fillColor: '#ffe3a3', bold: true, style: 'header' }]
           ]
         },
       },
       {
         table: {
           headerRows: 1,
-          widths: [70, '*', 70, '*'],
+          widths: [70, 170, 70, '*'],
 
           body: [
-
-            [{ text: 'Expediente', bold: true }, `${reg.numeroExpediente}`,
-              { text: 'Valor', bold: true }, `${reg.valorRegularizacion}`],
-            [{ text: 'Correo', bold: true }, `${reg.correo}`,
-              { text: 'Contrasena', bold: true }, `${reg.contrasena}`]
+            [{ text: 'Expediente', bold: true }, { text: `${reg.numeroExpediente}`, style: 'contentData'},
+              { text: 'Valor', bold: true }, { text: `${reg.valorRegularizacion}`, style: 'contentData' } ],
+            [{ text: 'Correo', bold: true }, { text: `${reg.correo}`, style: 'contentData' },
+              { text: 'Contrasena', bold: true }, { text: `${reg.contrasena}`, style: 'contentData'}]
           ]
         },
       },
@@ -128,7 +130,7 @@ export class PdfFichaComponent {
           headerRows: 1,
           widths: ['*'],
           body: [
-            [{ text: 'Informacion de la Vivienda', bold: true, style: 'header' }]
+            [{ text: 'Informacion de la Vivienda', fillColor: '#ffe3a3', bold: true, style: 'header' }]
           ]
         },
       },
@@ -137,10 +139,9 @@ export class PdfFichaComponent {
           headerRows: 1,
           widths: [150, '*'],
           body: [
-
-            [{ text: 'Ubicación', bold: true }, `${this.viviendas.direccion}`],
-            [{ text: 'Codigo Catastral', bold: true }, `${this.viviendas.codigoCatastral}`],
-            [{ text: 'Teléfono', bold: true }, `${this.viviendas.telefono}`],
+            [{ text: 'Ubicación', bold: true }, { text: `${this.viviendas.direccion}`, style: 'contentData' }],
+            [{ text: 'Codigo Catastral', bold: true }, { text: `${this.viviendas.codigoCatastral}`, style: 'contentData' }],
+            [{ text: 'Teléfono', bold: true }, { text: `${this.viviendas.telefono}`, style: 'contentData' }],
             [{ text: 'Foto', bold: true }, { image: `data:image/png;base64,${this.viviendas.imagen}`, width: 150, height: 150, alignment: 'center' }]
           ]
         },
@@ -163,37 +164,28 @@ export class PdfFichaComponent {
       this.obtenerCuentaMunicipalPropietario(usr.idUsuario);
 
       if (usr.propietarioPrincipal) {
+        //contentData
         body.push([
-          { text: 'Nombres', bold: true, fillColor: 'lightblue' }, { text: `${usr.nombres}`, fillColor: 'lightblue' },
-          { text: 'Apellidos', bold: true, fillColor: 'lightblue' }, { text: `${usr.apellidos}`, fillColor: 'lightblue' }]
+          { text: 'Nombres', bold: true, fillColor: 'lightblue' }, { text: `${usr.nombres}`, fillColor: 'lightblue', style: 'contentData' },
+          { text: 'Apellidos', bold: true, fillColor: 'lightblue' }, { text: `${usr.apellidos}`, fillColor: 'lightblue', style: 'contentData' }]
         );
         body.push([
-          { text: 'Cedula', bold: true, fillColor: 'lightblue' }, { text: `${usr.dni}`, fillColor: 'lightblue' },
-          { text: 'Celular', bold: true, fillColor: 'lightblue' }, { text: `${usr.telefonoCelular}`, fillColor: 'lightblue' }]
+          { text: 'Cedula', bold: true, fillColor: 'lightblue' }, { text: `${usr.dni}`, fillColor: 'lightblue', style: 'contentData' },
+          { text: 'Celular', bold: true, fillColor: 'lightblue' }, { text: `${usr.telefonoCelular}`, fillColor: 'lightblue', style: 'contentData' }]
         );
         if (usr.cuentaMunicipal != null && usr.cuentaMunicipal != undefined) {
           body.push([
-            { text: 'Cuenta Municipal', bold: true, fillColor: 'lightblue' }, { text: `${usr.cuentaMunicipal.cuentaMunicipal}`, fillColor: 'lightblue' },
-            { text: 'Clave Municipal', bold: true, fillColor: 'lightblue' }, { text: `${usr.cuentaMunicipal.contrasenaMunicipal}`, fillColor: 'lightblue' }]
+            { text: 'Cuenta Municipal', bold: true, fillColor: 'lightblue' }, { text: `${usr.cuentaMunicipal.cuentaMunicipal}`, fillColor: 'lightblue', style: 'contentData' },
+            { text: 'Clave Municipal', bold: true, fillColor: 'lightblue' }, { text: `${usr.cuentaMunicipal.contrasenaMunicipal}`, fillColor: 'lightblue', style: 'contentData' }]
           );
         }
       } else {
-        body.push([{ text: 'Nombres', bold: true }, `${usr.nombres}`, { text: 'Apellidos', bold: true }, `${usr.apellidos}`]);
-        body.push([{ text: 'Cedula', bold: true }, `${usr.dni}`, { text: 'Celular', bold: true }, `${usr.telefonoCelular}`]);
+        body.push([{ text: 'Nombres', bold: true }, { text: `${usr.nombres}`, style: 'contentData' }, { text: 'Apellidos', bold: true }, { text: `${usr.apellidos}`, style: 'contentData' }]);
+        body.push([{ text: 'Cedula', bold: true }, { text: `${usr.dni}`, style: 'contentData' }, { text: 'Celular', bold: true }, { text: `${usr.telefonoCelular}`, style: 'contentData' }]);
         if (usr.cuentaMunicipal != null && usr.cuentaMunicipal != undefined) {
-          body.push([{ text: 'Cuenta Municipal', bold: true }, `${usr.cuentaMunicipal.cuentaMunicipal}`, { text: 'Clave Municipal', bold: true }, `${usr.cuentaMunicipal.contrasenaMunicipal}`]);
+          body.push([{ text: 'Cuenta Municipal', bold: true }, { text: `${usr.cuentaMunicipal.cuentaMunicipal}`, style: 'contentData' }, { text: 'Clave Municipal', bold: true }, { text: `${usr.cuentaMunicipal.contrasenaMunicipal}`, style: 'contentData' }]);
         }
       }
-      //body.push([{ text: 'Nombres', bold: true }, `${usr.nombres}`, { text: 'Apellidos', bold: true }, `${usr.apellidos}`]);
-      //body.push([{ text: 'Cedula', bold: true }, `${usr.dni}`, { text: 'Celular', bold: true }, `${usr.telefonoCelular}`]);
-      //if (usr.cuentaMunicipal != null && usr.cuentaMunicipal != undefined) {
-      //  if (usr.propietarioPrincipal) {
-      //    body.push([{ text: 'Cuenta Municipal', bold: true, style: 'header' }, `${usr.cuentaMunicipal.cuentaMunicipal}`, { text: 'Clave Municipal', bold: true, style: 'header' }, `${usr.cuentaMunicipal.contrasenaMunicipal}`]);
-      //  } else {
-      //    body.push([{ text: 'Cuenta Municipal', bold: true }, `${usr.cuentaMunicipal.cuentaMunicipal}`, { text: 'Clave Municipal', bold: true }, `${usr.cuentaMunicipal.contrasenaMunicipal}`]);
-      //  }
-        
-      //}
     });
     if (vp.length > 0) {
       this.contentPdf.push(
@@ -202,7 +194,7 @@ export class PdfFichaComponent {
             headerRows: 1,
             widths: ['*'],
             body: [
-              [{ text: `${prop}`, bold: true, style: 'header' }]
+              [{ text: `${prop}`, fillColor: '#ffe3a3', bold: true, style: 'header' }]
             ]
           },
         },
@@ -232,10 +224,10 @@ export class PdfFichaComponent {
     vp.forEach((usr) => {
       this.obtenerCuentaMunicipalPropietario(usr.idUsuario);
       
-      body.push([{ text: 'Nombres', bold: true }, `${usr.nombres}`, { text: 'Apellidos', bold: true }, `${usr.apellidos}`]);
-      body.push([{ text: 'Cedula', bold: true }, `${usr.dni}`, { text: 'Celular', bold: true }, `${usr.telefonoCelular}`]);
+      body.push([{ text: 'Nombres', bold: true }, { text: `${usr.nombres}`, style: 'contentData' }, { text: 'Apellidos', bold: true }, { text: `${usr.apellidos}`, style: 'contentData' }]);
+      body.push([{ text: 'Cedula', bold: true }, { text: `${usr.dni}`, style: 'contentData' }, { text: 'Celular', bold: true }, { text: `${usr.telefonoCelular}`, style: 'contentData' }]);
       if (usr.cuentaMunicipal != null && usr.cuentaMunicipal != undefined) {
-        body.push([{ text: 'Cuenta Municipal', bold: true }, `${usr.cuentaMunicipal.cuentaMunicipal}`, { text: 'Clave Municipal', bold: true }, `${usr.cuentaMunicipal.contrasenaMunicipal}`]);
+        body.push([{ text: 'Cuenta Municipal', bold: true }, { text: `${usr.cuentaMunicipal.cuentaMunicipal}`, style: 'contentData' }, { text: 'Clave Municipal', bold: true }, { text: `${usr.cuentaMunicipal.contrasenaMunicipal}`, style: 'contentData' }]);
       }
     });
     if (vp.length > 0) {
@@ -246,7 +238,7 @@ export class PdfFichaComponent {
             widths: ['*'],
             body: [
               [{
-                text: `${prop}`, bold: true, style: 'header'
+                text: `${prop}`, fillColor: '#ffe3a3', bold: true, style: 'header'
               }]
             ]
           },
@@ -280,28 +272,26 @@ export class PdfFichaComponent {
         viviendaPropietario: this.obtenerViviendaPropietario(reg.idVivienda)
       }).subscribe({
         next: ({ vivienda, regularizacion }) => {
+          this.contentPdf = [];
           this.createCabezera(regularizacion);
           this.createTableRegularizacion(regularizacion);
           this.createTableVivienda(vivienda);
           this.createTablePropietarios();
-          if (this.viviendaFamiliar != null && this.viviendaFamiliar != undefined)
+          if (this.viviendaFamiliar != null && this.viviendaFamiliar != undefined) {
             this.createTableFamiliares();
+          }
+            
           resolve(); // Resuelve la promesa después de completar las tareas
+          console.log("Datos para PDF generados, resolviendo la promesa.");
         },
         error: (error: HttpErrorResponse) => {
           reject(error); // Rechaza la promesa en caso de error
+        },
+        complete: () => {
+          resolve();
         }
       });
     });
-    //this.obtenerVivienda(reg.idVivienda);
-    //this.obtenerVivivendaFamiliar(reg.idVivienda);
-    //this.obtenerViviendaPropietario(reg.idVivienda);
-
-    //this.createCabezera(reg);
-    //this.createTableRegularizacion(reg);
-    //this.createTableVivienda(this.vivienda);
-    //this.createTablePropietarios();
-    //this.createTableFamiliares();
   }
 
   obtenerRegularizacion(idRegularizacion: string): Observable<IRegularizacion> {
@@ -443,6 +433,9 @@ export class PdfFichaComponent {
       },
       principal: {
         background: 'lightblue'
+      },
+      contentData: {
+        fontSize: 10
       }
     }
   }
@@ -461,6 +454,7 @@ export class PdfFichaComponent {
       },
       complete: () => {
         this.loading = false;
+        this.cdr.detectChanges();
       }
     });
   }

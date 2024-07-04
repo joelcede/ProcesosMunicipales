@@ -19,5 +19,6 @@ namespace Viviendas.Application.Repository
         Task<ViviendaUsuarios> AddViviendaUsuarioAsync(ViviendaUsuarioDto vivienda, IntermediatTableType tabla);
         Task<IEnumerable<ViviendaFamProp>> GetViviendaUsuarioByIdAsync(Guid id, IntermediatTableType tabla);
         Task<IEnumerable<ViviendaFamProp>> GetViviendaPropFamByIdAsync(Guid id, IntermediatTableType tabla);
+        Task DeleteViviendaIT(Guid idVivienda);
     }
 }

@@ -107,7 +107,8 @@
     <tr>
       <td>
         <div class="example-button-row">
-          <button mat-raised-button color="primary" [disabled]="!regularizacionForm.valid" (click)="addRegularizacion()">Guardar</button>
+          <button mat-raised-button color="primary" [class.spinner]="loading"
+                  [disabled]="!regularizacionForm.valid || loading" (click)="addRegularizacion()">Guardar</button>
         </div>
       </td>
     </tr>

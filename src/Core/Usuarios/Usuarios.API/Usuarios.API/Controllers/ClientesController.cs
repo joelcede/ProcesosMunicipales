@@ -51,5 +51,10 @@ namespace Clientes.API.Controllers
         {
             await _clienteRepository.DeleteUsuarioAsync(id, _userType);
         }
+        [HttpDelete("DeleteUsuario/{id}/{usuario}", Name = "DeleteUsuario")]
+        public async Task DeleteUsuario(Guid id, UsuarioType usuario)
+        {
+            await _clienteRepository.DeleteUsuarioTI_CMAsync(id, usuario);
+        }
     }
 }

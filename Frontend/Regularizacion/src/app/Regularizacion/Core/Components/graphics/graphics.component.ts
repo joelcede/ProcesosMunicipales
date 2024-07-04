@@ -1,5 +1,5 @@
 import { CommonModule, NgFor } from '@angular/common';
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterContentChecked, AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Chart, ChartType } from 'chart.js/auto';
 import { RegularizacionService } from '../../Services/regularizacion.service';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -9,13 +9,14 @@ import { MatGridListModule } from '@angular/material/grid-list';
 
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-graphics',
   templateUrl: './graphics.component.html',
   styleUrls: ['./graphics.component.css'],
   standalone: true,
   imports: [CommonModule, MatGridListModule, NgFor],
 })
-export class GraphicsComponent implements OnInit, AfterViewInit {
+export class GraphicsComponent implements OnInit, AfterViewInit, AfterContentChecked {
 
   @ViewChild('canvas') canvas: ElementRef;
   @ViewChild('canvasGanancia') canvasGanancia: ElementRef;
@@ -35,7 +36,7 @@ export class GraphicsComponent implements OnInit, AfterViewInit {
   dataConfigurationGanancia: any = [];
 
   data: any;
-  constructor(private regService: RegularizacionService) {
+  constructor(private regService: RegularizacionService, private cdref: ChangeDetectorRef) {
     this.obtenerGraficos();
   }
 
@@ -63,6 +64,9 @@ export class GraphicsComponent implements OnInit, AfterViewInit {
         
       }
     ]
+  }
+  ngAfterContentChecked() {
+    this.cdref.detectChanges();
   }
   initializeCharts() {
     this.chart = new Chart('canvas', {

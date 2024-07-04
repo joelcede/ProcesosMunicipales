@@ -19,6 +19,8 @@ namespace Commons.EmailService
                 {
                     if (string.IsNullOrEmpty(email) && email.Contains("gmail"))
                         await client.ConnectAsync("imap.gmail.com", 993, SecureSocketOptions.SslOnConnect);
+                    else if(string.IsNullOrEmpty(email) && email.Contains("yahoo"))
+                        await client.ConnectAsync("imap.mail.yahoo.com", 993, SecureSocketOptions.SslOnConnect);
                     else
                         await client.ConnectAsync("outlook.office365.com", 993, SecureSocketOptions.SslOnConnect);
 
@@ -53,7 +55,7 @@ namespace Commons.EmailService
             }
             catch (Exception ex)
             {
-
+                throw new ApplicationException(ex.Message);
             }
             return correos;
         }

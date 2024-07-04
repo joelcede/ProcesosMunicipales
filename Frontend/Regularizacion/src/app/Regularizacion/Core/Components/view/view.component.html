@@ -8,22 +8,38 @@
             <input matInput (keyup)="applyFilter($event)">
           </mat-form-field>
         </td>
-        <!--<td>
-          <mat-form-field class="example-form-field">
-            <mat-label>Rango de Fechas</mat-label>
-            <mat-date-range-input [formGroup]="campaignOne"
-                                  [rangePicker]="campaignOnePicker">
-              <input matStartDate placeholder="Start date" formControlName="start">
-              <input matEndDate placeholder="End date" formControlName="end">
-            </mat-date-range-input>
-            <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
-            <mat-datepicker-toggle matIconSuffix [for]="campaignOnePicker"></mat-datepicker-toggle>
-            <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
-          </mat-form-field>
-        </td>
+      </tr>
+      <tr>
         <td>
-          <button mat-raised-button color="primary">Buscar</button>
-        </td>-->
+          <button class="papa" mat-raised-button
+                  [color]="buttonColors['obtenerRegularizaciones']"
+                  [class.spinner]="loadingAll" [disabled]="loadingAll"
+                  (click)="obtenerRegularizaciones()">OBTENER TODAS</button>
+
+          <button class="papa" mat-raised-button
+                  [color]="buttonColors['obtenerRegAprobadas']"
+                  [class.spinner]="loadingAprob" [disabled]="loadingAprob"
+                  (click)="obtenerRegAprobadas()">REG. APROBADAS</button>
+
+          <button class="papa" mat-raised-button 
+                  [color]="buttonColors['obtenerRegPendientes']"
+                  [class.spinner]="loadingPend" [disabled]="loadingPend"
+                  (click)="obtenerRegPendientes()">REG. PENDIENTES A SALIR</button>
+
+          <button class="papa" mat-raised-button
+                  [color]="buttonColors['obtenerRegNegadas']"
+                  [class.spinner]="loadingNeg" [disabled]="loadingNeg"
+                  (click)="obtenerRegNegadas()">REG. NEGADAS</button>
+
+          <button class="papa" mat-raised-button
+                  [color]="buttonColors['obtenerRegConCorreoErroneo']"
+                  [class.spinner]="loadingCorreo" [disabled]="loadingCorreo"
+                  (click)="obtenerRegConCorreoErroneo()">CORREOS ERRONEOS</button>
+
+          <button class="papa" mat-raised-button color="primary"
+                  [class.spinner]="loadingFicha" [disabled]="loadingFicha"
+                  (click)="obtenerFichaExcel()">GENERAR EXCEL</button>
+        </td>
       </tr>
     </table>
 
@@ -43,10 +59,6 @@
         <mat-icon *ngIf="expandedElement !== element">keyboard_arrow_down</mat-icon>
         <mat-icon *ngIf="expandedElement === element">keyboard_arrow_up</mat-icon>
       </button>
-      <!--<button mat-icon-button aria-label="expand row" (click)="(expandedElement = expandedElement === element ? null : element); $event.stopPropagation()">
-    <mat-icon *ngIf="expandedElement !== element">keyboard_arrow_down</mat-icon>
-    <mat-icon *ngIf="expandedElement === element">keyboard_arrow_up</mat-icon>
-  </button>-->
     </td>
   </ng-container>
 
@@ -58,7 +70,7 @@
         <div class="">
           <div class="example-element-weight"> {{element.EstadoRegularizacion}}</div>
           <div class="example-element-weight"> {{element.numRegularizacion}} </div>
-          <div class="example-element-weight"> {{element.ValorRegularizacion}}</div>
+          <!--<div class="example-element-weight"> {{element.ValorRegularizacion}}</div>-->
           <div class="example-element-weight"> {{element.NombrePropietario}} </div>
           <div class="example-element-weight"> {{element.DNI}} </div>
           <div class="example-element-weight"> {{element.Celular}} </div>

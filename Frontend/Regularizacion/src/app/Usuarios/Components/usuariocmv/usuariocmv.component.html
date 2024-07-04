@@ -1,0 +1,91 @@
+<h1 mat-dialog-title>Editar {{getUsuarioString()}}</h1>
+<div mat-dialog-content>
+  <form [formGroup]="UsuarioForm">
+    <table class="example-full-width" cellspacing="0">
+      <tr>
+        <td>
+          <mat-form-field class="example-full-width">
+            <mat-label>Nombres</mat-label>
+            <input matInput formControlName="nombres">
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="example-full-width">
+            <mat-label>Apellidos</mat-label>
+            <input matInput formControlName="apellidos">
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="example-full-width">
+            <mat-label>DNI</mat-label>
+            <input matInput type="text" class="example-right-align" formControlName="dni" [maskito]="digitos10">
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+    <table>
+      <tr>
+        <td>
+          <mat-form-field class="example-full-width">
+            <mat-label>Celular</mat-label>
+            <input matInput type="text" class="example-right-align" formControlName="telefonoCelular" [maskito]="digitos10">
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="example-full-width">
+            <mat-label>Telefono</mat-label>
+            <input matInput type="text" class="example-right-align" formControlName="telefonoConvencional" [maskito]="digitos10">
+          </mat-form-field>
+        </td>
+        <td>
+          <div *ngIf="data.TipoUsuario == tipoPropietario">
+            <!--[(ngModel)]="isChecked"-->
+            <mat-slide-toggle [(ngModel)]="isChecked" formControlName="esPrincipal">Es el Propietario Principal?</mat-slide-toggle>
+
+          </div>
+
+          <div *ngIf="data.TipoUsuario == tipoFamiliar || data.TipoUsuario == tipoPropietario && desactivarCuenta" [formGroup]="cm_ToggleForm">
+            <mat-slide-toggle [(ngModel)]="isAgregarCM" formControlName="abrirCM">Desea agregarle una cuenta municipal?</mat-slide-toggle>
+          </div>
+        </td>
+      </tr>
+      <tr *ngIf="(data.TipoUsuario == tipoFamiliar || data.TipoUsuario == tipoPropietario) && isAgregarCM" [formGroup]="cuentaMunicipalForm">
+        <td>
+          <mat-form-field class="example-full-width">
+            <mat-label>Usuario(Cedula)</mat-label>
+            <input matInput formControlName="cuentaMunicipal" type="text" class="example-right-align" [maskito]="digitos10">
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="example-full-width">
+            <mat-label>Contrasena</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName="contrasenaMunicipal">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+    <!--<table>
+      <tr>
+        <td>
+          <button type="button"
+                  [class.spinner]="loading"
+                  [disabled]="loading"
+                  mat-raised-button color="primary"
+                  (click)="updateUsuario()">Guardar</button>
+        </td>
+      </tr>
+    </table>-->
+  </form>
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>No</button>
+  <button mat-button color="warn"
+          [class.spinner]="loading"
+          [disabled]="loading"
+          mat-dialog-close cdkFocusInitial
+          (click)="updateUsuario()">Guardar</button>
+</div>

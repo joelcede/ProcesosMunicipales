@@ -28,9 +28,15 @@ import { DeletedComponent } from './Components/deleted/deleted/deleted.component
 import { ToastrModule } from 'ngx-toastr';
 import { GraphicsComponent } from './Components/graphics/graphics.component';
 import { EdithComponent } from './Components/edith/edith.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { NavbarComponent } from './Components/navbar/navbar.component';
+import { ViviendaModule } from '../../Viviendas/vivienda/vivienda.module';
+import { UsuarioModule } from '../../Usuarios/usuario/usuario.module';
 
 @NgModule({
   declarations: [
+  
   ],
   imports: [
     CommonModule,
@@ -52,6 +58,10 @@ import { EdithComponent } from './Components/edith/edith.component';
     MatSlideToggleModule,
     MatTableModule,
     MatNativeDateModule,
+    MatSidenavModule,
+    MatListModule,
+    ViviendaModule,
+    UsuarioModule,
     ToastrModule.forRoot(),
     DeletedComponent,
     //SharedModule,
@@ -60,7 +70,8 @@ import { EdithComponent } from './Components/edith/edith.component';
     RegisterComponent,
     RegularizacionComponent,
     GraphicsComponent,
-    EdithComponent
+    EdithComponent,
+    NavbarComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports: [
@@ -70,7 +81,8 @@ import { EdithComponent } from './Components/edith/edith.component';
     RegularizacionComponent,
     DeletedComponent,
     GraphicsComponent,
-    EdithComponent
+    EdithComponent,
+    NavbarComponent
   ]
 })
 export class CoreModule { }

@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { IRegularizacionesCard } from '../Models/IRegularizacionesCard';
 import { ISecReg } from '../Models/ISecReg';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -20,6 +21,22 @@ export class RegularizacionService {
 
   getAllRegularizaciones(): Observable<IRegularizacionesCard[]> {
     const url = `${this.urlRegularizacion}GetAllRegularizaciones`;
+    return this.http.get<IRegularizacionesCard[]>(url);
+  }
+  getAllAprobadas(): Observable<IRegularizacionesCard[]> {
+    const url = `${this.urlRegularizacion}GetAprobadas`;
+    return this.http.get<IRegularizacionesCard[]>(url);
+  }
+  getAllPendientes(): Observable<IRegularizacionesCard[]> {
+    const url = `${this.urlRegularizacion}GetPendientesRevision`;
+    return this.http.get<IRegularizacionesCard[]>(url);
+  }
+  getAllNegadas(): Observable<IRegularizacionesCard[]> {
+    const url = `${this.urlRegularizacion}GetRegNegadas`;
+    return this.http.get<IRegularizacionesCard[]>(url);
+  }
+  getAllCorreosIncorrectos(): Observable<IRegularizacionesCard[]> {
+    const url = `${this.urlRegularizacion}GetCorreosIncorrectos`;
     return this.http.get<IRegularizacionesCard[]>(url);
   }
   addRegularizacion(regularizacion: IRegularizacion): Observable<IRegularizacion> {
@@ -56,8 +73,29 @@ export class RegularizacionService {
   GetGananciaRegMes(): Observable<any> {
     const url = `${this.urlGraficos}GetGananciaRegMes`;
     return this.http.get(url);
-
   }
-  
+  getFichaExcel(): Observable<string> {
+    const url = `${this.urlRegularizacion}GetExcelFicha`;
+    return this.http.get<string>(url);
+  }
   /*  ############################## FIN Regularizacion ##############################*/
+
+  downloadFile(base64Data: string, fileName: string, fileType: string) {
+    const binaryString = window.atob(base64Data);
+    const binaryLen = binaryString.length;
+    const bytes = new Uint8Array(binaryLen);
+    for (let i = 0; i < binaryLen; i++) {
+      const ascii = binaryString.charCodeAt(i);
+      bytes[i] = ascii;
+    }
+    const blob = new Blob([bytes], { type: fileType });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = fileName;
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(url);
+    document.body.removeChild(a);
+  }
 }

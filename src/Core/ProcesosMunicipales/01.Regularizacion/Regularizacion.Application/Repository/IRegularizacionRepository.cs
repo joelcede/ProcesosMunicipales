@@ -24,5 +24,10 @@ namespace Regularizacion.Application.Repository
         Task UpdateRegularizacionAsync(RegularizacionDto regularizacion, Guid id);
         Task<NumRegDomain> ObtenerSecuenciaRegularizacion();
         Task<byte[]> GetContratoDefaultAsync(Guid idReg);
+        Task<IEnumerable<TarjetaRegularizacionDomain>> GetAprobadas();
+        Task<IEnumerable<TarjetaRegularizacionDomain>> GetPendientes();
+        Task<IEnumerable<TarjetaRegularizacionDomain>> GetNegadas();
+        Task<IEnumerable<TarjetaRegularizacionDomain>> GetCorreosIncorrectos();
+        Task<byte[]> GetExcelRegistro();
     }
 }

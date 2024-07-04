@@ -22,6 +22,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { MaskitoDirective } from '@maskito/angular';
 import { MaskitoOptions, MaskitoElementPredicate } from '@maskito/core';
+import { NgxLoadingButtonsModule } from 'ngx-loading-buttons';
 
 @Component({
   selector: 'app-vivienda',
@@ -30,7 +31,7 @@ import { MaskitoOptions, MaskitoElementPredicate } from '@maskito/core';
   standalone: true,
   imports: [MatButtonModule, MatDialogModule, MatFormFieldModule, MatSelectModule, ReactiveFormsModule,
     NgIf, NgFor, MatIconModule, MatInputModule, MatToolbarModule, TextFieldModule, MatDividerModule, FormsModule,
-    MatSnackBarModule, ToastrModule, MaskitoDirective],
+    MatSnackBarModule, ToastrModule, MaskitoDirective, NgxLoadingButtonsModule],
 })
 export class ViviendaComponent implements OnInit, OnDestroy {
   //private reloadSubscription!: Subscription;
@@ -44,7 +45,7 @@ export class ViviendaComponent implements OnInit, OnDestroy {
   }
   textoImagen = 'Subir Imagen';
   colorSubida = 'warn';
-
+  loading = false;
   ngOnInit(): void {
     this.subscription = this.sharedService.currentStep$.subscribe((step) => {
       this.currentStep = step;
@@ -134,16 +135,10 @@ export class ViviendaComponent implements OnInit, OnDestroy {
     });
     if (!selectPrincipal && !this.isPrincipalSelected) {
       this.isPrincipalSelected = false;
-      //this.selectedUserId = '';
     }
     else {
       this.isPrincipalSelected = true;
-      //this.selectedUserId = 'df';
     }
-    //if ((event.value == null || event.value.length == 0) && this.isPrincipalSelected) {
-    //  this.isPrincipalSelected = false;
-    //  this.selectedUserId = '';
-    //}
 
   }
   //metodos propios
@@ -174,7 +169,7 @@ export class ViviendaComponent implements OnInit, OnDestroy {
     imagen: new FormControl('', [Validators.required])
   });
   allFormsValid(): boolean {
-    return this.viviendaForm.valid && this.PropietarioControl.valid;
+    return this.viviendaForm.valid && this.PropietarioControl.valid || this.loading;
   }
   onNumberInput(event: Event, control: string, cant: number): void {
     const input = event.target as HTMLInputElement;
@@ -190,30 +185,41 @@ export class ViviendaComponent implements OnInit, OnDestroy {
 
 
   addVivienda(): void {
+    this.loading = true;
     const viviendaForm = this.viviendaF;
-    this.viviendaService.addVivienda(viviendaForm).subscribe({
-      next: (response: any) => {
-        const listPropietarios = this.listPropietarios(response.id);
-        this.addPropietarioVivienda(listPropietarios);
-        const listFamiliares = this.listFamiliares(response.id);
-        this.addFamiliarVivienda(listFamiliares);
-        this.resetForm();
-        this.toastr.success('Vivienda Guardado', 'Exito');
-      },
-      error: (error: HttpErrorResponse) => {
-        if (error.error.errors) {
-          const errorMessages = this.extractErrorMessages(error.error.errors);
-          errorMessages.forEach(errMsg => {
-            this.toastr.error(errMsg, 'ERROR');
-            //this.alert.open(`Error al guardar el Cliente:</strong><br> ${errMsg}`).subscribe();
-          });
-        } else {
-          //this.alert.open(`Error al guardar el Cliente: ${error.message}`).subscribe();
+    //if (this.PropietarioControl)
+    let tienePropPrinciopal = true;
+    this.PropietarioControl.value.forEach(x => {
+      if (this.top10Propietarios.filter(y => y.id == x) && this.top10Propietarios.filter(x => !x.principal))
+        tienePropPrinciopal = false;
+    });
+    if (tienePropPrinciopal) {
+      this.viviendaService.addVivienda(viviendaForm).subscribe({
+        next: (response: any) => {
+          const listPropietarios = this.listPropietarios(response.id);
+          this.addPropietarioVivienda(listPropietarios);
+          const listFamiliares = this.listFamiliares(response.id);
+          this.addFamiliarVivienda(listFamiliares);
+          this.resetForm();
+          this.toastr.success('Vivienda Guardado', 'Exito');
+        },
+        error: (error: HttpErrorResponse) => {
+          if (error.error.errors) {
+            const errorMessages = this.extractErrorMessages(error.error.errors);
+            errorMessages.forEach(errMsg => {
+              this.toastr.error(errMsg, 'ERROR');
+            });
+          } else {
+          }
+        },
+        complete: () => {
+          this.loading = false;
         }
-        //console.log("Error al agregar la vivienda", error);
-      }
-    })
-    console.log(this.viviendaForm.value);
+      })
+    }
+    else {
+      this.toastr.error('Debe agregar un propietario principal', 'ERROR');
+    }
   }
 
   listPropietarios(idVivienda: string): IViviendaUsuario[] {
@@ -239,10 +245,8 @@ export class ViviendaComponent implements OnInit, OnDestroy {
 
       this.viviendaService.addViviendaPropietario(propiedad).subscribe({
         next: (response: any) => {
-          //console.log("Vivienda Usuario agregado", response);
         },
         error: (error: HttpErrorResponse) => {
-          console.log("Error al agregar la vivienda usuario", error);
         }
       })
 
@@ -273,11 +277,9 @@ export class ViviendaComponent implements OnInit, OnDestroy {
 
       this.viviendaService.addViviendaFamiliar(familiar).subscribe({
         next: (response: any) => {
-          //console.log("Vivienda Usuario agregado", response);
         },
         error: (error: HttpErrorResponse) => {
 
-          //console.log("Error al agregar la vivienda usuario", error);
         }
       })
 
@@ -293,11 +295,8 @@ export class ViviendaComponent implements OnInit, OnDestroy {
           nombres: propietario.nombres + ' ' + propietario.apellidos,
           principal: propietario.esPrincipal
         }));
-        //this.top10Clientes = response.slice(0, 10);
-        console.log("Propietarios", response.slice(0, 10));
       },
       error: (error: HttpErrorResponse) => {
-        console.log("Error al obtener los clientes", error);
       }
     })
   }
@@ -309,11 +308,8 @@ export class ViviendaComponent implements OnInit, OnDestroy {
           id: familiar.id,
           nombres: familiar.nombres + ' ' + familiar.apellidos
         }));
-        //this.top10Clientes = response.slice(0, 10);
-        console.log("Familiares", response.slice(0, 10));
       },
       error: (error: HttpErrorResponse) => {
-        console.log("Error al obtener los clientes", error);
       }
     })
   }

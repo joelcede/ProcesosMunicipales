@@ -18,5 +18,8 @@
     <Folder Include="src\app\Regularizacion\shared\Vivienda\Components\" />
     <Folder Include="src\app\Regularizacion\shared\Vivienda\Enums\" />
     <Folder Include="src\app\Regularizacion\shared\Vivienda\Services\" />
+    <Folder Include="src\app\Usuarios\Services\" />
+    <Folder Include="src\app\Viviendas\Components\" />
+    <Folder Include="src\app\Viviendas\Services\" />
   </ItemGroup>
 </Project>

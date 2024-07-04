@@ -15,7 +15,7 @@
         <td>
           <mat-form-field class="example-full-width">
             <mat-label>N. de expediente</mat-label>
-            <input matInput formControlName="NumeroExpediente" (input)="onNumberInput($event, 'NumeroExpediente')">
+            <input matInput formControlName="NumeroExpediente" [maskito]="digitos10">
           </mat-form-field>
         </td>
         <td>
@@ -112,7 +112,7 @@
         <td>
           <div class="example-button-row">
            
-            <button mat-raised-button color="primary" [disabled]="!regularizacionForm.valid" (click)="edithRegularizacion()">Editar</button>
+            <button mat-raised-button color="primary" [disabled]="!regularizacionForm.valid" (click)="edithRegularizacion()">Guardar Cambios</button>
           </div>
         </td>
       </tr>

@@ -61,6 +61,7 @@ export class RegularizacionComponent implements OnInit, OnDestroy {
   tipoPropietario = TipoUsuario.Propietario;
   tipoFamiliar = TipoUsuario.Familiar;
 
+  loading = false;
   email = new FormControl('', [Validators.required, Validators.email]);
   toppings = new FormControl('');
   disableSelect = new FormControl(false);
@@ -145,11 +146,8 @@ export class RegularizacionComponent implements OnInit, OnDestroy {
           value: vivienda.codigoCatastral
           //nombres: familiar.nombres + ' ' + familiar.apellidos
         }));
-        //this.top10Clientes = response.slice(0, 10);
-        console.log("Familiares", response.slice(0, 10));
       },
       error: (error: HttpErrorResponse) => {
-        console.log("Error al obtener los clientes", error);
       }
     })
   }
@@ -203,6 +201,7 @@ export class RegularizacionComponent implements OnInit, OnDestroy {
   }
 
   addRegularizacion(): void {
+    this.loading = true;
     const viviendaForm = this.regularizacionF;
     this.regularizacion.addRegularizacion(viviendaForm).subscribe({
       next: (response: any) => {
@@ -220,6 +219,9 @@ export class RegularizacionComponent implements OnInit, OnDestroy {
           //this.alert.open(`Error al guardar el Cliente: ${error.message}`).subscribe();
         }
         console.log("Error al agregar la regularizacion", error);
+      },
+      complete: () => {
+        this.loading = false;
       }
     });
   }

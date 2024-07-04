@@ -103,13 +103,13 @@ namespace Service.Email.Infrastructure.Repository
         public async Task CambiarEstadoRegularizacion()
         {
             _logger.LogInicio(_clase);
+            await CambiarEstadoAprobado();
+            await CambiarEstadoAprobadoDeudor();
+            await CambiarEstadoTerminada();
             await CambiarEstadoEnEspera();
             await cambiarEstadoEnSubsanacion();
             await cambiarEstadoNegado();
             await CambiarEstadoVueltaASubir();
-            await CambiarEstadoAprobado();
-            await CambiarEstadoAprobadoDeudor();
-            await CambiarEstadoTerminada();
             _logger.LogFin(_clase);
         }
 
@@ -138,7 +138,7 @@ namespace Service.Email.Infrastructure.Repository
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message);
+                _logger.LogError($"REG:  {IdRegularizacion} - {ex.Message}");
                 var parametrosUpd = updateCredentialIncorect(6, IdRegularizacion);
                 await new Database(_connectionString).ExecuteNonQueryAsync(SP_SERVICE_CORREO, parametrosUpd);
             }
@@ -160,7 +160,7 @@ namespace Service.Email.Infrastructure.Repository
                 {
                     RevisarCorreo revisarCorreo = new RevisarCorreo();
                     IdRegularizacion = reg.Id;
-                    var correoObtenido = await revisarCorreo.obtenerCorreosEnProceso(reg.Correo, EncryptionHelper.DecryptString(reg.Contrasena), SolicitudIngresada);
+                    var correoObtenido = await revisarCorreo.obtenerCorreosEnProceso(reg.Correo, EncryptionHelper.DecryptString(reg.Contrasena), SolicitudSubsanacion);
 
                     if (correoObtenido.Count() > 0)
                     {
@@ -175,7 +175,7 @@ namespace Service.Email.Infrastructure.Repository
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message);
+                _logger.LogError($"REG:  {IdRegularizacion} - {ex.Message}");
                 var parametrosUpd = updateCredentialIncorect(6, IdRegularizacion);
                 await new Database(_connectionString).ExecuteNonQueryAsync(SP_SERVICE_CORREO, parametrosUpd);
             }
@@ -196,7 +196,7 @@ namespace Service.Email.Infrastructure.Repository
                 {
                     RevisarCorreo revisarCorreo = new RevisarCorreo();
                     IdRegularizacion = reg.Id;
-                    var correoObtenido = await revisarCorreo.obtenerCorreosEnProceso(reg.Correo, EncryptionHelper.DecryptString(reg.Contrasena), SolicitudIngresada);
+                    var correoObtenido = await revisarCorreo.obtenerCorreosEnProceso(reg.Correo, EncryptionHelper.DecryptString(reg.Contrasena), SolicitudNegada);
 
                     if (correoObtenido.Count() > 0)
                     {
@@ -211,7 +211,7 @@ namespace Service.Email.Infrastructure.Repository
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message);
+                _logger.LogError($"REG: {IdRegularizacion} - {ex.Message}");
                 var parametrosUpd = updateCredentialIncorect(6, IdRegularizacion);
                 await new Database(_connectionString).ExecuteNonQueryAsync(SP_SERVICE_CORREO, parametrosUpd);
             }
@@ -250,7 +250,7 @@ namespace Service.Email.Infrastructure.Repository
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message);
+                _logger.LogError($"REG: {IdRegularizacion} - {ex.Message}");
                 var parametrosUpd = updateCredentialIncorect(6, IdRegularizacion);
                 await new Database(_connectionString).ExecuteNonQueryAsync(SP_SERVICE_CORREO, parametrosUpd);
             }
@@ -283,7 +283,7 @@ namespace Service.Email.Infrastructure.Repository
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message);
+                _logger.LogError($"REG: {IdRegularizacion} - {ex.Message}");
                 var parametrosUpd = updateCredentialIncorect(6, IdRegularizacion);
                 await new Database(_connectionString).ExecuteNonQueryAsync(SP_SERVICE_CORREO, parametrosUpd);
             }

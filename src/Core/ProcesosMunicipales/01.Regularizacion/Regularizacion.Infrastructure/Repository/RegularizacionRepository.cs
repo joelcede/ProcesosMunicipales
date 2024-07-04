@@ -11,9 +11,11 @@ using Regularizacion.Domain.Interfaces;
 using Regularizacion.Infrastructure.Services;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Regularizacion.Application.Dtos.PlantillaRecord;
 
 namespace Regularizacion.Infrastructure.Repository
 {
@@ -214,5 +216,48 @@ namespace Regularizacion.Infrastructure.Repository
             _logger.LogFin(_clase);
             return pdf;
         }
+        public async Task<IEnumerable<TarjetaRegularizacionDomain>> GetAprobadas()
+        {
+            _logger.LogInicio(_clase);
+            var parameters = GetRs(CrudType.GetAprobadas);
+            var response = await new Database(_connectionString).ExecuteReaderAsync<TarjetaRegularizacionDomain>(SP_REGULARIZACION, parameters);
+            _logger.LogFin(_clase);
+            return response;
+        }
+        public async Task<IEnumerable<TarjetaRegularizacionDomain>> GetPendientes()
+        {
+            _logger.LogInicio(_clase);
+            var parameters = GetRs(CrudType.GetPendientes);
+            var response = await new Database(_connectionString).ExecuteReaderAsync<TarjetaRegularizacionDomain>(SP_REGULARIZACION, parameters);
+            _logger.LogFin(_clase);
+            return response;
+        }
+        public async Task<IEnumerable<TarjetaRegularizacionDomain>> GetNegadas()
+        {
+            _logger.LogInicio(_clase);
+            var parameters = GetRs(CrudType.GetNegadas);
+            var response = await new Database(_connectionString).ExecuteReaderAsync<TarjetaRegularizacionDomain>(SP_REGULARIZACION, parameters);
+            _logger.LogFin(_clase);
+            return response;
+        }
+        public async Task<IEnumerable<TarjetaRegularizacionDomain>> GetCorreosIncorrectos()
+        {
+            _logger.LogInicio(_clase);
+            var parameters = GetRs(CrudType.GetCorreosErroneos);
+            var response = await new Database(_connectionString).ExecuteReaderAsync<TarjetaRegularizacionDomain>(SP_REGULARIZACION, parameters);
+            _logger.LogFin(_clase);
+            return response;
+        }
+        public async Task<byte[]> GetExcelRegistro()
+        {
+            _logger.LogInicio(_clase);
+            var parameters = GetRs(CrudType.GetFichaExcel);
+            var response = await new Database(_connectionString).ExecuteReaderAsync<PlantillaExcel>(SP_REGULARIZACION, parameters);
+            var bytes = ExcelService.generatedFicha(response);
+            _logger.LogFin(_clase);
+            return bytes;
+            //return response;
+        }
+
     }
 }

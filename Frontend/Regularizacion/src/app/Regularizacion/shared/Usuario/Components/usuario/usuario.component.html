@@ -77,7 +77,9 @@
   <table>
     <tr>
       <td>
-        <button type="button" mat-raised-button color="primary" (click)="procesarGuardado()">Guardar</button>
+        <button type="button"
+                [class.spinner]="loading"
+                [disabled]="loading" mat-raised-button color="primary" (click)="procesarGuardado()">Guardar</button>
       </td>
     </tr>
   </table>

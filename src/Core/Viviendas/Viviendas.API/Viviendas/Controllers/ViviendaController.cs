@@ -16,12 +16,14 @@ namespace Viviendas.API.Controllers
     public class ViviendaController : ControllerBase
     {
         private readonly IViviendaRepository _viviendaRepository;
+        private readonly IViviendaTIRepository _viviendaITRepository;
         private readonly IConfiguration _configuration;
 
         public ViviendaController(IConfiguration configuration)
         {
             _configuration = configuration;
             _viviendaRepository = new ViviendaRepository(_configuration);
+            _viviendaITRepository = new ViviendaITRespository(_configuration);
         }
 
         [HttpGet("GetAllViviendas", Name = "GetViviendas")]
@@ -57,6 +59,12 @@ namespace Viviendas.API.Controllers
         public async Task<IActionResult> DeleteVivienda(Guid id)
         {
             await _viviendaRepository.DeleteViviendaAsync(id);
+            return Ok();
+        }
+        [HttpDelete("DeleteViviendaIT/{id}", Name = "DeleteViviendaIT")]
+        public async Task<IActionResult> DeleteViviendaIT(Guid id)
+        {
+            await _viviendaITRepository.DeleteViviendaIT(id);
             return Ok();
         }
     }
