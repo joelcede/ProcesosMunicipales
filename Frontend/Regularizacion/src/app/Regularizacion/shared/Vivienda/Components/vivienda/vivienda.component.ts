@@ -189,37 +189,28 @@ export class ViviendaComponent implements OnInit, OnDestroy {
     const viviendaForm = this.viviendaF;
     //if (this.PropietarioControl)
     let tienePropPrinciopal = true;
-    this.PropietarioControl.value.forEach(x => {
-      if (this.top10Propietarios.filter(y => y.id == x) && this.top10Propietarios.filter(x => !x.principal))
-        tienePropPrinciopal = false;
-    });
-    if (tienePropPrinciopal) {
-      this.viviendaService.addVivienda(viviendaForm).subscribe({
-        next: (response: any) => {
-          const listPropietarios = this.listPropietarios(response.id);
-          this.addPropietarioVivienda(listPropietarios);
-          const listFamiliares = this.listFamiliares(response.id);
-          this.addFamiliarVivienda(listFamiliares);
-          this.resetForm();
-          this.toastr.success('Vivienda Guardado', 'Exito');
-        },
-        error: (error: HttpErrorResponse) => {
-          if (error.error.errors) {
-            const errorMessages = this.extractErrorMessages(error.error.errors);
-            errorMessages.forEach(errMsg => {
-              this.toastr.error(errMsg, 'ERROR');
-            });
-          } else {
-          }
-        },
-        complete: () => {
-          this.loading = false;
+    this.viviendaService.addVivienda(viviendaForm).subscribe({
+      next: (response: any) => {
+        const listPropietarios = this.listPropietarios(response.id);
+        this.addPropietarioVivienda(listPropietarios);
+        const listFamiliares = this.listFamiliares(response.id);
+        this.addFamiliarVivienda(listFamiliares);
+        this.resetForm();
+        this.toastr.success('Vivienda Guardado', 'Exito');
+      },
+      error: (error: HttpErrorResponse) => {
+        if (error.error.errors) {
+          const errorMessages = this.extractErrorMessages(error.error.errors);
+          errorMessages.forEach(errMsg => {
+            this.toastr.error(errMsg, 'ERROR');
+          });
+        } else {
         }
-      })
-    }
-    else {
-      this.toastr.error('Debe agregar un propietario principal', 'ERROR');
-    }
+      },
+      complete: () => {
+        this.loading = false;
+      }
+    })
   }
 
   listPropietarios(idVivienda: string): IViviendaUsuario[] {
