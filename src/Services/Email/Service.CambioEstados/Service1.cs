@@ -1,5 +1,6 @@
 ﻿using Quartz;
 using Quartz.Impl;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,6 +27,7 @@ namespace Service.CambioEstados
 
         protected override async void OnStart(string[] args)
         {
+
             scheduler = await StdSchedulerFactory.GetDefaultScheduler();
             await scheduler.Start();
 
